@@ -28,4 +28,4 @@ shows the load difference between just running a simulation in my normal simulat
 running 7 threads of VUnit test cases in the background with GHDL (second 100% load peak).
 
 If you're new to VUnit and want more information I recommend that you start with this short
-[introduction](https://www.linkedin.com/pulse/article/short-introduction-vunit-lars-asplund).
+[introduction](http://vunit.github.io/Short-Introduction-to-VUnit/).
