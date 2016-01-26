@@ -21,7 +21,7 @@ Automation means that our testbenches and their test cases have to be self-check
 the execution all these tests or a selected subset thereof. As soon as we introduce manual steps in this workflow we
 tend to postpone the testing and the short code/test cycle is broken.
 
-VUnit provides a [check package](https://github.com/VUnit/vunit/blob/master/vhdl/check/user_guide.md)
+VUnit provides a [check package](https://github.com/VUnit/vunit/blob/master/vunit/vhdl/check/user_guide.md)
 for making tests self-checking and the [test runner](https://github.com/VUnit/vunit/blob/master/user_guide.md)
 is responsible for the execution. The test runner will scan your project directories for source files and tests,
 figure out their dependencies and what have been modified, compile what's needed and then run the selected tests as
@@ -54,19 +54,19 @@ to send. The strongly typed nature of VHDL has been hidden which means that you 
 the provided send procedure. You don't have to define your own procedures for every data/message type you create.
 Message passing can be used for sending transactions without some of the limitations of pin-wiggling and
 procedure-based transactions but it is also the basis for several other communication patterns. For more info see the
-user [guide](https://github.com/LarsAsplund/vunit/blob/master/vhdl/com/user_guide.md).
+user [guide](https://github.com/VUnit/vunit/blob/master/vunit/vhdl/com/user_guide.md).
 
 - An array package that can handle multidimensional arrays. It's typically used for input and output data sets to the
 DUT. The package supports reading/writing arrays from/to file which enables file-based testing. For more information
-see this [example](https://github.com/LarsAsplund/vunit/tree/master/examples/vhdl/array).
+see this [example](https://github.com/VUnit/vunit/tree/master/examples/vhdl/array).
 
 - A general purpose logging framework supporting display and file output, different output levels, filtering on level
 and design hierarchy, output formatting, automatic file and line localization of log entries, multiple loggers, and
 spreadsheet tool integration. For more information see the user
-[guide](https://github.com/LarsAsplund/vunit/blob/master/vhdl/logging/user_guide.md).
+[guide](https://github.com/VUnit/vunit/blob/master/vunit/vhdl/logging/user_guide.md).
 
 VUnit is a truly open project formed by its community. If you want to follow the progress you can click on "watch" on
-the project [homepage](https://github.com/LarsAsplund/vunit). If you like what you see click on "star".
+the project [homepage](https://github.com/VUnit/vunit). If you like what you see click on "star".
 If it's something you don't like or you miss a feature you should create an
-[issue](https://github.com/LarsAsplund/vunit/issues). You can also make your own code
-[contributions](https://github.com/LarsAsplund/vunit/blob/master/developing.md).
+[issue](https://github.com/VUnit/vunit/issues). You can also make your own code
+[contributions](https://github.com/VUnit/vunit/blob/master/developing.md).
