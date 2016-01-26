@@ -8,7 +8,7 @@ __Originally posted and commented on
 ![UVM]({{ site.baseurl }}/images/uvm.png)
 
 Over the last few years a number of open source test solutions have emerged. I'm talking about tools like our
-[VUnit](https://github.com/LarsAsplund/vunit) but also others like [OSVVM](http://osvvm.org/),
+[VUnit](https://github.com/VUnit/vunit) but also others like [OSVVM](http://osvvm.org/),
 [Cocotb](https://github.com/potentialventures/cocotb), [BVUL](http://bitvis.no/products/bitvis-utility-library/),
 and [SVUnit](http://www.agilesoc.com/open-source-projects/svunit/).
 The people developing these tools all had the question:
