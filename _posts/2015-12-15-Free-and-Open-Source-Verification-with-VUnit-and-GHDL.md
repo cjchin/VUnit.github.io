@@ -8,7 +8,7 @@ __Originally posted and commented on
 
 ![CPU load]({{ site.baseurl }}/images/CPU load.png)
 
-[VUnit](https://github.com/LarsAsplund/vunit) is a free and open source (FOSS) unit testing framework for VHDL
+[VUnit](https://github.com/VUnit/vunit) is a free and open source (FOSS) unit testing framework for VHDL
 that supports ModelSim, Rivera-PRO, GHDL, and Active-HDL. GHDL is a FOSS simulator which VUnit started to support
 6 months ago but until recently you had to build GHDL yourself from source code to get a version working with VUnit.
 This was inconvenient and made it harder to get started but with the official release of GHDL 0.33 this is no longer
