@@ -7,7 +7,7 @@ __Originally posted and commented on
 
 ![UVM]({{ site.baseurl }}/images/4x.png)
 
-[VUnit](https://github.com/LarsAsplund/vunit) is a free and open source unit testing framework for VHDL that
+[VUnit](https://github.com/VUnit/vunit) is a free and open source unit testing framework for VHDL that
 was released in November last year. Initially it supported ModelSim, then GHDL support was added in June, and a few
 days ago we added support for Active-HDL and Riviera-PRO. The latest addition makes the tool available for a new group
 of users and this is a short introduction for you.
@@ -21,8 +21,8 @@ Automation means that our testbenches and their test cases have to be self-check
 the execution all these tests or a selected subset thereof. As soon as we introduce manual steps in this workflow we
 tend to postpone the testing and the short code/test cycle is broken.
 
-VUnit provides a [check package](https://github.com/LarsAsplund/vunit/blob/master/vhdl/check/user_guide.md)
-for making tests self-checking and the [test runner](https://github.com/LarsAsplund/vunit/blob/master/user_guide.md)
+VUnit provides a [check package](https://github.com/VUnit/vunit/blob/master/vhdl/check/user_guide.md)
+for making tests self-checking and the [test runner](https://github.com/VUnit/vunit/blob/master/user_guide.md)
 is responsible for the execution. The test runner will scan your project directories for source files and tests,
 figure out their dependencies and what have been modified, compile what's needed and then run the selected tests as
 specified from command line. For example,
