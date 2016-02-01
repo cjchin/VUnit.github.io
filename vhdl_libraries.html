@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>VUnit &mdash; VUnit  documentation</title>
+    <title>VHDL Libraries &mdash; VUnit  documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,10 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
-    <link rel="top" title="VUnit  documentation" href="#" />
-    <link rel="next" title="What is VUnit?" href="about.html" />
+    <link rel="top" title="VUnit  documentation" href="index.html" />
+    <link rel="up" title="Documentation" href="documentation.html" />
+    <link rel="next" title="Logging Library" href="logging/user_guide.html" />
+    <link rel="prev" title="Python Interface" href="python_interface.html" />
   
    
   
@@ -55,63 +57,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="vunit">
-<h1>VUnit<a class="headerlink" href="#vunit" title="Permalink to this headline">¶</a></h1>
-<p>VUnit is an open source unit testing framework for VHDL/SystemVerilog
-released under the terms of Mozilla Public License, v. 2.0. It
-features the functionality needed to realize continuous and automated
-testing of your HDL code. VUnit doesn&#8217;t replace but rather complements
-traditional testing methodologies by supporting a &#8220;test early and
-often&#8221; approach through automation. <a class="reference internal" href="about.html#about"><span>Read more</span></a></p>
-<div class="section" id="latest-posts">
-<h2>Latest Posts<a class="headerlink" href="#latest-posts" title="Permalink to this headline">¶</a></h2>
-<ul class="postlist-style-disk postlist">
-<li><p class="first"><a class="reference internal" href="posts/2016_01_29_chat_with_vunit_users_and_developers/post.html">Chat with VUnit Users and Developers</a> by <a class="reference internal" href="blog/author/lasplund.html" title="lasplund"><em>lasplund</em></a> on January 29, 2016</p>
-<p>Today I created a VUnit chat room using Gitter. Click the chat icon on
-the left of the page to join the discussion.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="posts/2016_01_26_welcome_to_our_new_website/post.html">Welcome to Our New Website</a> by <a class="reference internal" href="blog/author/lasplund.html" title="lasplund"><em>lasplund</em></a> on January 26, 2016</p>
-<p>Today I moved VUnit from my personal GitHub account to a dedicated
-<a class="reference external" href="https://www.github.com/VUnit/vunit">VUnit account</a>. Links to the
-previous account are redirected to the new so your clones of VUnit
-should not be affected. However, I suggest you update your remote
-location to avoid any confusion.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="posts/2015_12_15_free_and_open_source_verification_with_vunit_and_ghdl/post.html">Free and Open Source Verification with VUnit and GHDL</a> by <a class="reference internal" href="blog/author/lasplund.html" title="lasplund"><em>lasplund</em></a> on December 15, 2015</p>
-<p><strong>Originally posted and commented on</strong> <a class="reference external" href="https://www.linkedin.com/pulse/free-open-source-verification-vunit-ghdl-lars-asplund?trk%20=pulse_spock-articles">LinkedIn</a>.</p>
-<p><a class="reference external" href="https://github.com/VUnit/vunit">VUnit</a> is a free and open source
-(FOSS) unit testing framework for VHDL that supports ModelSim,
-Rivera-PRO, GHDL, and Active-HDL. GHDL is a FOSS simulator which VUnit
-started to support 6 months ago but until recently you had to build GHDL
-yourself from source code to get a version working with VUnit. This was
-inconvenient and made it harder to get started but with the official
-release of GHDL 0.33 this is no longer an issue and you can
-<a class="reference external" href="http://sourceforge.net/projects/ghdl-updates/files/Builds/ghdl-0.33/">download</a>
-binary builds directly.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="posts/2015_10_08_who_is_using_UVM/post.html">Who&#8217;s Using UVM (or Not) for FPGA Development, and Why?</a> by <a class="reference internal" href="blog/author/lasplund.html" title="lasplund"><em>lasplund</em></a> on October 10, 2015</p>
-<p><strong>Originally posted and commented on</strong> <a class="reference external" href="https://www.linkedin.com/pulse/whos-using-uvm-fpga-development-why-lars-asplund?trk=mp-author-card">LinkedIn</a>.</p>
-<p>Over the last few years a number of open source test solutions have
-emerged. I&#8217;m talking about tools like our
-<a class="reference external" href="https://github.com/VUnit/vunit">VUnit</a> but also others like
-<a class="reference external" href="http://osvvm.org/">OSVVM</a>,
-<a class="reference external" href="https://github.com/potentialventures/cocotb">Cocotb</a>,
-<a class="reference external" href="http://bitvis.no/products/bitvis-utility-library/">BVUL</a>, and
-<a class="reference external" href="http://www.agilesoc.com/open-source-projects/svunit/">SVUnit</a>. The
-people developing these tools all had the question:</p>
-</li>
-<li><p class="first"><a class="reference internal" href="posts/2015_09_24_short_introduction_to_vunit/post.html">Short Introduction to VUnit</a> by <a class="reference internal" href="blog/author/lasplund.html" title="lasplund"><em>lasplund</em></a> on September 24, 2015</p>
-<p><strong>Originally posted and commented on</strong> <a class="reference external" href="https://www.linkedin.com/pulse/short-introduction-vunit-lars-asplund?trk=mp-author-card">LinkedIn</a>.</p>
-<p><a class="reference external" href="https://github.com/VUnit/vunit">VUnit</a> is a free and open source
-unit testing framework for VHDL that was released in November last year.
-Initially it supported ModelSim, then GHDL support was added in June,
-and a few days ago we added support for Active-HDL and Riviera-PRO. The
-latest addition makes the tool available for a new group of users and
-this is a short introduction for you.</p>
-</li>
-</ul>
+  <div class="section" id="vhdl-libraries">
+<h1>VHDL Libraries<a class="headerlink" href="#vhdl-libraries" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-</div>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="logging/user_guide.html">Logging Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check/user_guide.html">Check Library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="com/user_guide.html">Communication Library</a></li>
+</ul>
 </div>
 </div>
 
@@ -126,7 +79,7 @@ this is a short introduction for you.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <p class="logo">
-  <a href="#">
+  <a href="index.html">
     <img class="logo" src="_static/VUnit_logo_420x420.png" alt="Logo"/>
     
     <h1 class="logo logo-name">VUnit</h1>
@@ -155,10 +108,21 @@ this is a short introduction for you.</p>
 <a class="icon" title="Chat with us on Gitter" href="https://gitter.im/VUnit/vunit"><span class="fa fa-weixin fa-2x fa-fw"/></a>
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="about.html">What is VUnit?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_interface.html">Python Interface</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">VHDL Libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging/user_guide.html">Logging Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="check/user_guide.html">Check Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="com/user_guide.html">Communication Library</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 
@@ -237,7 +201,7 @@ this is a short introduction for you.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |
-      <a href="_sources/index.txt"
+      <a href="_sources/vhdl_libraries.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What is VUnit? &mdash; VUnit  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="author" title="About these documents" href="#" />
+    <link rel="top" title="VUnit  documentation" href="index.html" />
+    <link rel="next" title="Installing" href="installing.html" />
+    <link rel="prev" title="VUnit" href="index.html" />
+  
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+  <link rel="alternate" type="application/atom+xml"  href="blog/atom.xml" title="VUnit Blog">
+  
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-is-vunit">
+<span id="about"></span><h1>What is VUnit?<a class="headerlink" href="#what-is-vunit" title="Permalink to this headline">¶</a></h1>
+<p>VUnit is an open source unit testing framework for VHDL/SystemVerilog
+released under the terms of Mozilla Public License, v. 2.0. It
+features the functionality needed to realize continuous and automated
+testing of your HDL code. VUnit doesn&#8217;t replace but rather complements
+traditional testing methodologies by supporting a &#8220;test early and
+often&#8221; approach through automation.</p>
+<p><strong>NOTE:</strong> SystemVerilog support is experimental.</p>
+<div class="section" id="project-mission">
+<h2>Project Mission<a class="headerlink" href="#project-mission" title="Permalink to this headline">¶</a></h2>
+<p>The VUnit project mission is to apply best SW testing practises to the
+world of HDLs by providing the tools missing to adapt to such
+practises. The major missing piece is the unit testing framework,
+hence the name V(HDL)Unit. However, VUnit also provides supporting
+functionality not normally considered as a part of an unit testing
+framework.</p>
+</div>
+<div class="section" id="main-features">
+<h2>Main Features<a class="headerlink" href="#main-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Builds on the commonly used <a class="reference external" href="http://en.wikipedia.org/wiki/XUnit">xUnit</a> architecture.</li>
+<li>Python test runner that enables powerful test administration, can
+handle fatal run-time errors (e.g. division by zero), and
+ensures test case independence.</li>
+<li>Scanners for identifying files, tests, file dependencies, and file
+changes enable for automatic (re)compilation and execution of test
+suites.</li>
+<li>Can run test cases in parallel to take advantage of multi-core
+machines.</li>
+<li>Scripting as well as command line support.</li>
+<li>Support for running same test suite with different generics.</li>
+<li>VHDL test runner which enables test execution for not fully supported
+simulators.</li>
+<li>Assertion checker library that extends VHDL built-in support
+(assert).</li>
+<li>Logging framework supporting display and file output, different log
+levels, filtering on level and design hierarchy, output formatting
+and multiple loggers. Spreadsheet tool integration.</li>
+<li>Location preprocessor that traces log and check calls back to file
+and line number.</li>
+<li>JUnit report files for better <a class="reference external" href="http://jenkins-ci.org/">Jenkins</a> integration.</li>
+</ul>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>VUnit depends on a number of components as listed below. Full VUnit
+functionality requires Python and a simulator supported by the VUnit
+Python test runner. However, VUnit can run with limited functionality
+entirely within VHDL which means that unsupported simulators can be used
+as well. Prototype work has been done to fully support other simulators
+but this work is yet to be completed and released.</p>
+<div class="section" id="languages">
+<h3>Languages<a class="headerlink" href="#languages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>VHDL-93</li>
+<li>VHDL-2002</li>
+<li>VHDL-2008</li>
+<li>Verilog</li>
+<li>SystemVerilog</li>
+</ul>
+</div>
+<div class="section" id="operating-systems">
+<h3>Operating systems<a class="headerlink" href="#operating-systems" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Windows</li>
+<li>Linux</li>
+<li>Mac OS X</li>
+</ul>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python 2.7</li>
+<li>Python 3.3 or higher</li>
+</ul>
+</div>
+<div class="section" id="simulators">
+<h3>Simulators<a class="headerlink" href="#simulators" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://www.aldec.com/en/products/functional_verification/riviera-pro%5D">Aldec Riviera-PRO</a><ul>
+<li>Tested with Riviera-PRO-2015.06 (x64/x86).</li>
+<li>Only VHDL 2008</li>
+</ul>
+</li>
+<li><a class="reference external" href="https://www.aldec.com/en/products/fpga_simulation/active-hdl">Aldec Active-HDL</a><ul>
+<li>Tested with Active-HDL-10.2 (x64/x86)</li>
+<li>Only VHDL 2008</li>
+</ul>
+</li>
+<li><a class="reference external" href="http://www.mentor.com/products/fv/modelsim/">Mentor Graphics ModelSim/Questa</a><ul>
+<li>Tested with 10.1 - 10.3</li>
+</ul>
+</li>
+<li><a class="reference external" href="https://sourceforge.net/projects/ghdl-updates/">GHDL</a><ul>
+<li>Only VHDL 2008</li>
+<li>Works with versions &gt;= 0.33</li>
+<li>Tested with LLVM and mcode backends, gcc backend might work aswell.</li>
+<li>Integrated support for using <a class="reference external" href="http://gtkwave.sourceforge.net/">GTKWave</a> to view waveforms.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>There are a number of ways to get started.</p>
+<ul class="simple">
+<li>The <a class="reference internal" href="user_guide.html#user-guide"><span>VUnit User Guide</span></a> will guide users on how to use start using
+the basic features of VUnit but also provides information about more
+specific and advanced usage.</li>
+<li>The <a class="reference internal" href="check/user_guide.html#check-library"><span>Check User Guide</span></a> presents the check package.</li>
+<li>The <a class="reference internal" href="logging/user_guide.html#logging-library"><span>Log User Guide</span></a> presents the log package.</li>
+<li>There are also various presentations of VUnit on <a class="reference external" href="https://www.youtube.com/channel/UCCPVCaeWkz6C95aRUTbIwdg">YouTube</a>. For
+example <a class="reference external" href="https://www.youtube.com/watch?v=PZuBqcxS8t4">an introduction to unit testing (6 min)</a> and a <a class="reference external" href="https://www.youtube.com/watch?v=D8s_VLD91tw">short
+introduction to VUnit (12 min)</a>.</li>
+</ul>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>Any bug reports, feature requests or questions about the usage of VUnit
+can be made by creating a <a class="reference external" href="https://github.com/VUnit/vunit/issues/new">new issue</a>. The issue should be labeled
+accordingly using the built-in labels; <em>bug</em>, <em>enhancement</em> or
+<em>question</em>.</p>
+</div>
+<div class="section" id="main-contributors">
+<h2>Main Contributors<a class="headerlink" href="#main-contributors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Lars Asplund</li>
+<li>Olof Kraigher</li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vunit">
+<h3>VUnit<a class="headerlink" href="#vunit" title="Permalink to this headline">¶</a></h3>
+<p>VUnit except for OSVVM (see below) is released under the terms of
+<a class="reference external" href="http://mozilla.org/MPL/2.0/">Mozilla Public License, v. 2.0</a>.</p>
+<p>© 2014-2016 Lars Asplund, <a class="reference external" href="mailto:lars&#46;anders&#46;asplund&#37;&#52;&#48;gmail&#46;com">lars<span>&#46;</span>anders<span>&#46;</span>asplund<span>&#64;</span>gmail<span>&#46;</span>com</a>.</p>
+</div>
+<div class="section" id="osvvm">
+<h3>OSVVM<a class="headerlink" href="#osvvm" title="Permalink to this headline">¶</a></h3>
+<p>OSVVM 2015.03 is <a class="reference external" href="https://github.com/VUnit/vunit/blob/master/vunit/vhdl/osvvm">redistributed</a> with VUnit for your convenience. Minor
+<a class="reference external" href="https://github.com/VUnit/vunit/commit/25fce1b3700e746c3fa23bd7157777dd4f20f0d6">modifications</a> have been made to enable GHDL support. Derivative work
+is also located under <a class="reference external" href="https://github.com/VUnit/vunit/blob/master/examples/vhdl/osvvm_integration/src">examples/vhdl/osvvm_integration/src</a>. These
+files are licensed under the terms of <a class="reference external" href="http://www.perlfoundation.org/artistic_license_2_0">ARTISTIC License</a>.</p>
+<p>© 2010 - 2015 by SynthWorks Design Inc. All rights reserved.</p>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/VUnit_logo_420x420.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">VUnit</h1>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">A test framework for HDL</p>
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=vunit&repo=vunit&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+<a class="icon" title="Contact us" href="mailto:vunitframework@gmail.com"><span class="fa fa-envelope fa-2x fa-fw"/></a>
+<a class="icon" title="Go to our GitHub Repo" href="https://github.com/VUnit/vunit"><span class="fa fa-github fa-2x fa-fw"/></a>
+<a class="icon" title="View our Twitter Feed" href="https://www.twitter.com/VUnitFramework"><span class="fa fa-twitter fa-2x fa-fw"/></a>
+<a class="icon" title="View our YouTube Channel" href="https://youtube.com/channel/UCCPVCaeWkz6C95aRUTbIwdg"><span class="fa fa-youtube fa-2x fa-fw"/></a>
+<a class="icon" title="Chat with us on Gitter" href="https://gitter.im/VUnit/vunit"><span class="fa fa-weixin fa-2x fa-fw"/></a>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">What is VUnit?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-mission">Project Mission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-features">Main Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#languages">Languages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-systems">Operating systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulators">Simulators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-contributors">Main Contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vunit">VUnit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#osvvm">OSVVM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installing.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+
+
+  <h3><a href="blog.html">Recent Posts</a></h3>
+  <ul>
+    
+    
+      <li><a href="posts/2016_01_29_chat_with_vunit_users_and_developers/post.html">Jan 29 - Chat with VUnit Users and Developers</a></li>
+    
+      <li><a href="posts/2016_01_26_welcome_to_our_new_website/post.html">Jan 26 - Welcome to Our New Website</a></li>
+    
+      <li><a href="posts/2015_12_15_free_and_open_source_verification_with_vunit_and_ghdl/post.html">Dec 15 - Free and Open Source Verification with VUnit and GHDL</a></li>
+    
+      <li><a href="posts/2015_10_08_who_is_using_UVM/post.html">Oct 10 - Who's Using UVM (or Not) for FPGA Development, and Why?</a></li>
+    
+      <li><a href="posts/2015_09_24_short_introduction_to_vunit/post.html">Sep 24 - Short Introduction to VUnit</a></li>
+    
+  </ul>
+
+  <h3><a href="blog/tag.html">Tags</a></h3>
+  <style type="text/css">
+    ul.ablog-cloud {list-style: none; overflow: auto;}
+    ul.ablog-cloud li {float: left; height: 20pt; line-height: 18pt; margin-right: 5px;}
+    ul.ablog-cloud a {text-decoration: none; vertical-align: middle;}
+    li.ablog-cloud-1{font-size: 80%;}
+    li.ablog-cloud-2{font-size: 95%;}
+    li.ablog-cloud-3{font-size: 110%;}
+    li.ablog-cloud-4{font-size: 125%;}
+    li.ablog-cloud-5{font-size: 140%;}
+  </style>
+  <ul class="ablog-cloud">
+    
+      
+      <li class="ablog-cloud ablog-cloud-3">
+        <a href="blog/tag/vunit.html">VUnit</a></li>
+      
+    
+  </ul>
+
+  <h3><a href="blog/archive.html">Archives</a></h3>
+  <ul>
+  
+    
+    <li><a href="blog/2016.html">2016 (2)</a></li>
+    
+  
+    
+    <li><a href="blog/2015.html">2015 (3)</a></li>
+    
+  
+  </ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Lars Asplund.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/about.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

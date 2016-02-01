@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">VUnit Blog</title>
+  <id>http://vunit.github.io/blog/atom.xml</id>
+  <updated>2016-01-29T00:00:00Z</updated>
+  <link href="http://vunit.github.io" />
+  <link href="http://vunit.github.io/blog/atom.xml" rel="self" />
+  <generator uri="http://ablog.readthedocs.org" version="0.8.2">ABlog</generator>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">Chat with VUnit Users and Developers</title>
+    <id>http://vunit.github.io/posts/2016_01_29_chat_with_vunit_users_and_developers/post.html</id>
+    <updated>2016-01-29T00:00:00Z</updated>
+    <published>2016-01-29T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2016_01_29_chat_with_vunit_users_and_developers/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;Today I created a VUnit chat room using Gitter. Click the chat icon on
+the left of the page to join the discussion.&lt;/p&gt;
+</content>
+  </entry>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">Welcome to Our New Website</title>
+    <id>http://vunit.github.io/posts/2016_01_26_welcome_to_our_new_website/post.html</id>
+    <updated>2016-01-26T00:00:00Z</updated>
+    <published>2016-01-26T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2016_01_26_welcome_to_our_new_website/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;Today I moved VUnit from my personal GitHub account to a dedicated
+&lt;a class=&quot;reference external&quot; href=&quot;https://www.github.com/VUnit/vunit&quot;&gt;VUnit account&lt;/a&gt;. Links to the
+previous account are redirected to the new so your clones of VUnit
+should not be affected. However, I suggest you update your remote
+location to avoid any confusion.&lt;/p&gt;
+</content>
+  </entry>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">Free and Open Source Verification with VUnit and GHDL</title>
+    <id>http://vunit.github.io/posts/2015_12_15_free_and_open_source_verification_with_vunit_and_ghdl/post.html</id>
+    <updated>2015-12-15T00:00:00Z</updated>
+    <published>2015-12-15T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2015_12_15_free_and_open_source_verification_with_vunit_and_ghdl/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Originally posted and commented on&lt;/strong&gt; &lt;a class=&quot;reference external&quot; href=&quot;https://www.linkedin.com/pulse/free-open-source-verification-vunit-ghdl-lars-asplund?trk%20=pulse_spock-articles&quot;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://github.com/VUnit/vunit&quot;&gt;VUnit&lt;/a&gt; is a free and open source
+(FOSS) unit testing framework for VHDL that supports ModelSim,
+Rivera-PRO, GHDL, and Active-HDL. GHDL is a FOSS simulator which VUnit
+started to support 6 months ago but until recently you had to build GHDL
+yourself from source code to get a version working with VUnit. This was
+inconvenient and made it harder to get started but with the official
+release of GHDL 0.33 this is no longer an issue and you can
+&lt;a class=&quot;reference external&quot; href=&quot;http://sourceforge.net/projects/ghdl-updates/files/Builds/ghdl-0.33/&quot;&gt;download&lt;/a&gt;
+binary builds directly.&lt;/p&gt;
+</content>
+  </entry>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">Who's Using UVM (or Not) for FPGA Development, and Why?</title>
+    <id>http://vunit.github.io/posts/2015_10_08_who_is_using_UVM/post.html</id>
+    <updated>2015-10-10T00:00:00Z</updated>
+    <published>2015-10-10T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2015_10_08_who_is_using_UVM/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Originally posted and commented on&lt;/strong&gt; &lt;a class=&quot;reference external&quot; href=&quot;https://www.linkedin.com/pulse/whos-using-uvm-fpga-development-why-lars-asplund?trk=mp-author-card&quot;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Over the last few years a number of open source test solutions have
+emerged. I&amp;#8217;m talking about tools like our
+&lt;a class=&quot;reference external&quot; href=&quot;https://github.com/VUnit/vunit&quot;&gt;VUnit&lt;/a&gt; but also others like
+&lt;a class=&quot;reference external&quot; href=&quot;http://osvvm.org/&quot;&gt;OSVVM&lt;/a&gt;,
+&lt;a class=&quot;reference external&quot; href=&quot;https://github.com/potentialventures/cocotb&quot;&gt;Cocotb&lt;/a&gt;,
+&lt;a class=&quot;reference external&quot; href=&quot;http://bitvis.no/products/bitvis-utility-library/&quot;&gt;BVUL&lt;/a&gt;, and
+&lt;a class=&quot;reference external&quot; href=&quot;http://www.agilesoc.com/open-source-projects/svunit/&quot;&gt;SVUnit&lt;/a&gt;. The
+people developing these tools all had the question:&lt;/p&gt;
+</content>
+  </entry>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">Short Introduction to VUnit</title>
+    <id>http://vunit.github.io/posts/2015_09_24_short_introduction_to_vunit/post.html</id>
+    <updated>2015-09-24T00:00:00Z</updated>
+    <published>2015-09-24T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2015_09_24_short_introduction_to_vunit/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Originally posted and commented on&lt;/strong&gt; &lt;a class=&quot;reference external&quot; href=&quot;https://www.linkedin.com/pulse/short-introduction-vunit-lars-asplund?trk=mp-author-card&quot;&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;reference external&quot; href=&quot;https://github.com/VUnit/vunit&quot;&gt;VUnit&lt;/a&gt; is a free and open source
+unit testing framework for VHDL that was released in November last year.
+Initially it supported ModelSim, then GHDL support was added in June,
+and a few days ago we added support for Active-HDL and Riviera-PRO. The
+latest addition makes the tool available for a new group of users and
+this is a short introduction for you.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
