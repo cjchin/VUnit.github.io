@@ -69,8 +69,8 @@ source files are automatically scanned for test cases.</p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>VUnit command line tool.</p>
-<div class="highlight-python"><div class="highlight"><pre>usage: run.py [-h] [-l] [--compile] [--elaborate] [--clean] [-o OUTPUT_PATH]
-              [-x XUNIT_XML] [--exit-0] [-v] [--no-color]
+<div class="highlight-python"><div class="highlight"><pre>usage: run.py [-h] [-l] [-f] [--compile] [--elaborate] [--clean]
+              [-o OUTPUT_PATH] [-x XUNIT_XML] [--exit-0] [-v] [--no-color]
               [--log-level {info,error,warning,debug}] [-p NUM_THREADS] [-g]
               [--new-vsim] [--coverage [COVERAGE]] [--gtkwave {vcd,ghw}]
               [--gtkwave-args GTKWAVE_ARGS] [--use-debug-codecs]
@@ -98,6 +98,10 @@ source files are automatically scanned for test cases.</p>
 <kbd><span class="option">-l=False</span>, <span class="option">--list=False</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Only list all test cases</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-f=False</span>, <span class="option">--files=False</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Only list all files in compile order</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--compile=False</span></kbd></td>
 </tr>
@@ -148,7 +152,7 @@ source files are automatically scanned for test cases.</p>
 <tr><td>&nbsp;</td><td>Do not re-use the same vsim process for running different test cases (slower)</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--coverage</span></kbd></td>
-<td>Enable code coverage. Choose any combination of &#8220;bcestf&#8221;. When the flag is given with no argument everthing is enabled. Remember to run &#8211;clean when chaning this as re-compilation is not triggered. Experimental feature not supported by VUnit main developers.</td></tr>
+<td>Enable code coverage. Choose any combination of &#8220;bcestf&#8221;. When the flag is given with no argument, everything is enabled. Remember to run &#8211;clean when changing this as re-compilation is not triggered. Experimental feature not supported by VUnit main developers.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--gtkwave</span></kbd></td>
 <td><p class="first">Save .vcd or .ghw and open in gtkwave</p>
