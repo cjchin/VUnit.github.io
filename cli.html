@@ -276,6 +276,20 @@ ModelSim:</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="continuous-integration-environment">
+<span id="continuous-integration"></span><h2>Continuous Integration Environment<a class="headerlink" href="#continuous-integration-environment" title="Permalink to this headline">¶</a></h2>
+<p>VUnit is easily utilized with continuous integration environments such as
+<a class="reference external" href="http://jenkins-ci.org/">Jenkins</a>. Once a project <code class="docutils literal"><span class="pre">run.py</span></code> has been setup, tests can be run in a
+headless environment with standardized xUnit style output to a file.</p>
+<div class="literal-block-wrapper container" id="execute-vunit-tests-on-ci-server-with-xml-output">
+<div class="code-block-caption"><span class="caption-text">Execute VUnit tests on CI server with XML output</span><a class="headerlink" href="#execute-vunit-tests-on-ci-server-with-xml-output" title="Permalink to this code">¶</a></div>
+<div class="highlight-console"><div class="highlight"><pre><span class="go"> python run.py --xunit-xml test_output.xml</span>
+</pre></div>
+</div>
+</div>
+<p>After tests have finished running, the <code class="docutils literal"><span class="pre">test_output.xml</span></code> file can be parsed
+using standard xUnit test parsers such as <a class="reference external" href="http://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">Jenkins xUnit Plugin</a>.</p>
+</div>
 <div class="section" id="simulator-selection">
 <span id="id1"></span><h2>Simulator Selection<a class="headerlink" href="#simulator-selection" title="Permalink to this headline">¶</a></h2>
 <p>VUnit automatically detects which simulators are available on the
@@ -283,7 +297,7 @@ ModelSim:</p>
 found. For people who have multiple simulators installed the
 <code class="docutils literal"><span class="pre">VUNIT_SIMULATOR</span></code> environment variable can be set to one of
 <code class="docutils literal"><span class="pre">activehdl</span></code>, <code class="docutils literal"><span class="pre">rivierapro</span></code>, <code class="docutils literal"><span class="pre">ghdl</span></code> or <code class="docutils literal"><span class="pre">modelsim</span></code> to explicitly
-choose the simulator explicitly.</p>
+specify the simulator.</p>
 </div>
 </div>
 
@@ -336,6 +350,7 @@ choose the simulator explicitly.</p>
 <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-session">Example Session</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#opening-a-test-case-in-simulator-gui">Opening a Test Case in Simulator GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-integration-environment">Continuous Integration Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simulator-selection">Simulator Selection</a></li>
 </ul>
 </li>

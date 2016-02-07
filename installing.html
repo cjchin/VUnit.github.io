@@ -64,6 +64,10 @@
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> pip install vunit_hdl
 </pre></div>
 </div>
+<p>Once installed, VUnit may be updated to new versions via a similar method:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> pip install -U vunit_hdl
+</pre></div>
+</div>
 </div>
 <div class="section" id="using-the-development-version">
 <h2>Using the Development Version<a class="headerlink" href="#using-the-development-version" title="Permalink to this headline">¶</a></h2>
@@ -100,6 +104,27 @@ statement:</p>
 </div>
 </li>
 </ol>
+<div class="section" id="for-vunit-developers">
+<h3>For VUnit Developers<a class="headerlink" href="#for-vunit-developers" title="Permalink to this headline">¶</a></h3>
+<p>For those interested in development of VUnit, it is best to install
+VUnit so that the sources from git are installed in-place instead of
+to the Python site-packages directory. This can be achieved by using
+the <code class="docutils literal"><span class="pre">-e</span></code> flag with <code class="docutils literal"><span class="pre">pip</span></code>, or the <code class="docutils literal"><span class="pre">develop</span></code> option with
+<code class="docutils literal"><span class="pre">setup.py</span></code>, or setting the <code class="docutils literal"><span class="pre">PYTHONPATH</span></code> environment variable.</p>
+<blockquote>
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> git clone https://github.com/VUnit/vunit.git
+<span class="gp">&gt;</span> <span class="nb">cd</span> vunit
+
+<span class="gp">&gt;</span> python setup.py develop
+<span class="go">or</span>
+<span class="gp">&gt;</span> pip install -e .
+</pre></div>
+</div>
+</div></blockquote>
+<p>By installing VUnit in this manner, the git sources can be edited directly in
+your workspace while the <code class="docutils literal"><span class="pre">VUnit</span></code> package is still globally available in your
+Python environment.</p>
+</div>
 </div>
 </div>
 
@@ -147,7 +172,10 @@ statement:</p>
 <li class="toctree-l1"><a class="reference internal" href="about.html">What is VUnit?</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Installing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#using-the-python-package-manager">Using the Python Package Manager</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#using-the-development-version">Using the Development Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-development-version">Using the Development Version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#for-vunit-developers">For VUnit Developers</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>

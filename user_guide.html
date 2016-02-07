@@ -61,20 +61,30 @@
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The idea in VUnit is to have a single point of entry for compiling and
-running all tests within a HDL project. Tests do not need to be
-manually added to some list as they are automatically detected. There
-is no need for maintaining a list of files in compile order or
-manually re-compile files after they have been edited as VUnit
-automatically determines the compile order and which files to
-re-compile after a modification.</p>
-<p>A <code class="docutils literal"><span class="pre">run.py</span></code> file is created for the project where the <a class="reference internal" href="python_interface.html#python-interface"><span>VUnit
-Python interface</span></a> is used to add libraries and HDL
-files. The <code class="docutils literal"><span class="pre">run.py</span></code> file then acts as a <a class="reference internal" href="cli.html#cli"><span>command line utility</span></a> for compiling and running tests within the project.</p>
-<p>The command line interface supports listing all tests found as well as
-running individual tests matching a wildcard pattern. The Python
-interface also supports running a test bench or test for many
-different combinations of generic values.</p>
+<p>VUnit is invoked by a user-defined project specified in a Python script.
+At minimum, a VUnit project consists of a set of HDL source files mapped to
+libraries. The project serves as single point of entry for compiling and
+running all tests within an HDL project. VUnit provides automatic scanning
+for unit tests (test benches), automatic determination of compilation order,
+and incremental recompilation of modified sources.</p>
+<p>The top level Python script is typically named <code class="docutils literal"><span class="pre">run.py</span></code>.
+This script is the entry point for executing VUnit.
+The script defines the location for each HDL source
+file in the project, the library that each source file belongs to, any
+external (pre-compiled) libraries, and special settings that may be required
+in order to compile or simulate the project source files. The <a class="reference internal" href="python_interface.html#python-interface"><span>VUnit
+Python interface</span></a> is used to create and manipulate the VUnit
+project within the <code class="docutils literal"><span class="pre">run.py</span></code> file.</p>
+<p>Since the VUnit project is defined by a Python script, the full functionality
+of Python is available to create dynamic rules to specify the files
+that should be included in the project. For example, HDL files may be
+recursively included from a directory structure based on a filename pattern.
+Other Python packages or modules may be imported in order to setup the project.</p>
+<p>Once the files for a project have been included, the <a class="reference internal" href="cli.html#cli"><span>command line
+interface</span></a> can then be used to perform a variety of actions on the
+project. For example, listing all tests discovered, or running individual tests
+matching a wildcard pattern. The Python interface also supports running a test
+bench or test for many different combinations of generic values.</p>
 <div class="literal-block-wrapper container" id="example-run-py-file">
 <div class="code-block-caption"><span class="caption-text">Example <code class="docutils literal"><span class="pre">run.py</span></code> file.</span><a class="headerlink" href="#example-run-py-file" title="Permalink to this code">¶</a></div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnit</span>
@@ -85,7 +95,7 @@ different combinations of generic values.</p>
 <span class="c1"># Create library &#39;lib&#39;</span>
 <span class="n">lib</span> <span class="o">=</span> <span class="n">vu</span><span class="o">.</span><span class="n">add_library</span><span class="p">(</span><span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 
-<span class="c1"># Add all files ending in .vhd in current working directory</span>
+<span class="c1"># Add all files ending in .vhd in current working directory to library</span>
 <span class="n">lib</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">)</span>
 
 <span class="c1"># Run vunit function</span>
@@ -93,8 +103,8 @@ different combinations of generic values.</p>
 </pre></div>
 </div>
 </div>
-<p>Test benches are written using supporing libraries in <a class="reference internal" href="#vhdl-test-benches"><span>VHDL</span></a> and <a class="reference internal" href="#sv-test-benches"><span>SystemVerilog</span></a>
-respectively. A test bench can in iself be a single unnamed test or
+<p>Test benches are written using supporting libraries in <a class="reference internal" href="#vhdl-test-benches"><span>VHDL</span></a> and <a class="reference internal" href="#sv-test-benches"><span>SystemVerilog</span></a>
+respectively. A test bench can in itself be a single unnamed test or
 contain multiple named test cases.</p>
 <p>There are many <a class="reference internal" href="#examples"><span>example projects</span></a> demonstrating the
 usage and capabilities of VUnit.</p>
@@ -128,9 +138,9 @@ how to choose which one to use <a class="reference internal" href="cli.html#simu
 <p>From <code class="docutils literal"><span class="pre">tb_example.vhd</span></code> a single test case named <code class="docutils literal"><span class="pre">lib.tb_example</span></code> is
 created.</p>
 <p>It is also possible to put multiple tests in a single test
-bench that are each run in individual simulations. Putting multiple
-tests in the same test bench is a good way to share a common test
-environment.</p>
+bench that are each run in individual, independent, simulations.
+Putting multiple tests in the same test bench is a good way to share a common
+test environment.</p>
 <div class="literal-block-wrapper container" id="vhdl-test-bench-with-multiple-tests-tb-example-many-vhd">
 <div class="code-block-caption"><span class="caption-text">VHDL test bench with multiple tests: <cite>tb_example_many.vhd</cite></span><a class="headerlink" href="#vhdl-test-bench-with-multiple-tests-tb-example-many-vhd" title="Permalink to this code">¶</a></div>
 <div class="highlight-vhdl"><div class="highlight"><pre><span class="k">library</span> <span class="nn">vunit_lib</span><span class="p">;</span>
