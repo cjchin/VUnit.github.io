@@ -846,6 +846,24 @@ The function must return <cite>True</cite> or the test will fail</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="vunit.ui.TestBench.scan_tests_from_file">
+<code class="descname">scan_tests_from_file</code><span class="sig-paren">(</span><em>file_name</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.scan_tests_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan tests from another file than the one containg the test
+bench.  Useful for when the top level test bench does not
+contain the tests.</p>
+<p>Such a structure is not the preferred way of doing things in
+VUnit but this method exists to accommodate legacy needs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; The name of another file to scan for tests</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="vunit.ui.TestBench.set_generic">
 <code class="descname">set_generic</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_generic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set a value of generic within this test bench</p>
