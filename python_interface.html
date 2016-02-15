@@ -163,7 +163,7 @@
 
 <dl class="method">
 <dt id="vunit.ui.VUnit.add_source_file">
-<code class="descname">add_source_file</code><span class="sig-paren">(</span><em>file_name</em>, <em>library_name</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_source_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_source_file</code><span class="sig-paren">(</span><em>file_name</em>, <em>library_name</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>defines=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_source_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add source file to library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -173,6 +173,7 @@
 <li><strong>file_name</strong> &#8211; The name of the file</li>
 <li><strong>library_name</strong> &#8211; The name of the library to add the file into</li>
 <li><strong>include_dirs</strong> &#8211; A list of include directories</li>
+<li><strong>defines</strong> &#8211; A dictionary containing Verilog defines to be set</li>
 </ul>
 </td>
 </tr>
@@ -190,7 +191,7 @@
 
 <dl class="method">
 <dt id="vunit.ui.VUnit.add_source_files">
-<code class="descname">add_source_files</code><span class="sig-paren">(</span><em>files</em>, <em>library_name</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>allow_empty=False</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_source_files" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_source_files</code><span class="sig-paren">(</span><em>files</em>, <em>library_name</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>defines=None</em>, <em>allow_empty=False</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_source_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add source files matching wildcard pattern to library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -200,6 +201,7 @@
 <li><strong>files</strong> &#8211; A wildcard pattern matching the files to add or a list of files</li>
 <li><strong>library_name</strong> &#8211; The name of the library to add files into</li>
 <li><strong>include_dirs</strong> &#8211; A list of include directories</li>
+<li><strong>defines</strong> &#8211; A dictionary containing Verilog defines to be set</li>
 <li><strong>allow_empty</strong> &#8211; To disable an error if no files matched the pattern</li>
 </ul>
 </td>
@@ -475,7 +477,7 @@ their dependencies</p>
 <dd><p>User interface of a library</p>
 <dl class="method">
 <dt id="vunit.ui.Library.add_source_file">
-<code class="descname">add_source_file</code><span class="sig-paren">(</span><em>pattern</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.add_source_file" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_source_file</code><span class="sig-paren">(</span><em>pattern</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>defines=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.add_source_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add source file to library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -484,6 +486,7 @@ their dependencies</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>file_name</strong> &#8211; The name of the file</li>
 <li><strong>include_dirs</strong> &#8211; A list of include directories</li>
+<li><strong>defines</strong> &#8211; A dictionary containing Verilog defines to be set</li>
 </ul>
 </td>
 </tr>
@@ -501,7 +504,7 @@ their dependencies</p>
 
 <dl class="method">
 <dt id="vunit.ui.Library.add_source_files">
-<code class="descname">add_source_files</code><span class="sig-paren">(</span><em>pattern</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>allow_empty=False</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.add_source_files" title="Permalink to this definition">¶</a></dt>
+<code class="descname">add_source_files</code><span class="sig-paren">(</span><em>pattern</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>defines=None</em>, <em>allow_empty=False</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.add_source_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add source files matching wildcard pattern to library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -510,6 +513,7 @@ their dependencies</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>pattern</strong> &#8211; A wildcard pattern match the files to add</li>
 <li><strong>include_dirs</strong> &#8211; A list of include directories</li>
+<li><strong>defines</strong> &#8211; A dictionary containing Verilog defines to be set</li>
 <li><strong>allow_empty</strong> &#8211; To disable an error if no files matched the pattern</li>
 </ul>
 </td>
