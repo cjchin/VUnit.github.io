@@ -109,6 +109,24 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="vunit.ui.VUnit.add_compile_option">
+<code class="descname">add_compile_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_compile_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Globally add compile option</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>value</strong> &#8211; The value of the compile option</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="vunit.ui.VUnit.add_external_library">
 <code class="descname">add_external_library</code><span class="sig-paren">(</span><em>library_name</em>, <em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_external_library" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an externally compiled library as a black-box</p>
@@ -476,6 +494,24 @@ their dependencies</p>
 <em class="property">class </em><code class="descclassname">vunit.ui.</code><code class="descname">Library</code><a class="headerlink" href="#vunit.ui.Library" title="Permalink to this definition">¶</a></dt>
 <dd><p>User interface of a library</p>
 <dl class="method">
+<dt id="vunit.ui.Library.add_compile_option">
+<code class="descname">add_compile_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.add_compile_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add compile option to all files within the library</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>value</strong> &#8211; The value of the compile option</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="vunit.ui.Library.add_source_file">
 <code class="descname">add_source_file</code><span class="sig-paren">(</span><em>pattern</em>, <em>preprocessors=None</em>, <em>include_dirs=None</em>, <em>defines=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.add_source_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add source file to library</p>
@@ -691,6 +727,24 @@ their dependencies</p>
 <em class="property">class </em><code class="descclassname">vunit.ui.</code><code class="descname">SourceFileList</code><a class="headerlink" href="#vunit.ui.SourceFileList" title="Permalink to this definition">¶</a></dt>
 <dd><p>A list of <a class="reference internal" href="#vunit.ui.SourceFile" title="vunit.ui.SourceFile"><code class="xref py py-class docutils literal"><span class="pre">SourceFile</span></code></a></p>
 <dl class="method">
+<dt id="vunit.ui.SourceFileList.add_compile_option">
+<code class="descname">add_compile_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.SourceFileList.add_compile_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add compile option to all files in the list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>value</strong> &#8211; The value of the compile option</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="vunit.ui.SourceFileList.depends_on">
 <code class="descname">depends_on</code><span class="sig-paren">(</span><em>source_file</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.SourceFileList.depends_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add manual dependency of these files on other file(s)</p>
@@ -740,6 +794,24 @@ their dependencies</p>
 <em class="property">class </em><code class="descclassname">vunit.ui.</code><code class="descname">SourceFile</code><a class="headerlink" href="#vunit.ui.SourceFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>A single file</p>
 <dl class="method">
+<dt id="vunit.ui.SourceFile.add_compile_option">
+<code class="descname">add_compile_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.SourceFile.add_compile_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add compile option to this file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>value</strong> &#8211; The value of the compile option</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="vunit.ui.SourceFile.depends_on">
 <code class="descname">depends_on</code><span class="sig-paren">(</span><em>source_file</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.SourceFile.depends_on" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add manual dependency of this file other file(s)</p>
@@ -757,6 +829,20 @@ their dependencies</p>
 <span class="n">my_file</span><span class="o">.</span><span class="n">depends_on</span><span class="p">(</span><span class="n">other_files</span><span class="p">)</span>
 </pre></div>
 </div>
+</dd></dl>
+
+<dl class="method">
+<dt id="vunit.ui.SourceFile.get_compile_option">
+<code class="descname">get_compile_option</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.SourceFile.get_compile_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return compile option of this file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
