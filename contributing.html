@@ -72,29 +72,42 @@ such as simulators.</dd>
 <dt><strong>vunit/test/lint/</strong></dt>
 <dd>Style checks such as PEP8 and license header verification.</dd>
 </dl>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">#</span> Run all tests
-<span class="go">vunit/ &gt; python -m unittest discover vunit/test</span>
-
-<span class="gp">#</span> Run just the unit tests
-<span class="go">vunit/ &gt; python -m unittest discover vunit/test/unit</span>
+<p>The test suites must with both Python 2.7 and Python 3.x as well
+as with all supported simulators.</p>
+<div class="section" id="testing-with-tox">
+<h3>Testing with Tox<a class="headerlink" href="#testing-with-tox" title="Permalink to this headline">¶</a></h3>
+<p>VUnit uses the Python <a class="reference external" href="http://tox.readthedocs.org/">tox</a> tool. Tox
+makes it easier to automatically test VUnit in various
+configurations. Tox automates creation of virtual environments and
+installation of dependencies needed for testing. In fact, all of the
+tests can be run in a single command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">vunit/ &gt; tox</span>
 </pre></div>
 </div>
-<p>The test suites must work using both Python 2.7 and Python 3.x.</p>
-<div class="section" id="running-with-different-simulator-back-ends">
-<h3>Running with different simulator back-ends<a class="headerlink" href="#running-with-different-simulator-back-ends" title="Permalink to this headline">¶</a></h3>
-<p>VUnit supports ModelSim, GHDL, ActiveHDL, and RivieraPRO and the
-acceptance tests must work for all simulators. The acceptance tests can
-be run for a specific simulator by setting the <code class="docutils literal"><span class="pre">VUNIT_SIMULATOR</span></code>
-environment variable:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">vunit/ &gt; VUNIT_SIMULATOR=ghdl python -m unittest discover vunit/test/acceptance/</span>
+<p>If tox is not available in your Python environment, it can be installed from
+PyPI with pip:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">vunit/ &gt; pip install tox</span>
+</pre></div>
+</div>
+<p>For most developers, running the full testsuite will likely lead to failed test
+cases because not all Python interpreters or HDL simulators are installed in
+their environment. More focused testing is possible by specifying which tox
+&#8220;environments&#8221; should be tested. For example, assume a developer uses Python 2.7
+and Modelsim and would like to test changes using tools available in his
+environment:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">vunit/ &gt; tox -e py27-unit,py27-acceptance-modelsim</span>
+</pre></div>
+</div>
+<p>A full list of test environments can be seen by issuing the following command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">vunit/ &gt; tox -l</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="dependencies">
 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Other that the dependencies required to use VUnit as a user the
-following are also required for developers to run the test suite:</p>
+<p>Other than the dependencies required to use VUnit as a user the
+following are also required for developers to run the test suite manually:</p>
 <dl class="docutils">
 <dt><a class="reference external" href="https://pypi.python.org/pypi/mock">mock</a></dt>
 <dd>For Python 2.7 only, built into Python 3.x</dd>
@@ -167,7 +180,7 @@ above commands.</p>
 <li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#running-the-tests">Running the tests</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#running-with-different-simulator-back-ends">Running with different simulator back-ends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-with-tox">Testing with Tox</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
