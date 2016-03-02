@@ -951,6 +951,17 @@ VUnit but this method exists to accommodate legacy needs.</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The nested module containing the tests needs to be given
+the <code class="docutils literal"><span class="pre">runner_cfg</span></code> parameter or generic by the
+instantiating top level test bench. The nested module
+should not call its parameter or generic <cite>runner_cfg</cite> but
+rather <cite>nested_runner_cfg</cite> to avoid the VUnit test scanner
+detecting and running it as a test bench. In SystemVerilog
+the <code class="docutils literal"><span class="pre">NESTED_TEST_SUITE</span></code> macro should be used instead of
+the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> macro.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1180,7 +1191,6 @@ The function must return <cite>True</cite> or the test will fail</li>
 <div class="section" id="compilation-options">
 <span id="compile-options"></span><h3>Compilation Options<a class="headerlink" href="#compilation-options" title="Permalink to this headline">¶</a></h3>
 <p>The following compilation are known.</p>
-<p><strong>NOTE</strong>: Only affects source files added <em>before</em> the option is set.</p>
 <dl class="docutils">
 <dt><code class="docutils literal"><span class="pre">ghdl_flags</span></code></dt>
 <dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">-a</span></code> command during compilation.
@@ -1192,6 +1202,10 @@ Must be a list of strings.</dd>
 <dd>Extra arguments passed to ModelSim <code class="docutils literal"><span class="pre">vlog</span></code> command.
 Must be a list of strings.</dd>
 </dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects source files added <em>before</em> the option is set.</p>
+</div>
 </div>
 <div class="section" id="simulation-options">
 <span id="sim-options"></span><h3>Simulation Options<a class="headerlink" href="#simulation-options" title="Permalink to this headline">¶</a></h3>

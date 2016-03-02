@@ -61,11 +61,12 @@
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>VUnit is invoked by a user-defined project specified in a Python script.
-At minimum, a VUnit project consists of a set of HDL source files mapped to
-libraries. The project serves as single point of entry for compiling and
-running all tests within an HDL project. VUnit provides automatic scanning
-for unit tests (test benches), automatic determination of compilation order,
+<p>VUnit is invoked by a user-defined project specified in a Python
+script.  At minimum, a VUnit project consists of a set of HDL source
+files mapped to libraries. The project serves as single point of entry
+for compiling and running all tests within an HDL project. VUnit
+provides automatic <a class="reference internal" href="#test-bench-scanning"><span>scanning</span></a> for unit
+tests (test benches), automatic determination of compilation order,
 and incremental recompilation of modified sources.</p>
 <p>The top level Python script is typically named <code class="docutils literal"><span class="pre">run.py</span></code>.
 This script is the entry point for executing VUnit.
@@ -235,6 +236,18 @@ in the same test bench is a good way to share a common test
 environment.</p>
 <p>The above example code can be found in <a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/verilog/user_guide/">verilog/user_guide</a>.</p>
 </div>
+<div class="section" id="scanning-for-test-benches">
+<span id="test-bench-scanning"></span><h2>Scanning for Test Benches<a class="headerlink" href="#scanning-for-test-benches" title="Permalink to this headline">¶</a></h2>
+<p>VUnit will recognize a module or entity as a test bench and run it if
+it has a <code class="docutils literal"><span class="pre">runner_cfg</span></code> generic or parameter. A SystemVerilog test
+bench using the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> macro will have a <code class="docutils literal"><span class="pre">runner_cfg</span></code>
+parameter created by the macro and thus match the criteria.</p>
+<p>A warning will be given if the test bench entity or module name does
+not match the pattern <code class="docutils literal"><span class="pre">tb_*</span></code> or <code class="docutils literal"><span class="pre">*_tb</span></code>.</p>
+<p>A warning will be given if the name <em>does</em> match the above pattern but
+lacks a <code class="docutils literal"><span class="pre">runner_cfg</span></code> generic or parameter preventing it to be run
+by VUnit.</p>
+</div>
 <div class="section" id="examples">
 <span id="id3"></span><h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>There are many examples demonstrating more specific usage of VUnit listed below:</p>
@@ -335,6 +348,7 @@ can be found in the <a class="reference internal" href="com/user_guide.html#com-
 <li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vhdl-test-benches">VHDL Test Benches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#systemverilog-test-benches">SystemVerilog Test Benches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanning-for-test-benches">Scanning for Test Benches</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
