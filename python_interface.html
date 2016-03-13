@@ -399,7 +399,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -482,7 +482,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -632,7 +632,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -715,7 +715,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -782,7 +782,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">files</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">files</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -875,7 +875,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">my_file</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_file</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -903,8 +903,12 @@ If no configurations are added the default configuration is used.</p>
 <li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set</li>
 <li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set</li>
 <li><strong>pre_config</strong> &#8211; A function to be called before test execution.
+The function may accept a string which is the filesystem path to the
+directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
 <li><strong>post_check</strong> &#8211; A function to be called after test execution.
+The function must accept a string which is the filesystem path to the
+directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
 </ul>
 </td>
@@ -1044,7 +1048,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test_bench</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">test_bench</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1086,8 +1090,12 @@ If no configurations are added the default configuration is used.</p>
 <li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set</li>
 <li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set</li>
 <li><strong>pre_config</strong> &#8211; A function to be called before test execution.
+The function may accept a string which is the filesystem path to the
+directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
 <li><strong>post_check</strong> &#8211; A function to be called after test execution.
+The function must accept a string which is the filesystem path to the
+directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
 </ul>
 </td>
@@ -1183,7 +1191,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl_flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1192,16 +1200,30 @@ The function must return <cite>True</cite> or the test will fail</li>
 
 <div class="section" id="compilation-options">
 <span id="compile-options"></span><h3>Compilation Options<a class="headerlink" href="#compilation-options" title="Permalink to this headline">¶</a></h3>
-<p>The following compilation are known.</p>
+<p>Compilation options allow customization of compilation behavior. Since simulators have
+differing options available, generic options may be specified through this interface.
+The following compilation options are known.</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">ghdl_flags</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">ghdl.flags</span></code></dt>
 <dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">-a</span></code> command during compilation.
 Must be a list of strings.</dd>
-<dt><code class="docutils literal"><span class="pre">modelsim_vcom_flags</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">modelsim.vcom_flags</span></code></dt>
 <dd>Extra arguments passed to ModelSim <code class="docutils literal"><span class="pre">vcom</span></code> command.
 Must be a list of strings.</dd>
-<dt><code class="docutils literal"><span class="pre">modelsim_vlog_flags</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">modelsim.vlog_flags</span></code></dt>
 <dd>Extra arguments passed to ModelSim <code class="docutils literal"><span class="pre">vlog</span></code> command.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">rivierapro.vcom_flags</span></code></dt>
+<dd>Extra arguments passed to Riviera PRO <code class="docutils literal"><span class="pre">vcom</span></code> command.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">rivierapro.vlog_flags</span></code></dt>
+<dd>Extra arguments passed to Riviera PRO <code class="docutils literal"><span class="pre">vlog</span></code> command.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">activehdl.vcom_flags</span></code></dt>
+<dd>Extra arguments passed to Active HDL <code class="docutils literal"><span class="pre">vcom</span></code> command.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">activehdl.vlog_flags</span></code></dt>
+<dd>Extra arguments passed to Active HDL <code class="docutils literal"><span class="pre">vcom</span></code> command.
 Must be a list of strings.</dd>
 </dl>
 <div class="admonition note">
@@ -1211,15 +1233,27 @@ Must be a list of strings.</dd>
 </div>
 <div class="section" id="simulation-options">
 <span id="sim-options"></span><h3>Simulation Options<a class="headerlink" href="#simulation-options" title="Permalink to this headline">¶</a></h3>
-<p>The following simulation are known.</p>
+<p>Simulation options allow customization of simulation behavior. Since simulators have
+differing options available, generic options may be specified through this interface.
+The following simulation options are known.</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">vsim_extra_args</span></code></dt>
-<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">vsim</span></code> when loading the design.</dd>
-<dt><code class="docutils literal"><span class="pre">vsim_extra_args.gui</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">modelsim.vsim_flags</span></code></dt>
+<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">vsim</span></code> when loading the design.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">modelsim.vsim_flags.gui</span></code></dt>
 <dd>Extra arguments passed to <code class="docutils literal"><span class="pre">vsim</span></code> when loading the design in GUI
-mode where it takes precedence over <code class="docutils literal"><span class="pre">vsim_extra_args</span></code>.</dd>
-<dt><code class="docutils literal"><span class="pre">ghdl_flags</span></code></dt>
-<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">--elab-run</span></code> command <em>before</em> executable specific flags. Must be a list of strings.</dd>
+mode where it takes precedence over <code class="docutils literal"><span class="pre">modelsim.vsim_flags</span></code>.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">rivierapro.vsim_flags</span></code></dt>
+<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">vsim</span></code> when loading the design.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">rivierapro.vsim_flags.gui</span></code></dt>
+<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">vsim</span></code> when loading the design in GUI
+mode where it takes precedence over <code class="docutils literal"><span class="pre">rivierapro.vsim_flags</span></code>.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">ghdl.flags</span></code></dt>
+<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">--elab-run</span></code> command <em>before</em> executable specific flags.
+Must be a list of strings.</dd>
 </dl>
 </div>
 <span class="target" id="module-vunit.vunit_cli"></span><div class="section" id="adding-custom-command-line-arguments">

@@ -69,7 +69,7 @@ source files are automatically scanned for test cases.</p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>VUnit command line tool.</p>
-<div class="highlight-python"><div class="highlight"><pre>usage: run.py [-h] [-l] [-f] [--compile] [--elaborate] [--clean]
+<div class="highlight-python"><div class="highlight"><pre>usage: run.py [-h] [-l] [-f] [--compile] [-k] [--elaborate] [--clean]
               [-o OUTPUT_PATH] [-x XUNIT_XML] [--exit-0] [-v] [--no-color]
               [--log-level {info,error,warning,debug}] [-p NUM_THREADS] [-g]
               [--new-vsim] [--coverage [COVERAGE]] [--gtkwave {vcd,ghw}]
@@ -106,6 +106,10 @@ source files are automatically scanned for test cases.</p>
 <kbd><span class="option">--compile=False</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Only compile project without running tests</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-k=False</span>, <span class="option">--keep-compiling=False</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>Continue compiling even after errors only skipping files that depend on failed files</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--elaborate=False</span></kbd></td>
 </tr>
@@ -297,7 +301,16 @@ using standard xUnit test parsers such as <a class="reference external" href="ht
 found. For people who have multiple simulators installed the
 <code class="docutils literal"><span class="pre">VUNIT_SIMULATOR</span></code> environment variable can be set to one of
 <code class="docutils literal"><span class="pre">activehdl</span></code>, <code class="docutils literal"><span class="pre">rivierapro</span></code>, <code class="docutils literal"><span class="pre">ghdl</span></code> or <code class="docutils literal"><span class="pre">modelsim</span></code> to explicitly
-specify the simulator.</p>
+specify which simulator to use.</p>
+<p>In addition to VUnit scanning the <code class="docutils literal"><span class="pre">PATH</span></code> the simulator executable
+path can be explicitly configured by setting a
+<code class="docutils literal"><span class="pre">VUNIT_&lt;SIMULATOR_NAME&gt;_PATH</span></code> environment variable.</p>
+<div class="literal-block-wrapper container" id="explicitly-set-path-to-ghdl-executables">
+<div class="code-block-caption"><span class="caption-text">Explicitly set path to GHDL executables</span><a class="headerlink" href="#explicitly-set-path-to-ghdl-executables" title="Permalink to this code">¶</a></div>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">VUNIT_GHDL_PATH=/opt/ghdl/bin</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
