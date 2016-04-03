@@ -75,7 +75,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnit</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnit</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -117,7 +117,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -147,7 +147,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">add_external_library</span><span class="p">(</span><span class="s2">&quot;unisim&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/unisim/&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">add_external_library</span><span class="p">(</span><span class="s2">&quot;unisim&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/unisim/&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -168,7 +168,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">library</span> <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">add_library</span><span class="p">(</span><span class="s2">&quot;lib&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">library</span> <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">add_library</span><span class="p">(</span><span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -202,7 +202,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">add_source_file</span><span class="p">(</span><span class="s2">&quot;file.vhd&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">add_source_file</span><span class="p">(</span><span class="s2">&quot;file.vhd&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -231,7 +231,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -293,7 +293,7 @@ adding custom command line options.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnit</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnit</span>
 <span class="n">prj</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -390,7 +390,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -399,7 +399,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -422,7 +422,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -445,7 +445,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -473,7 +473,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span>Simulation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span class="std std-ref">Simulation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the simulation option</li>
 </ul>
 </td>
@@ -482,7 +482,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">prj</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -502,7 +502,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -533,7 +533,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="o">.</span><span class="n">add_source_file</span><span class="p">(</span><span class="s2">&quot;file.vhd&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">library</span><span class="o">.</span><span class="n">add_source_file</span><span class="p">(</span><span class="s2">&quot;file.vhd&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -561,7 +561,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">library</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">library</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -623,7 +623,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -632,7 +632,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -655,7 +655,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -678,7 +678,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -706,7 +706,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span>Simulation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span class="std std-ref">Simulation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the simulation option</li>
 </ul>
 </td>
@@ -715,7 +715,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">lib</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -735,7 +735,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -758,7 +758,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">other_file</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_source_file</span><span class="p">(</span><span class="s2">&quot;other_file.vhd&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">other_file</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_source_file</span><span class="p">(</span><span class="s2">&quot;other_file.vhd&quot;</span><span class="p">)</span>
 <span class="n">files</span><span class="o">.</span><span class="n">depends_on</span><span class="p">(</span><span class="n">other_file</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -773,7 +773,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -782,7 +782,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">files</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">files</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -802,7 +802,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -825,7 +825,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">other_files</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">other_files</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">get_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">)</span>
 <span class="n">my_file</span><span class="o">.</span><span class="n">depends_on</span><span class="p">(</span><span class="n">other_files</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -839,7 +839,7 @@ their dependencies</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</td>
 </tr>
 </tbody>
 </table>
@@ -866,7 +866,7 @@ their dependencies</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span>Compilation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the compile option (See <a class="reference internal" href="#compile-options"><span class="std std-ref">Compilation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the compile option</li>
 </ul>
 </td>
@@ -875,7 +875,7 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">my_file</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">my_file</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -919,7 +919,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 </table>
 <p>Given a test bench that by default gives rise to the test
 <code class="docutils literal"><span class="pre">lib.test_bench</span></code> and the following <code class="docutils literal"><span class="pre">add_config</span></code> calls:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">data_width</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">data_width</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sign</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]:</span>
         <span class="n">test_bench</span><span class="o">.</span><span class="n">add_config</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;data_width=</span><span class="si">%s</span><span class="s2">,sign=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data_width</span><span class="p">,</span> <span class="n">sign</span><span class="p">),</span>
@@ -988,7 +988,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test_bench</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">test_bench</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1011,7 +1011,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test_bench</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">test_bench</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1039,7 +1039,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span>Simulation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span class="std std-ref">Simulation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the simulation option</li>
 </ul>
 </td>
@@ -1048,7 +1048,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test_bench</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">test_bench</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1105,7 +1105,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 </tbody>
 </table>
 <p>Given the <code class="docutils literal"><span class="pre">lib.test_bench.test</span></code> test and the following <code class="docutils literal"><span class="pre">add_config</span></code> calls:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">data_width</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">data_width</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sign</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]:</span>
         <span class="n">test</span><span class="o">.</span><span class="n">add_config</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;data_width=</span><span class="si">%s</span><span class="s2">,sign=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data_width</span><span class="p">,</span> <span class="n">sign</span><span class="p">),</span>
@@ -1145,7 +1145,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1168,7 +1168,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1182,7 +1182,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span>Simulation options</span></a>)</li>
+<li><strong>name</strong> &#8211; The name of the simulation option (See <a class="reference internal" href="#sim-options"><span class="std std-ref">Simulation options</span></a>)</li>
 <li><strong>value</strong> &#8211; The value of the simulation option</li>
 </ul>
 </td>
@@ -1191,7 +1191,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 </tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">test</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -1284,7 +1284,7 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
 
 <p>A <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI" title="vunit.vunit_cli.VUnitCLI"><code class="xref py py-class docutils literal"><span class="pre">VUnitCLI</span></code></a> object has a <code class="docutils literal"><span class="pre">parser</span></code> field which is an
 <cite>ArgumentParser</cite> object of the <a class="reference external" href="https://docs.python.org/3/library/argparse.html">argparse</a> library.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnitCLI</span><span class="p">,</span> <span class="n">VUnit</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vunit</span> <span class="kn">import</span> <span class="n">VUnitCLI</span><span class="p">,</span> <span class="n">VUnit</span>
 
 <span class="c1"># Add custom command line argument to standard CLI</span>
 <span class="c1"># Beware of conflicts with existing arguments</span>
@@ -1361,7 +1361,7 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
 <li class="toctree-l1 current"><a class="reference internal" href="documentation.html">Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html">User Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Python Interface</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Interface</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-vunit.ui">Public API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#compilation-options">Compilation Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#simulation-options">Simulation Options</a></li>
@@ -1434,9 +1434,6 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -1447,7 +1444,7 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |
