@@ -138,6 +138,13 @@ how to choose which one to use <a class="reference internal" href="cli.html#simu
 </div>
 <p>From <code class="docutils literal"><span class="pre">tb_example.vhd</span></code> a single test case named
 <code class="docutils literal"><span class="pre">lib.tb_example.all</span></code> is created.</p>
+<p>This example also outlines what you have to do with existing testbenches to
+make them VUnit compatible. Include the VUnit context, add the <code class="docutils literal"><span class="pre">runner_cfg</span></code>
+generic, and wrap your existing code in your main controlling process with
+the calls to <code class="docutils literal"><span class="pre">test_runner_setup</span></code> and <code class="docutils literal"><span class="pre">test_runner_cleanup</span></code>. Remember to
+remove your testbench termination code, for example calls to <code class="docutils literal"><span class="pre">std.env.finish</span></code>,
+end of simulations asserts, or similar. A VUnit testbench must be terminated
+with the <code class="docutils literal"><span class="pre">test_runner_cleanup</span></code> call.</p>
 <p>It is also possible to put multiple tests in a single test
 bench that are each run in individual, independent, simulations.
 Putting multiple tests in the same test bench is a good way to share a common
