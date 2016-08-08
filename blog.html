@@ -68,6 +68,63 @@
     
 
     <div class="section">
+      <h2><a href="posts/2016_08_08_making_osvvm_a_submodule/post.html">Making OSVVM a Git Submodule</a></h2>
+
+      <ul class="ablog-archive">
+      <li>
+      <i class="fa fa-calendar"></i>
+        Aug 08, 2016
+      
+      </li>
+        
+
+  
+  <li><i class="fa-fw fa fa-user"></i>
+    
+      
+      <a href="blog/author/lasplund.html">lasplund</a>
+      
+    </li>
+  
+
+  
+
+  
+
+  
+
+  
+  <li><i class="fa-fw fa fa-tags"></i>
+      
+    
+      
+      <a href="blog/tag/vunit.html">VUnit</a>,
+      
+    
+      
+      <a href="blog/tag/osvvm.html">OSVVM</a>
+      
+    </li>
+  
+  </ul>
+      <p>Prior to the 0.67.0 release the OSVVM library included with VUnit was a
+modified copy of the original project to support GHDL. Nowadays the OSVVM
+project supports GHDL natively and it is also available from GitHub so we
+made it a submodule instead. The submodule is a way
+to keep another Git repository (OSVVM) in a subdirectory of the VUnit
+repository while keeping their histories separate. Updates to OSVVM doesn&#8217;t
+affect the VUnit history and vice versa. This makes no difference if you&#8217;re
+downloading VUnit from <a class="reference external" href="https://pypi.python.org/pypi/vunit_hdl">PyPi</a> but
+if you&#8217;re cloning VUnit from GitHub there are some things to consider. If you&#8217;re
+pulling version 0.67.0 to update your local Git clone the OSVVM subdirectory of
+VUnit will become empty. To populate the directory you have to do</p>
+
+      <p><a href="posts/2016_08_08_making_osvvm_a_submodule/post.html">Read more ...</a></p>
+      <hr>
+    </div>
+    
+
+    <div class="section">
       <h2><a href="posts/2016_02_21_improving_vhdl_testbench_design_with_message_passing/post.html">Improving VHDL Testbench Design with Message Passing</a></h2>
 
       <ul class="ablog-archive">
@@ -470,6 +527,8 @@ this is a short introduction for you.</p>
   <ul>
     
     
+      <li><a href="posts/2016_08_08_making_osvvm_a_submodule/post.html">Aug 08 - Making OSVVM a Git Submodule</a></li>
+    
       <li><a href="posts/2016_02_21_improving_vhdl_testbench_design_with_message_passing/post.html">Feb 21 - Improving VHDL Testbench Design with Message Passing</a></li>
     
       <li><a href="posts/2016_02_01_website_updates/post.html">Feb 01 - Website Updates</a></li>
@@ -477,8 +536,6 @@ this is a short introduction for you.</p>
       <li><a href="posts/2016_01_29_chat_with_vunit_users_and_developers/post.html">Jan 29 - Chat with VUnit Users and Developers</a></li>
     
       <li><a href="posts/2016_01_26_welcome_to_our_new_website/post.html">Jan 26 - Welcome to Our New Website</a></li>
-    
-      <li><a href="posts/2015_12_15_free_and_open_source_verification_with_vunit_and_ghdl/post.html">Dec 15 - Free and Open Source Verification with VUnit and GHDL</a></li>
     
   </ul>
 
@@ -496,7 +553,12 @@ this is a short introduction for you.</p>
   <ul class="ablog-cloud">
     
       
-      <li class="ablog-cloud ablog-cloud-3">
+      <li class="ablog-cloud ablog-cloud-1">
+        <a href="blog/tag/osvvm.html">OSVVM</a></li>
+      
+    
+      
+      <li class="ablog-cloud ablog-cloud-5">
         <a href="blog/tag/vunit.html">VUnit</a></li>
       
     
@@ -506,7 +568,7 @@ this is a short introduction for you.</p>
   <ul>
   
     
-    <li><a href="blog/2016.html">2016 (4)</a></li>
+    <li><a href="blog/2016.html">2016 (5)</a></li>
     
   
     

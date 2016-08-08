@@ -2,10 +2,32 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">VUnit Blog</title>
   <id>http://vunit.github.io/blog/atom.xml</id>
-  <updated>2016-02-21T00:00:00Z</updated>
+  <updated>2016-08-08T00:00:00Z</updated>
   <link href="http://vunit.github.io" />
   <link href="http://vunit.github.io/blog/atom.xml" rel="self" />
   <generator uri="http://ablog.readthedocs.org" version="0.8.2">ABlog</generator>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">Making OSVVM a Git Submodule</title>
+    <id>http://vunit.github.io/posts/2016_08_08_making_osvvm_a_submodule/post.html</id>
+    <updated>2016-08-08T00:00:00Z</updated>
+    <published>2016-08-08T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2016_08_08_making_osvvm_a_submodule/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;Prior to the 0.67.0 release the OSVVM library included with VUnit was a
+modified copy of the original project to support GHDL. Nowadays the OSVVM
+project supports GHDL natively and it is also available from GitHub so we
+made it a submodule instead. The submodule is a way
+to keep another Git repository (OSVVM) in a subdirectory of the VUnit
+repository while keeping their histories separate. Updates to OSVVM doesn&amp;#8217;t
+affect the VUnit history and vice versa. This makes no difference if you&amp;#8217;re
+downloading VUnit from &lt;a class=&quot;reference external&quot; href=&quot;https://pypi.python.org/pypi/vunit_hdl&quot;&gt;PyPi&lt;/a&gt; but
+if you&amp;#8217;re cloning VUnit from GitHub there are some things to consider. If you&amp;#8217;re
+pulling version 0.67.0 to update your local Git clone the OSVVM subdirectory of
+VUnit will become empty. To populate the directory you have to do&lt;/p&gt;
+</content>
+  </entry>
   <entry xml:base="http://vunit.github.io/blog/atom.xml">
     <title type="text">Improving VHDL Testbench Design with Message Passing</title>
     <id>http://vunit.github.io/posts/2016_02_21_improving_vhdl_testbench_design_with_message_passing/post.html</id>
