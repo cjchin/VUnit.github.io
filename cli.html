@@ -74,7 +74,8 @@ source files are automatically scanned for test cases.</p>
               <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_PATH</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="n">XUNIT_XML</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">exit</span><span class="o">-</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">color</span><span class="p">]</span>
               <span class="p">[</span><span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">level</span> <span class="p">{</span><span class="n">info</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">warning</span><span class="p">,</span><span class="n">debug</span><span class="p">}]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">NUM_THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span>
               <span class="p">[</span><span class="o">--</span><span class="n">new</span><span class="o">-</span><span class="n">vsim</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">coverage</span> <span class="p">[</span><span class="n">COVERAGE</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span> <span class="p">{</span><span class="n">vcd</span><span class="p">,</span><span class="n">ghw</span><span class="p">}]</span>
-              <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span><span class="o">-</span><span class="n">args</span> <span class="n">GTKWAVE_ARGS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">codecs</span><span class="p">]</span>
+              <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span><span class="o">-</span><span class="n">args</span> <span class="n">GTKWAVE_ARGS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cdslib</span> <span class="n">CDSLIB</span><span class="p">]</span>
+              <span class="p">[</span><span class="o">--</span><span class="n">hdlvar</span> <span class="n">HDLVAR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">codecs</span><span class="p">]</span>
               <span class="p">[</span><span class="n">tests</span> <span class="p">[</span><span class="n">tests</span> <span class="o">...</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -167,6 +168,12 @@ source files are automatically scanned for test cases.</p>
 <kbd><span class="option">--gtkwave-args=</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Arguments to pass to gtkwave</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--cdslib</span></kbd></td>
+<td>The cds.lib file to use. If not given, VUnit maintains its own cds.lib file.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--hdlvar</span></kbd></td>
+<td>The hdl.var file to use. If not given, VUnit does not use a hdl.var file.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--use-debug-codecs=False</span></kbd></td>
 </tr>

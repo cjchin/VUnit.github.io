@@ -1227,6 +1227,12 @@ The following compilation options are known.</p>
 <dt><code class="docutils literal"><span class="pre">ghdl.flags</span></code></dt>
 <dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">-a</span></code> command during compilation.
 Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">incisive.irun_vhdl_flags</span></code></dt>
+<dd>Extra arguments passed to the Incisive <code class="docutils literal"><span class="pre">irun</span></code> command when compiling VHDL files.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">incisive.irun_verilog_flags</span></code></dt>
+<dd>Extra arguments passed to the Incisive <code class="docutils literal"><span class="pre">irun</span></code> command when compiling Verilog files.
+Must be a list of strings.</dd>
 <dt><code class="docutils literal"><span class="pre">modelsim.vcom_flags</span></code></dt>
 <dd>Extra arguments passed to ModelSim <code class="docutils literal"><span class="pre">vcom</span></code> command.
 Must be a list of strings.</dd>
@@ -1257,6 +1263,12 @@ Must be a list of strings.</dd>
 differing options available, generic options may be specified through this interface.
 The following simulation options are known.</p>
 <dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">ghdl.flags</span></code></dt>
+<dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">--elab-run</span></code> command <em>before</em> executable specific flags. Must be a list of strings.
+Must be a list of strings.</dd>
+<dt><code class="docutils literal"><span class="pre">incisive.irun_sim_flags</span></code></dt>
+<dd>Extra arguments passed to the Incisive <code class="docutils literal"><span class="pre">irun</span></code> command when loading the design.
+Must be a list of strings.</dd>
 <dt><code class="docutils literal"><span class="pre">modelsim.vsim_flags</span></code></dt>
 <dd>Extra arguments passed to <code class="docutils literal"><span class="pre">vsim</span></code> when loading the design.
 Must be a list of strings.</dd>
