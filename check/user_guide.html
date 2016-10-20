@@ -69,21 +69,21 @@ commonly used assertions as a number of check procedures and functions.</p>
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <p>The check subprograms are mainly a number conditional log messages. If
 the condition represents a failing check then an error message is issued
-using the VUnit <a class="reference internal" href="../logging/user_guide.html"><span class="doc">log package</span></a>. A passing
+using the VUnit <a class="reference internal" href="../logging/user_guide.html"><em>log package</em></a>. A passing
 check has no effect other than updating the passing check statistics.</p>
 <p>Every check you do is handled by a checker. There is a default checker
 that is used when none is specified but you can also create multiple
 custom checkers. For example</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check</span><span class="p">(</span><span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check</span><span class="p">(</span><span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>will use the default checker while</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check</span><span class="p">(</span><span class="n">my_checker</span><span class="p">,</span> <span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check</span><span class="p">(</span><span class="n">my_checker</span><span class="p">,</span> <span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>will use the custom <code class="docutils literal"><span class="pre">my_checker</span></code>. A checker is just a (shared)
 variable</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">variable</span> <span class="n">my_checker</span> <span class="o">:</span> <span class="n">checker_t</span><span class="p">;</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">variable</span> <span class="n">my_checker</span> <span class="o">:</span> <span class="n">checker_t</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>All procedures presented in this user guide are available for both the
@@ -91,7 +91,7 @@ default checker and the custom checkers. The difference is the first
 <code class="docutils literal"><span class="pre">checker_t</span></code> parameter which only exists for custom checker procedures.
 To make the user guide more compact we present this as an optional
 parameter using brackets. For example</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">checker_init</span> <span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">checker_init</span> <span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>       <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">constant</span> <span class="n">default_level</span> <span class="o">:</span> <span class="k">in</span>    <span class="n">log_level_t</span> <span class="o">:=</span> <span class="n">error</span><span class="p">;</span>
   <span class="k">variable</span> <span class="n">logger</span>        <span class="o">:</span> <span class="k">inout</span> <span class="n">logger_t</span><span class="p">);</span>
@@ -110,15 +110,15 @@ the same result in an output parameter.</p>
 <h2>Checker Initialization<a class="headerlink" href="#checker-initialization" title="Permalink to this headline">¶</a></h2>
 <p>Since a check is a conditional log most of the checker initialization
 parameters are the same as you&#8217;ll find for logger initialization. These
-parameters are described in the <a class="reference internal" href="../logging/user_guide.html"><span class="doc">log user
-guide</span></a> and are used to initialize the
+parameters are described in the <a class="reference internal" href="../logging/user_guide.html"><em>log user
+guide</em></a> and are used to initialize the
 checker internal logger that outputs any error message. However, the
 default values for <code class="docutils literal"><span class="pre">file_name</span></code> and <code class="docutils literal"><span class="pre">display_format</span></code> are different
 and there is also a <code class="docutils literal"><span class="pre">default_level</span></code> parameter unique to
 <code class="docutils literal"><span class="pre">checker_init</span></code>. <code class="docutils literal"><span class="pre">default_level</span></code> is used to specify the log level for
 the error message unless specified in the check subprogram as explained
 in the following chapters.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">checker_init</span> <span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">checker_init</span> <span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>        <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">constant</span> <span class="n">default_level</span>  <span class="o">:</span> <span class="k">in</span>    <span class="n">log_level_t</span>  <span class="o">:=</span> <span class="n">error</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">default_src</span>    <span class="o">:</span> <span class="k">in</span>    <span class="kt">string</span>       <span class="o">:=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
@@ -132,7 +132,7 @@ in the following chapters.</p>
 </div>
 <p>It is also possible to initialize a checker to use an already defined
 logger using the following procedure</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">checker_init</span> <span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">checker_init</span> <span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>       <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">constant</span> <span class="n">default_level</span> <span class="o">:</span> <span class="k">in</span>    <span class="n">log_level_t</span> <span class="o">:=</span> <span class="n">error</span><span class="p">;</span>
   <span class="k">variable</span> <span class="n">logger</span>        <span class="o">:</span> <span class="k">inout</span> <span class="n">logger_t</span><span class="p">);</span>
@@ -143,19 +143,19 @@ logger using the following procedure</p>
 <h2>Basic Check<a class="headerlink" href="#basic-check" title="Permalink to this headline">¶</a></h2>
 <p>The check package provides a basic <code class="docutils literal"><span class="pre">check</span></code> procedure which is similar
 to the VHDL <code class="docutils literal"><span class="pre">assert</span></code> statement</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check</span><span class="p">(</span><span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check</span><span class="p">(</span><span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The first parameter is the expression to check and the second parameter
 is the error message issued if the expression is false. Assuming this
 check fails and you&#8217;ve initialized the default checker with the default
 values the error message will be</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR: Expected active read enable at this point</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">ERROR: Expected active read enable at this point</span>
 </pre></div>
 </div>
 <p>If you wish to have another log level than the default one set by
 <code class="docutils literal"><span class="pre">checker_init</span></code> you can override this for each check call. For example</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check</span><span class="p">(</span><span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">,</span> <span class="n">failure</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check</span><span class="p">(</span><span class="n">re</span> <span class="o">=</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="s">&quot;Expected active read enable at this point&quot;</span><span class="p">,</span> <span class="n">failure</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>A failing check is always counted as failing check regardless of the
@@ -175,12 +175,12 @@ to continue on <code class="docutils literal"><span class="pre">error</span></co
 additional parameters, <code class="docutils literal"><span class="pre">line_num</span></code> and <code class="docutils literal"><span class="pre">file_name</span></code>. These are
 normally not set by the user but by the location preprocessor such that
 the location of a failing check is included in the error message. The
-location preprocessor is further described in the <a class="reference internal" href="../logging/user_guide.html"><span class="doc">log user
-guide</span></a>. Preprocessor parameters are always
+location preprocessor is further described in the <a class="reference internal" href="../logging/user_guide.html"><em>log user
+guide</em></a>. Preprocessor parameters are always
 placed at the end of the parameter list and they have &#8220;good&#8221; default
 values such that the function behaves nicely even if the preprocessor
 isn&#8217;t used.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>   <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">constant</span> <span class="n">expr</span>      <span class="o">:</span> <span class="k">in</span>    <span class="kt">boolean</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">msg</span>       <span class="o">:</span> <span class="k">in</span>    <span class="kt">string</span>      <span class="o">:=</span> <span class="s">&quot;Check failed!&quot;</span><span class="p">;</span>
@@ -197,7 +197,7 @@ check passed or not. If you want that information to control the flow of
 your test and your testbench is setup to continue on a failing check you
 have a number of options. You can use this procedure where the <code class="docutils literal"><span class="pre">pass</span></code>
 output is <code class="docutils literal"><span class="pre">false</span></code> on a failing check</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>   <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">pass</span>      <span class="o">:</span> <span class="k">out</span>   <span class="kt">boolean</span><span class="p">;]</span>
   <span class="k">constant</span> <span class="n">expr</span>      <span class="o">:</span> <span class="k">in</span>    <span class="kt">boolean</span><span class="p">;</span>
@@ -208,7 +208,7 @@ output is <code class="docutils literal"><span class="pre">false</span></code> o
 </pre></div>
 </div>
 <p>or you can use this function which returns the same information</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">impure</span> <span class="k">function</span> <span class="n">check</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">impure</span> <span class="k">function</span> <span class="n">check</span><span class="p">(</span>
   <span class="k">constant</span> <span class="n">expr</span>      <span class="o">:</span> <span class="k">in</span>  <span class="kt">boolean</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">msg</span>       <span class="o">:</span> <span class="k">in</span>  <span class="kt">string</span>      <span class="o">:=</span> <span class="s">&quot;Check failed!&quot;</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">level</span>     <span class="o">:</span> <span class="k">in</span>  <span class="n">log_level_t</span> <span class="o">:=</span> <span class="n">dflt</span><span class="p">;</span>
@@ -218,27 +218,27 @@ output is <code class="docutils literal"><span class="pre">false</span></code> o
 </pre></div>
 </div>
 <p>or you can see if there has been any errors so far</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">checker_found_errors</span> <span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">checker_found_errors</span> <span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span> <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">variable</span> <span class="n">result</span>  <span class="o">:</span> <span class="k">out</span>   <span class="kt">boolean</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">impure</span> <span class="k">function</span> <span class="n">checker_found_errors</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">impure</span> <span class="k">function</span> <span class="n">checker_found_errors</span>
   <span class="k">return</span> <span class="kt">boolean</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>or you can use any of the following subprograms to get more details.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">get_checker_stat</span> <span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">get_checker_stat</span> <span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span> <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">variable</span> <span class="n">stat</span>    <span class="o">:</span> <span class="k">out</span>   <span class="n">checker_stat_t</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">impure</span> <span class="k">function</span> <span class="n">get_checker_stat</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">impure</span> <span class="k">function</span> <span class="n">get_checker_stat</span>
   <span class="k">return</span> <span class="n">checker_stat_t</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">checker_stat_t</span></code> is a record containing pass/fail information.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">checker_stat_t</span> <span class="k">is</span> <span class="k">record</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">type</span> <span class="n">checker_stat_t</span> <span class="k">is</span> <span class="k">record</span>
   <span class="n">n_checks</span> <span class="o">:</span> <span class="kt">natural</span><span class="p">;</span>
   <span class="n">n_failed</span> <span class="o">:</span> <span class="kt">natural</span><span class="p">;</span>
   <span class="n">n_passed</span> <span class="o">:</span> <span class="kt">natural</span><span class="p">;</span>
@@ -253,7 +253,7 @@ subprograms are called. If you want to collect the statistics for parts
 of your test you can make intermediate readouts using the
 <code class="docutils literal"><span class="pre">get_checker_stat</span></code> subprograms and then reset the counters to zero
 using</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">reset_checker_stat</span> <span class="p">[(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">reset_checker_stat</span> <span class="p">[(</span>
   <span class="k">variable</span> <span class="n">checker</span> <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">)];</span>
 </pre></div>
 </div>
@@ -263,7 +263,7 @@ several separate checkers.</p>
 each other using the normal <code class="docutils literal"><span class="pre">-</span></code> and <code class="docutils literal"><span class="pre">+</span></code> operators. There is also a
 <code class="docutils literal"><span class="pre">to_string</span></code> function defined to allow for logging/reporting of
 statistics, for example</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">info</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">get_checker_stat</span><span class="p">));</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">info</span><span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">get_checker_stat</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
@@ -294,7 +294,7 @@ one or more parameters specific to the point check.</p>
 <p>The unclocked procedures have the following format. The four variants
 comes from the different combinations of using the two first optional
 parameters.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
   <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>   <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="p">[</span><span class="k">variable</span> <span class="n">pass</span>      <span class="o">:</span> <span class="k">out</span>   <span class="kt">boolean</span><span class="p">;]</span>
   <span class="o">&lt;</span><span class="n">specific</span> <span class="n">parameters</span><span class="o">&gt;</span>
@@ -305,7 +305,7 @@ parameters.</p>
 </pre></div>
 </div>
 <p>The function has the following format.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">impure</span> <span class="k">function</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">impure</span> <span class="k">function</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
   <span class="o">&lt;</span><span class="n">specific</span> <span class="n">parameters</span><span class="o">&gt;</span>
   <span class="k">constant</span> <span class="n">msg</span>       <span class="o">:</span> <span class="k">in</span>  <span class="kt">string</span>      <span class="o">:=</span> <span class="s">&quot;Check failed!&quot;</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">level</span>     <span class="o">:</span> <span class="k">in</span>  <span class="n">log_level_t</span> <span class="o">:=</span> <span class="n">dflt</span><span class="p">;</span>
@@ -316,7 +316,7 @@ parameters.</p>
 </div>
 <p>The clocked procedures come from the following format with and without
 the optional parameter.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>           <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">signal</span> <span class="n">clock</span>               <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
   <span class="k">signal</span> <span class="n">en</span>                  <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
@@ -329,7 +329,7 @@ the optional parameter.</p>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">edge_t</span></code> is an enumerated type:</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="n">edge_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">rising_edge</span><span class="p">,</span> <span class="n">falling_edge</span><span class="p">,</span> <span class="n">both_edges</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">type</span> <span class="n">edge_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">rising_edge</span><span class="p">,</span> <span class="n">falling_edge</span><span class="p">,</span> <span class="n">both_edges</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The condition for failure is continuously evaluated on the clock edge(s)
@@ -482,7 +482,7 @@ to <code class="docutils literal"><span class="pre">1</span></code> or <code cla
 <p>Relation checks are used to check whether or not a relation holds
 between two expressions, for example if <code class="docutils literal"><span class="pre">(a</span> <span class="pre">+</span> <span class="pre">b)</span> <span class="pre">=</span> <span class="pre">c</span></code>. They support
 the following five unclocked formats.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>         <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">pass</span>            <span class="o">:</span> <span class="k">out</span> <span class="kt">boolean</span><span class="p">;]</span>
   <span class="o">&lt;</span><span class="n">specific</span> <span class="n">parameters</span><span class="o">&gt;</span>
@@ -491,7 +491,7 @@ the following five unclocked formats.</p>
   <span class="o">&lt;</span><span class="n">preprocessor</span> <span class="n">parameters</span><span class="o">&gt;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">impure</span> <span class="k">function</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">impure</span> <span class="k">function</span> <span class="n">check_</span><span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">(</span>
   <span class="o">&lt;</span><span class="n">specific</span> <span class="n">parameters</span><span class="o">&gt;</span>
   <span class="k">constant</span> <span class="n">msg</span>             <span class="o">:</span> <span class="k">in</span> <span class="kt">string</span> <span class="o">:=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">level</span>           <span class="o">:</span> <span class="k">in</span> <span class="n">log_level_t</span> <span class="o">:=</span> <span class="n">dflt</span><span class="p">;</span>
@@ -619,14 +619,14 @@ only equals itself. If you want an equality like <code class="docutils literal">
 pass you should use <code class="docutils literal"><span class="pre">check_relation</span></code> with the matching equality
 operator (<code class="docutils literal"><span class="pre">?=</span></code>) or <code class="docutils literal"><span class="pre">check_match</span></code> instead.</p>
 <p>If an check fails you will get an error message on the following format.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR: Equality check failed! Got &lt;got value&gt;. Expected &lt;expected value&gt;. &lt;msg input string if any&gt;.</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">ERROR: Equality check failed! Got &lt;got value&gt;. Expected &lt;expected value&gt;. &lt;msg input string if any&gt;.</span>
 </pre></div>
 </div>
 <p>When you compare bit vectors, <code class="docutils literal"><span class="pre">integer</span></code> and <code class="docutils literal"><span class="pre">natural</span></code> type of values
 the error message will output the values on both formats. For example,
 here is an error message when a <code class="docutils literal"><span class="pre">check_equal</span></code> between a <code class="docutils literal"><span class="pre">signed</span></code> and
 an <code class="docutils literal"><span class="pre">integer</span></code> value fails.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR: Equality check failed! Got -256 (1_0000_0000). Expected 1010_0101 (-91).</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">ERROR: Equality check failed! Got -256 (1_0000_0000). Expected 1010_0101 (-91).</span>
 </pre></div>
 </div>
 </div>
@@ -684,7 +684,7 @@ boolean case and to <code class="docutils literal"><span class="pre">1</span></c
 means that the <code class="docutils literal"><span class="pre">boolean</span></code> case behaves just like <code class="docutils literal"><span class="pre">check_true</span></code>. The
 additional value of this check comes when you enable the check
 preprocessor in your VUnit run script.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ui</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ui</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
 <span class="n">ui</span><span class="o">.</span><span class="n">enable_check_preprocessing</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -692,11 +692,11 @@ preprocessor in your VUnit run script.</p>
 and then parses <code class="docutils literal"><span class="pre">expr</span></code> as a VHDL relation. From that it will generate
 an error message describing how the relation failed. For example, the
 check</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check_relation</span><span class="p">(</span><span class="n">real_time_clock</span> <span class="o">&lt;=</span> <span class="n">timeout</span><span class="p">,</span> <span class="s">&quot;Response too late.&quot;</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check_relation</span><span class="p">(</span><span class="n">real_time_clock</span> <span class="o">&lt;=</span> <span class="n">timeout</span><span class="p">,</span> <span class="s">&quot;Response too late.&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>will generate the following error message if it fails.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">ERROR: Relation real_time_clock &lt;= timeout failed! Left is 23:15:02. Right is 23:15:04. Response too late.</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">ERROR: Relation real_time_clock &lt;= timeout failed! Left is 23:15:02. Right is 23:15:04. Response too late.</span>
 </pre></div>
 </div>
 <p>This works for <strong>any</strong> type of relation between <strong>any</strong> types as long as
@@ -715,7 +715,7 @@ will be just the <code class="docutils literal"><span class="pre">msg</span></co
 <p>The left and right hand sides of the relation are evaluated twice, once
 when the relation is evaluated and once to create the error message so
 if you have a call like this</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check_relation</span><span class="p">(</span><span class="n">counter_to_verify</span> <span class="o">=</span> <span class="n">get_and_increment_reference_counter</span><span class="p">(</span><span class="n">increment_with</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">));</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check_relation</span><span class="p">(</span><span class="n">counter_to_verify</span> <span class="o">=</span> <span class="n">get_and_increment_reference_counter</span><span class="p">(</span><span class="n">increment_with</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>The reference counter will be incremented with 6 which is not what you
@@ -724,7 +724,7 @@ the <code class="docutils literal"><span class="pre">auto_msg</span></code> whic
 <code class="docutils literal"><span class="pre">to_string(get_and_increment_reference_counter(increment_with</span> <span class="pre">=&gt;</span> <span class="pre">3))</span></code>.</p>
 <p>Conclusion: Do not use impure functions in your expression. If you have
 a case like this you can do something like</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">ref_cnt</span> <span class="o">:=</span> <span class="n">get_and_increment_reference_counter</span><span class="p">(</span><span class="n">increment_with</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">ref_cnt</span> <span class="o">:=</span> <span class="n">get_and_increment_reference_counter</span><span class="p">(</span><span class="n">increment_with</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">);</span>
 <span class="n">check_relation</span><span class="p">(</span><span class="n">counter_to_verify</span> <span class="o">=</span> <span class="n">ref_cnt</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -740,21 +740,21 @@ error message.</p>
 relation operator in the expression is and what the left and right hand
 operands are. For example, it knows that this is an inequality since
 that is the only relational operator on the &#8220;top-level&#8221;.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check_relation</span><span class="p">((</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span> <span class="o">/=</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">d</span><span class="p">));</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check_relation</span><span class="p">((</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span> <span class="o">/=</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">d</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>It also knows that this isn&#8217;t a relation since there&#8217;s no relational
 operator on the top-level.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check_relation</span><span class="p">((</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span> <span class="k">and</span> <span class="n">c</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check_relation</span><span class="p">((</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span> <span class="k">and</span> <span class="n">c</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>This will result in a syntax error from the check preprocessor</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">SyntaxError: Failed to find relation in check_relation((a = b) and c)</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">SyntaxError: Failed to find relation in check_relation((a = b) and c)</span>
 </pre></div>
 </div>
 <p>However, its knowledge about precedence is limited to parenthesis so it
 will not understand that this identical expression isn&#8217;t a relation.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check_relation</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="k">and</span> <span class="n">c</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check_relation</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="k">and</span> <span class="n">c</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>If this logical expression returns false the check will generate an
@@ -768,7 +768,7 @@ contain another highly unlikely way to fool the parser.</p>
 relational operators within the check call but outside of the <code class="docutils literal"><span class="pre">expr</span></code>
 parameter. For example, it won&#8217;t be fooled by the relational operators
 appearing within strings and comments of this call.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">check_relation</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="s">&quot;&quot;&quot;Heart&quot;&quot; =&gt; &lt;3&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="c1">-- The string contains &lt;, so does</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">check_relation</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="s">&quot;&quot;&quot;Heart&quot;&quot; =&gt; &lt;3&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="c1">-- The string contains &lt;, so does</span>
                                         <span class="c1">-- this comment</span>
                <span class="mi">12</span><span class="p">,</span> <span class="s">&quot;Incorrect length of &quot;&quot;&lt;3 string&quot;&quot;.&quot;</span><span class="p">);</span>
 </pre></div>
@@ -855,7 +855,7 @@ whether or not the desired property holds.</p>
 <p><code class="docutils literal"><span class="pre">check_stable</span></code> supports four different clocked formats. The <code class="docutils literal"><span class="pre">expr</span></code>
 parameter can be <code class="docutils literal"><span class="pre">std_logic</span></code> or <code class="docutils literal"><span class="pre">std_logic_vector</span></code> and the call can
 be made with or without the initial custom checker parameter.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_stable</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_stable</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>           <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">signal</span> <span class="n">clock</span>               <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
   <span class="k">signal</span> <span class="n">en</span>                  <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
@@ -900,7 +900,7 @@ by the next end event.</p>
 <h4>check_next<a class="headerlink" href="#check-next" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal"><span class="pre">check_next</span></code> supports two different formats. One with and one without
 the initial custom checker parameter.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_next</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_next</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>             <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">signal</span> <span class="n">clock</span>                 <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
   <span class="k">signal</span> <span class="n">en</span>                    <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
@@ -946,7 +946,7 @@ way as <code class="docutils literal"><span class="pre">0</span></code> and <cod
 <h4>check_sequence<a class="headerlink" href="#check-sequence" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal"><span class="pre">check_sequence</span></code> supports two different formats. One with and one
 without the initial custom checker parameter.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_sequence</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_sequence</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>             <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">signal</span> <span class="n">clock</span>                 <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
   <span class="k">signal</span> <span class="n">en</span>                    <span class="o">:</span> <span class="k">in</span>    <span class="kt">std_logic</span><span class="p">;</span>
@@ -1019,7 +1019,7 @@ is activated and the check fails.</p>
 <code class="docutils literal"><span class="pre">check_failed</span></code>, that contains no expression parameter to evaluate.
 They are used when the pass/fail status is already given by the program
 flow. For example,</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span><span class="o">&gt;</span> <span class="k">then</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">if</span> <span class="o">&lt;</span><span class="n">some</span> <span class="n">condition</span><span class="o">&gt;</span> <span class="k">then</span>
   <span class="o">&lt;</span><span class="n">do</span> <span class="n">something</span><span class="o">&gt;</span>
   <span class="n">check_passed</span><span class="p">;</span>
 <span class="k">else</span>
@@ -1030,11 +1030,11 @@ flow. For example,</p>
 </div>
 <p>With no <code class="docutils literal"><span class="pre">expr</span></code> parameter there are also fewer usable formats for these
 checkers.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_passed</span> <span class="p">[(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_passed</span> <span class="p">[(</span>
   <span class="k">variable</span> <span class="n">checker</span>   <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">)];</span>
 </pre></div>
 </div>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">check_failed</span><span class="p">(</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">procedure</span> <span class="n">check_failed</span><span class="p">(</span>
  <span class="p">[</span><span class="k">variable</span> <span class="n">checker</span>   <span class="o">:</span> <span class="k">inout</span> <span class="n">checker_t</span><span class="p">;]</span>
   <span class="k">constant</span> <span class="n">msg</span>       <span class="o">:</span> <span class="k">in</span>    <span class="kt">string</span>      <span class="o">:=</span> <span class="s">&quot;Check failed!&quot;</span><span class="p">;</span>
   <span class="k">constant</span> <span class="n">level</span>     <span class="o">:</span> <span class="k">in</span>    <span class="n">log_level_t</span> <span class="o">:=</span> <span class="n">dflt</span><span class="p">;</span>
@@ -1107,7 +1107,7 @@ checkers.</p>
 <li class="toctree-l2"><a class="reference internal" href="../python_interface.html">Python Interface</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../vhdl_libraries.html">VHDL Libraries</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../logging/user_guide.html">Logging Library</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Check Library</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="">Check Library</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#architecture">Architecture</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#checker-initialization">Checker Initialization</a></li>
@@ -1219,6 +1219,9 @@ checkers.</p>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -1229,7 +1232,7 @@ checkers.</p>
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |

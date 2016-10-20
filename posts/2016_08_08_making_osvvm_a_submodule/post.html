@@ -68,12 +68,12 @@ downloading VUnit from <a class="reference external" href="https://pypi.python.o
 if you&#8217;re cloning VUnit from GitHub there are some things to consider. If you&#8217;re
 pulling version 0.67.0 to update your local Git clone the OSVVM subdirectory of
 VUnit will become empty. To populate the directory you have to do</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">path/to/my/vunit/repo&gt; git submodule update --init --recursive</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">path/to/my/vunit/repo&gt; git submodule update --init --recursive</span>
 </pre></div>
 </div>
 <p>This will populate the directory again with the files from OSVVM&#8217;s GitHub repository.
 If you&#8217;re making a new VUnit clone you can skip this second step by doing</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">git clone --recursive https://github.com/VUnit/vunit.git</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">git clone --recursive https://github.com/VUnit/vunit.git</span>
 </pre></div>
 </div>
 </div>
@@ -298,6 +298,9 @@ If you&#8217;re making a new VUnit clone you can skip this second step by doing<
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -308,7 +311,7 @@ If you&#8217;re making a new VUnit clone you can skip this second step by doing<
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |

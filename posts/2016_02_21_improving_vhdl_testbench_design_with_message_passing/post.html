@@ -148,7 +148,7 @@ provides the streaming input characters to a Caesar encryption device
 using the <code class="docutils literal"><span class="pre">encrypt</span></code> procedure while the <code class="docutils literal"><span class="pre">encrypted_symbol_monitor</span></code>
 process verifies the output stream using the
 <code class="docutils literal"><span class="pre">verify_encrypted_sentence</span></code> procedure.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Core of main process                  -- Core of encrypted_symbol_monitor process</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Core of main process                  -- Core of encrypted_symbol_monitor process</span>
 <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span> <span class="k">loop</span>                    <span class="k">loop</span>
   <span class="n">sentence</span> <span class="o">&lt;=</span> <span class="n">create_random_sentence</span><span class="p">;</span>      <span class="n">ready_to_verify</span> <span class="o">&lt;=</span> <span class="n">true</span><span class="p">;</span>
   <span class="k">wait</span> <span class="k">for</span> <span class="mi">0</span> <span class="n">ns</span><span class="p">;</span>                           <span class="k">wait</span> <span class="k">on</span> <span class="n">sentence</span><span class="na">&#39;transaction</span><span class="p">;</span>
@@ -165,7 +165,7 @@ these problems will only get worse if more processes are introduced.</p>
 using the asynchronous <code class="docutils literal"><span class="pre">send</span></code> and the blocking <code class="docutils literal"><span class="pre">receive</span></code> procedures.
 One procedure call in each process takes care of both the information
 transfer and the synchronization.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Core of main process                                     -- Core of encrypted_symbol_monitor process</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Core of main process                                     -- Core of encrypted_symbol_monitor process</span>
 <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span>                                            <span class="k">loop</span>
   <span class="n">sentence</span> <span class="o">:=</span> <span class="n">create_random_sentence</span><span class="p">;</span>                         <span class="n">receive</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
   <span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">encrypted_symbol_monitor</span><span class="p">,</span> <span class="n">sentence</span><span class="p">,</span> <span class="n">receipt</span><span class="p">);</span>     <span class="n">verify_encrypted_sentence</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">);</span>
@@ -199,7 +199,7 @@ procedures. That approach would result in something like the code below
 where I have a function to generate a random sentence, <code class="docutils literal"><span class="pre">encrypt</span></code> to
 apply that sentence on the input, and <code class="docutils literal"><span class="pre">verify_encrypted_sentence</span></code> to
 verify the correct behaviour of the output.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Core of main process</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Core of main process</span>
 <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span> <span class="k">loop</span>
   <span class="n">sentence</span> <span class="o">:=</span> <span class="n">create_random_sentence</span><span class="p">;</span>
   <span class="n">encrypt</span><span class="p">(</span><span class="n">sentence</span><span class="p">);</span>
@@ -216,7 +216,7 @@ sentence, verify the encrypted output, and repeat this ten times. This
 is the &#8220;drawing&#8221; I described earlier.</p>
 <p>Sadly, this doesn&#8217;t work well for a number of reasons. For example, if
 the sequence of &#8220;random&#8221; sentences is this</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;, &quot;abcd&quot;, &quot;abcd&quot;, ...</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">&quot;a&quot;, &quot;ab&quot;, &quot;abc&quot;, &quot;abcd&quot;, &quot;abcd&quot;, ...</span>
 </pre></div>
 </div>
 <p>the testbench will fail on <code class="docutils literal"><span class="pre">&quot;abcd&quot;</span></code> since the first encrypted output
@@ -228,7 +228,7 @@ concurrent processes, one for each interface. So let&#8217;s do that and move
 <code class="docutils literal"><span class="pre">verify_encrypted_sentence</span></code> to its own <code class="docutils literal"><span class="pre">encrypted_symbol_monitor</span></code>
 process. There are several ways to do this but an example is given
 below.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Core of main process                  -- Core of encrypted_symbol_monitor process</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Core of main process                  -- Core of encrypted_symbol_monitor process</span>
 <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span> <span class="k">loop</span>                    <span class="k">loop</span>
   <span class="n">sentence</span> <span class="o">&lt;=</span> <span class="n">create_random_sentence</span><span class="p">;</span>      <span class="n">ready_to_verify</span> <span class="o">&lt;=</span> <span class="n">true</span><span class="p">;</span>
   <span class="k">wait</span> <span class="k">for</span> <span class="mi">0</span> <span class="n">ns</span><span class="p">;</span>                           <span class="k">wait</span> <span class="k">on</span> <span class="n">sentence</span><span class="na">&#39;transaction</span><span class="p">;</span>
@@ -290,7 +290,7 @@ message passing mechanism. For example, the core of the process starts
 by blocking at the <code class="docutils literal"><span class="pre">receive</span></code> procedure waiting for a message to be
 sent over the net to this actor. The payload of that message is the
 sentence we want to verify.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Local declarations of encrypted_symbol_monitor process</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Local declarations of encrypted_symbol_monitor process</span>
 <span class="k">constant</span> <span class="n">self</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span> <span class="n">create</span><span class="p">(</span><span class="s">&quot;encrypted symbol monitor&quot;</span><span class="p">);</span>
 
 <span class="c1">-- Core of encrypted_symbol_monitor process</span>
@@ -302,7 +302,7 @@ sentence we want to verify.</p>
 <code class="docutils literal"><span class="pre">encrypted_symbol_monitor</span></code> actor by using its name. That reference is
 used as the receiver when sending a message containing the newly created
 sentence.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Local declarations of main process</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Local declarations of main process</span>
 <span class="k">constant</span> <span class="n">encrypted_symbol_monitor</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span>  <span class="n">find</span><span class="p">(</span><span class="s">&quot;encrypted symbol monitor&quot;</span><span class="p">);</span>
 
 <span class="c1">-- Core of main process</span>
@@ -372,7 +372,7 @@ sentence.</li>
 the next sentence</li>
 </ol>
 <p>This is what that code would look like.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span> <span class="k">loop</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span> <span class="k">loop</span>
   <span class="n">sentence</span> <span class="o">:=</span> <span class="n">create_random_sentence</span><span class="p">;</span> <span class="c1">-- 1</span>
 
   <span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">plain_symbol_driver</span><span class="p">,</span> <span class="n">start_encrypting</span><span class="p">(</span><span class="n">sentence</span><span class="p">),</span> <span class="n">plain_symbol_driver_receipt</span><span class="p">);</span> <span class="c1">-- 2</span>
@@ -391,14 +391,14 @@ the next sentence</li>
 <p>Let me explain this line by line.</p>
 <div class="section" id="line-1">
 <h3>Line 1<a class="headerlink" href="#line-1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">sentence</span> <span class="o">:=</span> <span class="n">create_random_sentence</span><span class="p">;</span> <span class="c1">-- 1</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">sentence</span> <span class="o">:=</span> <span class="n">create_random_sentence</span><span class="p">;</span> <span class="c1">-- 1</span>
 </pre></div>
 </div>
 <p>A random sentence is created as before.</p>
 </div>
 <div class="section" id="line-2-3">
 <h3>Line 2 - 3<a class="headerlink" href="#line-2-3" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">plain_symbol_driver</span><span class="p">,</span> <span class="n">start_encrypting</span><span class="p">(</span><span class="n">sentence</span><span class="p">),</span> <span class="n">plain_symbol_driver_receipt</span><span class="p">);</span> <span class="c1">-- 2</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">plain_symbol_driver</span><span class="p">,</span> <span class="n">start_encrypting</span><span class="p">(</span><span class="n">sentence</span><span class="p">),</span> <span class="n">plain_symbol_driver_receipt</span><span class="p">);</span> <span class="c1">-- 2</span>
 <span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">encrypted_symbol_monitor</span><span class="p">,</span> <span class="n">start_verifying</span><span class="p">(</span><span class="n">sentence</span><span class="p">),</span> <span class="n">receipt</span><span class="p">);</span>  <span class="c1">-- 3</span>
 </pre></div>
 </div>
@@ -422,7 +422,7 @@ record contains the sentence to verify and also a <code class="docutils literal"
 which works as a command telling the receiver what to do with the
 sentence. <code class="docutils literal"><span class="pre">msg_type</span></code> is of an enumerated type which, in this case, has
 two defined values, <code class="docutils literal"><span class="pre">start_encrypting</span></code> and <code class="docutils literal"><span class="pre">start_verifying</span></code>.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">constant</span> <span class="n">max_sentence_length_c</span> <span class="o">:</span> <span class="kt">positive</span> <span class="o">:=</span> <span class="mi">128</span><span class="p">;</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">constant</span> <span class="n">max_sentence_length_c</span> <span class="o">:</span> <span class="kt">positive</span> <span class="o">:=</span> <span class="mi">128</span><span class="p">;</span>
 <span class="k">type</span> <span class="n">sentence_msg_type_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">start_verifying</span><span class="p">,</span> <span class="n">start_encrypting</span><span class="p">);</span>
 <span class="k">type</span> <span class="n">sentence_msg_t</span> <span class="k">is</span> <span class="k">record</span>
   <span class="n">msg_type</span> <span class="o">:</span> <span class="n">sentence_msg_type_t</span><span class="p">;</span>
@@ -434,7 +434,7 @@ two defined values, <code class="docutils literal"><span class="pre">start_encry
 parsed by a Python module shipped along with the com package. This
 module can be used directly but is also integrated into VUnit such that
 you can add the following lines to your VUnit run script.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pkg</span> <span class="o">=</span> <span class="n">tb_lib</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="s1">&#39;msg_types_pkg&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pkg</span> <span class="o">=</span> <span class="n">tb_lib</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="s1">&#39;msg_types_pkg&#39;</span><span class="p">)</span>
 <span class="n">pkg</span><span class="o">.</span><span class="n">generate_codecs</span><span class="p">(</span><span class="s1">&#39;msg_codecs_pkg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -444,14 +444,14 @@ functions and some other support functions for the types in
 <code class="docutils literal"><span class="pre">msg_types_pkg</span></code> and place them into a package <code class="docutils literal"><span class="pre">msg_codecs_pkg</span></code>. This
 package is also compiled into <code class="docutils literal"><span class="pre">tb_lib</span></code> and can be used in your
 testbench like this.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">use</span> <span class="nn">tb_lib.msg_codecs_pkg.</span><span class="k">all</span><span class="p">;</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="k">use</span> <span class="nn">tb_lib.msg_codecs_pkg.all</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The provided <code class="docutils literal"><span class="pre">encode</span></code> functions can now be used to generate strings
 from your custom types such that they can be passed as messages. For
 example, the code below makes a string out of the <code class="docutils literal"><span class="pre">my_pkg</span></code> variable
 which is of type <code class="docutils literal"><span class="pre">sentence_msg_t</span></code>.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">my_pkg</span><span class="p">.</span><span class="n">msg_type</span> <span class="o">:=</span> <span class="n">start_verifying</span><span class="p">;</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">my_pkg</span><span class="p">.</span><span class="n">msg_type</span> <span class="o">:=</span> <span class="n">start_verifying</span><span class="p">;</span>
 <span class="n">my_pkg</span><span class="p">.</span><span class="n">sentence</span> <span class="o">:=</span> <span class="n">create_random_sentence</span><span class="p">;</span>
 <span class="n">report</span> <span class="s">&quot;This is the encoded message string: &quot;</span> <span class="o">&amp;</span> <span class="n">encode</span><span class="p">(</span><span class="n">my_pkg</span><span class="p">);</span>
 </pre></div>
@@ -461,7 +461,7 @@ so common for messages a number of special encode functions are
 generated. These are named after the values of the enumerated type and
 have the other record elements as parameters. The code below will do the
 same thing as the code above.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">report</span> <span class="s">&quot;This is the encoded message string: &quot;</span> <span class="o">&amp;</span> <span class="n">start_verifying</span><span class="p">(</span><span class="n">create_random_sentence</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">report</span> <span class="s">&quot;This is the encoded message string: &quot;</span> <span class="o">&amp;</span> <span class="n">start_verifying</span><span class="p">(</span><span class="n">create_random_sentence</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>I didn&#8217;t have to use this feature for the first <code class="docutils literal"><span class="pre">send</span></code> call to
@@ -476,7 +476,7 @@ line 7 will show how.</p>
 </div>
 <div class="section" id="line-4-6">
 <h3>Line 4 - 6<a class="headerlink" href="#line-4-6" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">shift</span> <span class="o">:=</span> <span class="n">rv</span><span class="p">.</span><span class="n">RandInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">-- 4</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">shift</span> <span class="o">:=</span> <span class="n">rv</span><span class="p">.</span><span class="n">RandInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>  <span class="c1">-- 4</span>
 <span class="n">sentence_length</span> <span class="o">:=</span> <span class="n">find</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">NUL</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">-- 5</span>
 <span class="n">delay</span> <span class="o">:=</span> <span class="n">rv</span><span class="p">.</span><span class="n">RandTime</span><span class="p">(</span><span class="mi">0</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sentence_length</span> <span class="o">*</span> <span class="n">clk_period_c</span><span class="p">);</span>  <span class="c1">-- 6</span>
 </pre></div>
@@ -498,7 +498,7 @@ and thus the range within which I want to apply the new shift value.</p>
 </div>
 <div class="section" id="line-7">
 <h3>Line 7<a class="headerlink" href="#line-7" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">publish</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">set_shift_after_delay</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">delay</span><span class="p">),</span> <span class="n">status</span><span class="p">);</span>  <span class="c1">-- 7</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">publish</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">set_shift_after_delay</span><span class="p">(</span><span class="n">shift</span><span class="p">,</span> <span class="n">delay</span><span class="p">),</span> <span class="n">status</span><span class="p">);</span>  <span class="c1">-- 7</span>
 </pre></div>
 </div>
 <p>Line 7 is used to send the randomized shift and delay values to the
@@ -511,7 +511,7 @@ to every actor that is <em>subscribing</em> to messages from the <code class="do
 actor. This is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern">publish-subscribe
 pattern</a>.
 Let&#8217;s have a look at the <code class="docutils literal"><span class="pre">encrypted_symbol_monitor</span></code> code.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">subscribe</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">),</span> <span class="n">status</span><span class="p">);</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">subscribe</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;main&quot;</span><span class="p">),</span> <span class="n">status</span><span class="p">);</span>
 <span class="k">loop</span>
   <span class="n">receive</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
   <span class="k">case</span> <span class="n">get_msg_type</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">)</span> <span class="k">is</span>
@@ -557,7 +557,7 @@ recompiled.</p>
 </div>
 <div class="section" id="line-8-9">
 <h3>Line 8 - 9<a class="headerlink" href="#line-8-9" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">receive_reply</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">plain_symbol_driver_receipt</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sentence_is_encrypted</span><span class="p">,</span> <span class="n">status</span><span class="p">);</span> <span class="c1">-- 8</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="n">receive_reply</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">plain_symbol_driver_receipt</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sentence_is_encrypted</span><span class="p">,</span> <span class="n">status</span><span class="p">);</span> <span class="c1">-- 8</span>
 <span class="k">wait</span> <span class="k">for</span> <span class="n">rv</span><span class="p">.</span><span class="n">RandInt</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">clk_period_c</span> <span class="p">;</span> <span class="c1">-- 9</span>
 </pre></div>
 </div>
@@ -588,7 +588,7 @@ value which I assigned to the <code class="docutils literal"><span class="pre">s
 not checking the value of <code class="docutils literal"><span class="pre">sentence_is_encrypted</span></code> because it will
 always be a positive acknowledge (<code class="docutils literal"><span class="pre">true</span></code>).</p>
 <p>Here is the code for the <code class="docutils literal"><span class="pre">plain_symbol_driver</span></code> process.</p>
-<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="c1">-- Core of plain_symbol_driver</span>
+<div class="highlight-vhdl"><div class="highlight"><pre><span class="c1">-- Core of plain_symbol_driver</span>
 <span class="k">loop</span>
   <span class="n">receive</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
   <span class="k">case</span> <span class="n">get_msg_type</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">)</span> <span class="k">is</span>
@@ -852,6 +852,9 @@ guide</a>.</p>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -862,7 +865,7 @@ guide</a>.</p>
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |

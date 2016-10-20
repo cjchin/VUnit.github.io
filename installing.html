@@ -62,25 +62,25 @@
 <div class="section" id="using-the-python-package-manager">
 <h2>Using the Python Package Manager<a class="headerlink" href="#using-the-python-package-manager" title="Permalink to this headline">¶</a></h2>
 <p>The recommended way to get VUnit is to <strong>install the latest stable release</strong> via <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> pip install vunit_hdl
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> pip install vunit_hdl
 </pre></div>
 </div>
 <p>Once installed, VUnit may be updated to new versions via a similar method:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> pip install -U vunit_hdl
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> pip install -U vunit_hdl
 </pre></div>
 </div>
 </div>
 <div class="section" id="using-the-development-version">
 <h2>Using the Development Version<a class="headerlink" href="#using-the-development-version" title="Permalink to this headline">¶</a></h2>
 <p>Start by cloning our <a class="reference external" href="https://github.com/vunit/vunit/">GIT repository on GitHub</a>:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">git clone --recursive https://github.com/VUnit/vunit.git</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">git clone --recursive https://github.com/VUnit/vunit.git</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">--recursive</span></code> option initializes <a class="reference external" href="https://github.com/JimLewis/OSVVM">OSVVM</a> which is included as a submodule in the VUnit repository.</p>
 <p>To be able to import <a class="reference internal" href="python_interface.html#vunit.ui.VUnit" title="vunit.ui.VUnit"><code class="xref py py-class docutils literal"><span class="pre">VUnit</span></code></a> in your <code class="docutils literal"><span class="pre">run.py</span></code> script
 you need to make it visible to Python or else the following error
 occurs.</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">Traceback (most recent call last):</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">Traceback (most recent call last):</span>
 <span class="go">   File &quot;run.py&quot;, line 2, in &lt;module&gt;</span>
 <span class="go">     from vunit import VUnit</span>
 <span class="go">ImportError: No module named vunit</span>
@@ -89,7 +89,7 @@ occurs.</p>
 <p>There are three methods to make VUnit importable in your <code class="docutils literal"><span class="pre">run.py</span></code> script.:</p>
 <ol class="arabic">
 <li><p class="first">Install it in your Python environment using:</p>
-<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python setup.py install
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> python setup.py install
 </pre></div>
 </div>
 </li>
@@ -99,7 +99,7 @@ to the vunit directory within the root directory.</p>
 </li>
 <li><p class="first">Add the following to your <code class="docutils literal"><span class="pre">run.py</span></code> file <strong>before</strong> the <code class="docutils literal"><span class="pre">import</span> <span class="pre">vunit</span></code>
 statement:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/path/to/vunit_repo_root/&quot;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">vunit</span>
 </pre></div>
@@ -114,7 +114,7 @@ to the Python site-packages directory. This can be achieved by using
 the <code class="docutils literal"><span class="pre">-e</span></code> flag with <code class="docutils literal"><span class="pre">pip</span></code>, or the <code class="docutils literal"><span class="pre">develop</span></code> option with
 <code class="docutils literal"><span class="pre">setup.py</span></code>, or setting the <code class="docutils literal"><span class="pre">PYTHONPATH</span></code> environment variable.</p>
 <blockquote>
-<div><div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> git clone https://github.com/VUnit/vunit.git
+<div><div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> git clone https://github.com/VUnit/vunit.git
 <span class="gp">&gt;</span> <span class="nb">cd</span> vunit
 
 <span class="gp">&gt;</span> python setup.py develop
@@ -184,7 +184,7 @@ Python environment.</p>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="about.html">What is VUnit?</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#using-the-python-package-manager">Using the Python Package Manager</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-the-development-version">Using the Development Version</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#for-vunit-developers">For VUnit Developers</a></li>
@@ -259,6 +259,9 @@ Python environment.</p>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -269,7 +272,7 @@ Python environment.</p>
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |
