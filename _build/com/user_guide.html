@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Communication Library &#8212; VUnit  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/vunit.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="VUnit  documentation" href="../index.html" />
+    <link rel="up" title="VHDL Libraries" href="../vhdl_libraries.html" />
+    <link rel="next" title="Contributing" href="../contributing.html" />
+    <link rel="prev" title="Check Library" href="../check/user_guide.html" />
+  
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="VUnit Blog">
+  
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="communication-library">
+<span id="com-user-guide"></span><h1>Communication Library<a class="headerlink" href="#communication-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Communication (<code class="docutils literal"><span class="pre">com</span></code>) provides a high-level communication mechanism
+based on the <a class="reference external" href="http://en.wikipedia.org/wiki/Actor_model">actor model</a>.
+The actor model is a mathematical model of computation in which
+concurrent <em>actors</em> perform all computation. The only way actors can
+communicate is by sending messages to each other and the message passing
+is based on two important principles:</p>
+<ul class="simple">
+<li>The sending actor only knows the name of the receiving actor. It
+doesn&#8217;t know the location of the receiver or how a message gets
+there.</li>
+<li>Communication is asynchronous. The sender doesn&#8217;t know when the
+receiver will read the message.</li>
+</ul>
+<p>Based on these principles and a few more it&#8217;s possible to construct more
+advanced communication patterns. However, the actor model alone has
+focus on the essentials of communication, the actors exchanging
+information and the information being exchanged. Everything else is
+superfluous.</p>
+<p>This purity along with the concurrency of the actors makes the model a
+very suitable base for a high-level communication mechanism in VHDL.
+Concurrent statements like processes and components are the actors in a
+VHDL simulation and the messages are variables of a type suitable for
+the information being exchanged.</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>Message passing is not a core functionality of unit testing so <code class="docutils literal"><span class="pre">com</span></code>
+is provided as an optional add-on to VUnit. It is compiled to the
+<code class="docutils literal"><span class="pre">vunit_lib</span></code> library with the <code class="docutils literal"><span class="pre">add_com</span></code> method in your Python script</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ui</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">add_com</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The VHDL functionality is provided to your testbench with the
+<code class="docutils literal"><span class="pre">com_context</span></code>.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">library</span> <span class="nn">vunit_lib</span><span class="p">;</span>
+<span class="n">context</span> <span class="n">vunit_lib</span><span class="p">.</span><span class="n">vunit_context</span><span class="p">;</span>
+<span class="n">context</span> <span class="n">vunit_lib</span><span class="p">.</span><span class="n">com_context</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-message-passing">
+<h2>Basic Message Passing<a class="headerlink" href="#basic-message-passing" title="Permalink to this headline">¶</a></h2>
+<p>To send a message we must first create an actor for the sender and then
+find the actor of the receiver. These actors are then used when sending
+a message as shown in the example below.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="nc">proc_1</span><span class="o">:</span> <span class="k">process</span> <span class="k">is</span>
+  <span class="k">variable</span> <span class="n">self</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span> <span class="n">create</span><span class="p">(</span><span class="s">&quot;proc_1&quot;</span><span class="p">);</span>  <span class="c1">-- Create an actor for myself</span>
+  <span class="k">variable</span> <span class="n">proc_2</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;proc_2&quot;</span><span class="p">);</span>  <span class="c1">-- Find the receiver</span>
+  <span class="k">variable</span> <span class="n">receipt</span> <span class="o">:</span> <span class="n">receipt_t</span><span class="p">;</span>       <span class="c1">-- Send receipt</span>
+<span class="k">begin</span>
+  <span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">proc_2</span><span class="p">,</span> <span class="s">&quot;Hello proc_2!&quot;</span><span class="p">,</span> <span class="n">receipt</span><span class="p">);</span>
+  <span class="n">check_relation</span><span class="p">(</span><span class="n">receipt</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">ok</span><span class="p">);</span>
+  <span class="k">wait</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span> <span class="nc">proc_1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The returned receipt contains, among other things, status for the send
+and the expected value is <code class="docutils literal"><span class="pre">ok</span></code>. <code class="docutils literal"><span class="pre">net</span></code> is the abstract network over
+which messages are sent. Ideally this shouldn&#8217;t be part of the procedure
+call but since <code class="docutils literal"><span class="pre">net</span></code> is a signal and the procedure is defined within a
+package it has to be among the parameters if the procedure is to drive
+the signal. Note that the self variable isn&#8217;t used and could have been
+excluded. It will be used in later examples where the sender can&#8217;t be
+anonymous.</p>
+<p>Below is a basic receiver for the message above.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="nc">proc_2</span><span class="o">:</span> <span class="k">process</span> <span class="k">is</span>
+  <span class="k">variable</span> <span class="n">self</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span> <span class="n">create</span><span class="p">(</span><span class="s">&quot;proc_2&quot;</span><span class="p">);</span>
+  <span class="k">variable</span> <span class="n">message</span>  <span class="o">:</span> <span class="n">message_ptr_t</span><span class="p">;</span>
+<span class="k">begin</span>
+  <span class="n">receive</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+  <span class="n">check_relation</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">ok</span><span class="p">);</span>
+  <span class="n">report</span> <span class="s">&quot;Received &quot;</span> <span class="o">&amp;</span> <span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">;</span>
+  <span class="k">wait</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span> <span class="nc">proc_2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that communication is asynchronous. The <code class="docutils literal"><span class="pre">send</span></code> procedure takes no
+physical simulation time, only delta cycles, and you can also send as
+many messages you like (limited by the host memory) before the receiver
+starts receiving messages. However, the receiver will always get the
+messages in the order they were sent.</p>
+<p>Note also that no information about the location of the actors or
+details on the message transport is exposed. This simplifies refactoring
+of the code. For example, if <code class="docutils literal"><span class="pre">proc_1</span></code> and <code class="docutils literal"><span class="pre">proc_2</span></code> are in the same
+file and you decide to package one of them as an entity and move it into
+another file you don&#8217;t have to change anything about the communication.</p>
+<p>The default behaviour of the <code class="docutils literal"><span class="pre">receive</span></code> procedure above is to block
+until a message arrives but it can also be setup with a timeout. If you
+want the receiver to poll for messages you set the timeout to zero.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="nc">proc_2</span><span class="o">:</span> <span class="k">process</span> <span class="k">is</span>
+  <span class="k">variable</span> <span class="n">self</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span> <span class="n">create</span><span class="p">(</span><span class="s">&quot;proc_2&quot;</span><span class="p">);</span>
+  <span class="k">variable</span> <span class="n">message</span>  <span class="o">:</span> <span class="n">message_ptr_t</span><span class="p">;</span>
+<span class="k">begin</span>
+  <span class="n">receive</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="mi">1</span> <span class="n">ns</span><span class="p">);</span>
+  <span class="k">case</span> <span class="n">message</span><span class="p">.</span><span class="n">status</span> <span class="k">is</span>
+    <span class="k">when</span> <span class="n">ok</span> <span class="o">=&gt;</span>
+      <span class="n">report</span> <span class="s">&quot;Received &quot;</span> <span class="o">&amp;</span> <span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">;</span>
+    <span class="k">when</span> <span class="n">timeout</span> <span class="o">=&gt;</span>
+      <span class="n">report</span> <span class="s">&quot;Timed out waiting for a message&quot;</span><span class="p">;</span>
+    <span class="k">when</span> <span class="k">others</span> <span class="o">=&gt;</span>
+      <span class="n">check_failed</span><span class="p">(</span><span class="s">&quot;Reception error - &quot;</span> <span class="o">&amp;</span> <span class="n">to_string</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">status</span><span class="p">));</span>
+  <span class="k">end</span> <span class="k">case</span><span class="p">;</span>
+  <span class="k">wait</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span> <span class="nc">proc_2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Creating and finding actors is often done at the beginning of a process
+at time zero. This means that there is a potential race condition, i.e.
+the <code class="docutils literal"><span class="pre">find</span></code> of one process is called before the the actor searched for
+has been created. The default behaviour is that <code class="docutils literal"><span class="pre">com</span></code> does a
+<em>deferred</em> creation of an actor in these situations. The deferred state
+is then removed when the actor is created. It is possible to perform
+actions on a deferred actor when it is the &#8220;other&#8221; actor, for example
+sending <strong>to</strong> an actor. However, it is not possible to perform actions
+from a deferred actor, for example sending <strong>from</strong> it. The risk with
+this approach is if you do a <code class="docutils literal"><span class="pre">find</span></code> with a misspelled actor. Messages
+sent to the resulting deferred actor will never be read by anyone.</p>
+<p>The default behaviour with deferred creation can be overridden by
+calling <code class="docutils literal"><span class="pre">find(&quot;actor_name&quot;,</span> <span class="pre">enable_deferred_creation</span> <span class="pre">=&gt;</span> <span class="pre">false);</span></code>. Such
+a call will return <code class="docutils literal"><span class="pre">null_actor_c</span></code> if the searched actor hasn&#8217;t been
+created. It&#8217;s also possible to call <code class="docutils literal"><span class="pre">num_of_deferred_creations</span></code> and
+verify that it returns zero when you expect all involved actors to be
+created.</p>
+<p>In the examples so far the message has been a string and string is the
+only message type that <code class="docutils literal"><span class="pre">com</span></code> can handle. Rather than having the user
+define overloaded versions for every subprogram and message type needed
+<code class="docutils literal"><span class="pre">com</span></code> provides functionality for encoding other types to string before
+the message is sent and then, on the receiving side, decode back to the
+original type again. For example, sending an integer can be done like
+this.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">encode</span><span class="p">(</span><span class="n">my_integer</span><span class="p">),</span> <span class="n">receipt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>which can be received like this.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">my_integer</span> <span class="o">:=</span> <span class="n">decode</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">);</span>
+<span class="n">report</span> <span class="s">&quot;Received &quot;</span> <span class="o">&amp;</span> <span class="n">to_string</span><span class="p">(</span><span class="n">my_integer</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">com</span></code> has support for around 25 native VHDL and IEEE types. These can
+be used as primitives when building codecs for custom composite types.
+For example, an encoder for a custom record type can be built as a
+simple concatenation of the encoded record elements. However, <code class="docutils literal"><span class="pre">com</span></code>
+can also generate codecs for your custom enumeration, array, and record
+types. For example, the <a class="reference external" href="../../../examples/vhdl/com/test/tb_card_shuffler.vhd">card shuffler
+example</a> uses the
+following package.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">package</span> <span class="n">msg_types_pkg</span> <span class="k">is</span>
+  <span class="k">type</span> <span class="n">rank_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">ace</span><span class="p">,</span> <span class="n">two</span><span class="p">,</span> <span class="n">three</span><span class="p">,</span> <span class="n">four</span><span class="p">,</span> <span class="n">five</span><span class="p">,</span> <span class="n">six</span><span class="p">,</span> <span class="n">seven</span><span class="p">,</span> <span class="n">eight</span><span class="p">,</span> <span class="n">nine</span><span class="p">,</span> <span class="n">ten</span><span class="p">,</span> <span class="n">jack</span><span class="p">,</span> <span class="n">queen</span><span class="p">,</span> <span class="n">king</span><span class="p">);</span>
+  <span class="k">type</span> <span class="n">suit_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">spades</span><span class="p">,</span> <span class="n">hearts</span><span class="p">,</span> <span class="n">diamonds</span><span class="p">,</span> <span class="n">clubs</span><span class="p">);</span>
+  <span class="k">type</span> <span class="n">card_t</span> <span class="k">is</span> <span class="k">record</span>
+    <span class="n">rank</span> <span class="o">:</span> <span class="n">rank_t</span><span class="p">;</span>
+    <span class="n">suit</span> <span class="o">:</span> <span class="n">suit_t</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">record</span> <span class="nc">card_t</span><span class="p">;</span>
+
+  <span class="k">type</span> <span class="n">card_msg_type_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">load</span><span class="p">,</span> <span class="n">received</span><span class="p">);</span>
+  <span class="k">type</span> <span class="n">card_msg_t</span> <span class="k">is</span> <span class="k">record</span>
+    <span class="n">msg_type</span> <span class="o">:</span> <span class="n">card_msg_type_t</span><span class="p">;</span>
+    <span class="n">card</span>     <span class="o">:</span> <span class="n">card_t</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">record</span> <span class="nc">card_msg_t</span><span class="p">;</span>
+
+  <span class="k">type</span> <span class="n">reset_msg_type_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">reset_shuffler</span><span class="p">);</span>
+  <span class="k">type</span> <span class="n">reset_msg_t</span> <span class="k">is</span> <span class="k">record</span>
+    <span class="n">msg_type</span> <span class="o">:</span> <span class="n">reset_msg_type_t</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">record</span> <span class="nc">reset_msg_t</span><span class="p">;</span>
+
+  <span class="k">type</span> <span class="n">request_msg_type_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">get_status</span><span class="p">);</span>
+  <span class="k">type</span> <span class="n">request_msg_t</span> <span class="k">is</span> <span class="k">record</span>
+    <span class="n">msg_type</span>   <span class="o">:</span> <span class="n">request_msg_type_t</span><span class="p">;</span>
+    <span class="n">checkpoint</span> <span class="o">:</span> <span class="kt">natural</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">record</span> <span class="nc">request_msg_t</span><span class="p">;</span>
+
+  <span class="k">type</span> <span class="n">reply_msg_type_t</span> <span class="k">is</span> <span class="p">(</span><span class="n">get_status_reply</span><span class="p">);</span>
+  <span class="k">type</span> <span class="n">reply_msg_t</span> <span class="k">is</span> <span class="k">record</span>
+    <span class="n">msg_type</span>       <span class="o">:</span> <span class="n">reply_msg_type_t</span><span class="p">;</span>
+    <span class="n">checksum_match</span> <span class="o">:</span> <span class="kt">boolean</span><span class="p">;</span>
+    <span class="n">matching_cards</span> <span class="o">:</span> <span class="kt">boolean</span><span class="p">;</span>
+  <span class="k">end</span> <span class="k">record</span> <span class="nc">reply_msg_t</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">package</span> <span class="nc">msg_types_pkg</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Encoders for these types are generated if you add the following to the
+Python script</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tb_shuffler_lib</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">add_library</span><span class="p">(</span><span class="s1">&#39;tb_shuffler_lib&#39;</span><span class="p">)</span>
+<span class="n">tb_shuffler_lib</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;*.vhd&#39;</span><span class="p">))</span>
+<span class="n">pkg</span> <span class="o">=</span> <span class="n">tb_shuffler_lib</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="s1">&#39;msg_types_pkg&#39;</span><span class="p">)</span>
+<span class="n">pkg</span><span class="o">.</span><span class="n">generate_codecs</span><span class="p">(</span><span class="n">codec_package_name</span><span class="o">=</span><span class="s1">&#39;msg_codecs_pkg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The last two lines will take the types in <code class="docutils literal"><span class="pre">msg_types_pkg</span></code>, generate
+codecs and place them in <code class="docutils literal"><span class="pre">msg_codecs_pkg</span></code>. Moreover, records with an
+initial element named <code class="docutils literal"><span class="pre">msg_type</span></code> that is of an enumerated type get
+special treatment. For each value of the enumerated type there will be
+an encoder function named after that value with the rest of the elements
+as parameters. So instead of writing</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">my_card_msg</span> <span class="o">:=</span> <span class="p">(</span><span class="n">load</span><span class="p">,</span> <span class="p">(</span><span class="n">ace</span><span class="p">,</span> <span class="n">spades</span><span class="p">));</span>
+<span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">encode</span><span class="p">(</span><span class="n">my_card_msg</span><span class="p">),</span> <span class="n">receipt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>you can write</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">receiver</span><span class="p">,</span> <span class="n">load</span><span class="p">((</span><span class="n">ace</span><span class="p">,</span> <span class="n">spades</span><span class="p">)),</span> <span class="n">receipt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>which makes the intention of the message more clear.</p>
+<p><strong>Note1:</strong> The encoder function also has an alias with a <code class="docutils literal"><span class="pre">_msg</span></code> suffix
+(<code class="docutils literal"><span class="pre">load_msg</span></code> in the previous example). This must currently be used with
+Aldec&#8217;s simulators if the function has no input parameters. The reason
+is that the normal name (<code class="docutils literal"><span class="pre">load</span></code>) is confused with the enumeration
+literal with the same name.</p>
+<p><strong>Note2:</strong> Codec generation for unconstrained arrays with composite
+element types is not supported for Aldec&#8217;s simulators. This limitation
+will be removed as soon as some issues with these tools have been fixed.</p>
+<p>You also get a <code class="docutils literal"><span class="pre">get_msg_type</span></code> function which will return the type of a
+message considering all message types defined in the package. This
+provides a convenient way to select the correct decoder on the receiving
+side. Here&#8217;s an example.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">receive</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">message</span><span class="p">);</span>
+<span class="k">case</span> <span class="n">get_msg_type</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">)</span> <span class="k">is</span>
+  <span class="k">when</span> <span class="n">load</span> <span class="o">=&gt;</span>
+    <span class="n">card_msg</span> <span class="o">:=</span> <span class="n">decode</span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">all</span><span class="p">);</span>
+    <span class="c1">-- Do something with the card</span>
+  <span class="k">when</span> <span class="n">received</span> <span class="o">=&gt;</span>
+    <span class="c1">-- Decode this message type and take action</span>
+  <span class="k">when</span> <span class="n">get_status</span> <span class="o">=&gt;</span>
+    <span class="c1">-- Decode this message type and take action</span>
+  <span class="k">when</span> <span class="n">reset_shuffler</span> <span class="o">=&gt;</span>
+    <span class="c1">-- Decode this message type and take action</span>
+  <span class="k">when</span> <span class="k">others</span> <span class="o">=&gt;</span>
+    <span class="n">check_failed</span><span class="p">(</span><span class="s">&quot;Message type not supported&quot;</span><span class="p">);</span>
+  <span class="k">end</span> <span class="k">case</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Sometimes the encode/decode functions used in the code are ambiguous to
+the compiler. To handle this, all built-in and generated encode/decode
+functions have an alias with a prefix of <code class="docutils literal"><span class="pre">encode_/decode_</span></code>, for example
+<code class="docutils literal"><span class="pre">encode_card_t</span></code>.</p>
+</div>
+<div class="section" id="publisher-subscriber-pattern">
+<h2>Publisher/Subscriber Pattern<a class="headerlink" href="#publisher-subscriber-pattern" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes a message needs to be sent to many receivers and this can of
+course be achieved with multiple calls to the <code class="docutils literal"><span class="pre">send</span></code> procedure.
+However, in many of these cases the sender isn&#8217;t interested in who the
+receivers are, it just want to broadcast information to anyone
+interested. If this is the case it&#8217;s inconvenient to add a new <code class="docutils literal"><span class="pre">send</span></code>
+call to the sender for every new receiver. This is called the
+publisher/subscriber pattern and <code class="docutils literal"><span class="pre">com</span></code> has dedicated functionality to
+support it.</p>
+<p>An example of this pattern can be found in the <a class="reference external" href="../../../examples/vhdl/com/test/tb_card_shuffler.vhd">card shuffler
+example</a>. There the
+test runner publishes commands to load cards into the card shuffler.
+These commands are received by a driver which translates the commands to
+the pin wiggling understood by the card shuffler. The commands are also
+received by the scoreboard such that it can compare what is being sent
+into the card shuffler with what is sent out and from that determine if
+a correct shuffling has taken place.</p>
+<p>A <code class="docutils literal"><span class="pre">publish</span></code> is the same as a <code class="docutils literal"><span class="pre">send</span></code> with the difference that no
+receiver is specified, it can&#8217;t be anonymous, and that a status is
+returned instead of a receipt. The difference between a receipt and a
+status is that the receipt contains status as we&#8217;ve seen before but also
+a message ID which is used for the client/server pattern described later
+on. The ID is unique to a message but a publish may result in zero or
+many messages. Moreover, it does not make sense to combine publishing
+with the client/server pattern so the message ID has been excluded from
+the <code class="docutils literal"><span class="pre">publish</span></code> procedure. A publish must be made with the publisher
+actor as a parameter so that <code class="docutils literal"><span class="pre">com</span></code> can find the subscribers.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">publish</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">load</span><span class="p">((</span><span class="n">rank</span><span class="p">,</span> <span class="n">suit</span><span class="p">)),</span> <span class="n">status</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>An actor interested in what&#8217;s published call the <code class="docutils literal"><span class="pre">subscribe</span></code>
+procedure. Both the driver and the scoreboard have this piece of code.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">subscribe</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;test runner&quot;</span><span class="p">),</span> <span class="n">status</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Published messages are then received with the normal <code class="docutils literal"><span class="pre">receive</span></code>
+procedure. It&#8217;s also possible for an actor to unsubscribe from what&#8217;s
+being published.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">unsubscribe</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;test runner&quot;</span><span class="p">),</span> <span class="n">status</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="client-server-pattern">
+<h2>Client/Server Pattern<a class="headerlink" href="#client-server-pattern" title="Permalink to this headline">¶</a></h2>
+<p>Messages sent are often requests for some information owned by the
+receiver. This is called the client/server pattern and is supported in a
+number of ways.</p>
+<ul>
+<li><p class="first">The server needs a way to reply to a request from a client which it
+has no prior knowledge of. This is achieved by using
+<code class="docutils literal"><span class="pre">message.sender</span></code> on an incoming message. This also means that the
+<code class="docutils literal"><span class="pre">send</span></code> call making the request can&#8217;t be anonymous.</p>
+</li>
+<li><p class="first">The server also needs a way to specify which request it&#8217;s replying to
+since replies may be done out of order. To do this the server
+extracts a unique message ID from the client request message and use
+that as a reference when sending the reply.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">requesting_actor</span> <span class="o">:=</span> <span class="n">message</span><span class="p">.</span><span class="n">sender</span><span class="p">;</span>
+<span class="n">request_id</span>       <span class="o">:=</span> <span class="n">message</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+<span class="c1">-- Prepare reply_message based on request in message.payload</span>
+<span class="n">reply</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">requesting_actor</span><span class="p">,</span> <span class="n">request_id</span><span class="p">,</span> <span class="n">reply_message</span><span class="p">,</span> <span class="n">receipt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>So a <code class="docutils literal"><span class="pre">reply</span></code> procedure is just like a <code class="docutils literal"><span class="pre">send</span></code> procedure with the
+addition of the request ID.</p>
+</li>
+<li><p class="first">The client making the request can also wait for the reply to that
+request ignoring any other message that may arrive before the reply.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">send</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;scoreboard&quot;</span><span class="p">),</span> <span class="n">request_message</span><span class="p">,</span> <span class="n">receipt</span><span class="p">);</span>
+<span class="n">receive_reply</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">receipt</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">reply_message</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The difference between <code class="docutils literal"><span class="pre">receive_reply</span></code> and a normal <code class="docutils literal"><span class="pre">receive</span></code> is
+the ID for the request message which reply we are waiting for. Any
+message ignored by <code class="docutils literal"><span class="pre">receive_reply</span></code> will still be available by
+calling the normal <code class="docutils literal"><span class="pre">receive</span></code> procedure later on. When the <code class="docutils literal"><span class="pre">send</span></code>
+and the <code class="docutils literal"><span class="pre">receive_reply</span></code> calls are made back-to-back they can be
+replaced by a single <code class="docutils literal"><span class="pre">request</span></code> call.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">request</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">find</span><span class="p">(</span><span class="s">&quot;scoreboard&quot;</span><span class="p">),</span> <span class="n">request_message</span><span class="p">,</span> <span class="n">reply_message</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="synchronous-communication">
+<h2>Synchronous Communication<a class="headerlink" href="#synchronous-communication" title="Permalink to this headline">¶</a></h2>
+<p>The actor model as well as <code class="docutils literal"><span class="pre">com</span></code> are based on asynchronous
+communication but can still be used for synchronous communication. There
+are basically two ways:</p>
+<ol class="arabic">
+<li><p class="first">You can use the client/server pattern and have the receiver send an
+acknowledge message back to the sender which blocks waiting for that
+acknowledge using <code class="docutils literal"><span class="pre">receive_reply</span></code> or <code class="docutils literal"><span class="pre">request</span></code>. For the case when
+the acknowledge message contains no more information than if the
+request was handled with positive or negative result there is a
+special <code class="docutils literal"><span class="pre">reply</span></code> procedure called <code class="docutils literal"><span class="pre">acknowledge</span></code> that takes a
+<code class="docutils literal"><span class="pre">positive_ack</span></code> boolean input instead of a string message. There are
+also matching <code class="docutils literal"><span class="pre">request</span></code> and <code class="docutils literal"><span class="pre">receive_reply</span></code> procedures working
+with this boolean information.</p>
+</li>
+<li><p class="first">It is also possible to limit the number of unread messages that an
+receiver can have. This mechanism can be used to limit the amount of
+memory used in the simulation but can also be used for
+synchronization. If the limit is reached a new send to that receiver
+will block with an optional timeout. Setting the limit to one means
+that the receiver must read the first message before the sender can
+get another one through. To set a limit on the receiver you add a
+second parameter to the create call.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">variable</span> <span class="n">self</span> <span class="o">:</span> <span class="n">actor_t</span> <span class="o">:=</span> <span class="n">create</span><span class="p">(</span><span class="s">&quot;proc_1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>When using <code class="docutils literal"><span class="pre">publish</span></code> any subscriber which reached its limit will
+miss that message. The reason for skipping these subscribers is that
+we do not want the publisher to block since that would create
+dependencies between the publisher and its subscribers as well as
+between the subscribers. The latter is because subscribers &#8220;after&#8221; the
+one causing the blocking will have the message delayed. This is not
+desirable since the pattern is used when the publisher doesn&#8217;t
+have/want any knowledge of the subscribers and the subscribers may
+also be unaware of each other. A subscriber can use the
+<code class="docutils literal"><span class="pre">num_of_missed_messages</span></code> function to get the total number of
+messages missed.</p>
+</div>
+<div class="section" id="message-debugging">
+<h2>Message Debugging<a class="headerlink" href="#message-debugging" title="Permalink to this headline">¶</a></h2>
+<p>When debugging a simulation containing messages it helps if those
+messages can be easily read and <code class="docutils literal"><span class="pre">com</span></code> can help out in two different
+ways. One is to add trace messages wherever necessary using the VUnit
+logging functionality together with the <code class="docutils literal"><span class="pre">to_string</span></code> function for the
+message/data type being sent. The automatic codec generation provided
+for custom message types also provide <code class="docutils literal"><span class="pre">to_string</span></code> functions for these
+types.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">to_string</span></code> on enumerated types will return the string for the
+values in the type just as you defined them.</li>
+<li><code class="docutils literal"><span class="pre">to_string</span></code> on a record will return a comma-separated string of
+each element&#8217;s <code class="docutils literal"><span class="pre">to_string</span></code> result enclosed in parenthis. For
+example, <code class="docutils literal"><span class="pre">to_string</span></code> for the <code class="docutils literal"><span class="pre">card_t</span></code> type used in previous
+examples will return something like <code class="docutils literal"><span class="pre">(ace,</span> <span class="pre">spades)</span></code></li>
+<li><code class="docutils literal"><span class="pre">to_string</span></code> on an array will return a comma-separated string just
+like records but the three first elements are special. The first
+element is the left attribute of the array, the second is the right
+attribute, and the third is the ascending attribute (true or false).</li>
+</ul>
+<p>The second debug support provided by <code class="docutils literal"><span class="pre">com</span></code> is that you can use debug
+codecs instead of those being used by default. The default codecs
+basically take a binary representation of each scalar type, split that
+into bytes, and encode each byte with the corresponding character in the
+ASCII table. Composites are encoded by concatenating its scalar
+primitives. This approach to encoding results in short strings and gives
+better message passing run-time performance. The debug codecs takes
+another approach by simply encode messages using the <code class="docutils literal"><span class="pre">to_string</span></code>
+function. Message payloads now becomes readable in the simulation but at
+the expense of longer strings which lowers the performance. You can
+permanently enable the debug codecs in your Python script like this.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ui</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">add_com</span><span class="p">(</span><span class="n">use_debug_codecs</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also enable the debug codecs when calling your script.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">python run.py --use-debug-codecs</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/VUnit_logo_420x420.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">VUnit</h1>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">A test framework for HDL</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=VUnit&repo=vunit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/VUnit/vunit">
+    <img
+        alt="https://secure.travis-ci.org/VUnit/vunit.svg?branch=master"
+        src="https://secure.travis-ci.org/VUnit/vunit.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<a class="icon" title="Contact us" href="mailto:vunitframework@gmail.com"><span class="fa fa-envelope fa-2x fa-fw"/></a>
+<a class="icon" title="Go to our GitHub Repo" href="https://github.com/VUnit/vunit"><span class="fa fa-github fa-2x fa-fw"/></a>
+<a class="icon" title="View our Twitter Feed" href="https://www.twitter.com/VUnitFramework"><span class="fa fa-twitter fa-2x fa-fw"/></a>
+<a class="icon" title="View our YouTube Channel" href="https://youtube.com/channel/UCCPVCaeWkz6C95aRUTbIwdg"><span class="fa fa-youtube fa-2x fa-fw"/></a>
+<a class="icon" title="Chat with us on Gitter" href="https://gitter.im/VUnit/vunit"><span class="fa fa-weixin fa-2x fa-fw"/></a>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">What is VUnit?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface.html">Python Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../vhdl_libraries.html">VHDL Libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../logging/user_guide.html">Logging Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../check/user_guide.html">Check Library</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Communication Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-message-passing">Basic Message Passing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#publisher-subscriber-pattern">Publisher/Subscriber Pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#client-server-pattern">Client/Server Pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#synchronous-communication">Synchronous Communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-debugging">Message Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+
+  <h3><a href="../blog.html">Recent Posts</a></h3>
+  <ul>
+    
+    
+      <li><a href="../posts/2016_08_08_making_osvvm_a_submodule/post.html">Aug 08 - Making OSVVM a Git Submodule</a></li>
+    
+      <li><a href="../posts/2016_02_21_improving_vhdl_testbench_design_with_message_passing/post.html">Feb 21 - Improving VHDL Testbench Design with Message Passing</a></li>
+    
+      <li><a href="../posts/2016_02_01_website_updates/post.html">Feb 01 - Website Updates</a></li>
+    
+      <li><a href="../posts/2016_01_29_chat_with_vunit_users_and_developers/post.html">Jan 29 - Chat with VUnit Users and Developers</a></li>
+    
+      <li><a href="../posts/2016_01_26_welcome_to_our_new_website/post.html">Jan 26 - Welcome to Our New Website</a></li>
+    
+  </ul>
+
+  <h3><a href="../blog/tag.html">Tags</a></h3>
+  <style type="text/css">
+    ul.ablog-cloud {list-style: none; overflow: auto;}
+    ul.ablog-cloud li {float: left; height: 20pt; line-height: 18pt; margin-right: 5px;}
+    ul.ablog-cloud a {text-decoration: none; vertical-align: middle;}
+    li.ablog-cloud-1{font-size: 80%;}
+    li.ablog-cloud-2{font-size: 95%;}
+    li.ablog-cloud-3{font-size: 110%;}
+    li.ablog-cloud-4{font-size: 125%;}
+    li.ablog-cloud-5{font-size: 140%;}
+  </style>
+  <ul class="ablog-cloud">
+    
+      
+      <li class="ablog-cloud ablog-cloud-1">
+        <a href="../blog/tag/osvvm.html">OSVVM</a></li>
+      
+    
+      
+      <li class="ablog-cloud ablog-cloud-5">
+        <a href="../blog/tag/vunit.html">VUnit</a></li>
+      
+    
+  </ul>
+
+  <h3><a href="../blog/archive.html">Archives</a></h3>
+  <ul>
+  
+    
+    <li><a href="../blog/2016.html">2016 (5)</a></li>
+    
+  
+    
+    <li><a href="../blog/2015.html">2015 (3)</a></li>
+    
+  
+  </ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Lars Asplund.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/com/user_guide.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Logging Library &#8212; VUnit  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/vunit.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="VUnit  documentation" href="../index.html" />
+    <link rel="up" title="VHDL Libraries" href="../vhdl_libraries.html" />
+    <link rel="next" title="Check Library" href="../check/user_guide.html" />
+    <link rel="prev" title="VHDL Libraries" href="../vhdl_libraries.html" />
+  
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  
+  <link rel="alternate" type="application/atom+xml"  href="../blog/atom.xml" title="VUnit Blog">
+  
+  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <style type="text/css">
+    ul.ablog-archive {list-style: none; overflow: auto; margin-left: 0px}
+    ul.ablog-archive li {float: left; margin-right: 5px; font-size: 80%}
+    ul.postlist a {font-style: italic;}
+    ul.postlist-style-disc {list-style-type: disc;}
+    ul.postlist-style-none {list-style-type: none;}
+    ul.postlist-style-circle {list-style-type: circle;}
+  </style>
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="logging-library">
+<span id="id1"></span><h1>Logging Library<a class="headerlink" href="#logging-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The VUnit log package (<code class="docutils literal"><span class="pre">log</span></code>) is used internally by VUnit for various
+logging purposes but it can also be used standalone for general purpose
+logging. It provides many of the features that you find in SW logging
+frameworks. For example</p>
+<ul class="simple">
+<li>Logging of simple text messages</li>
+<li>Standard and user defined log levels to filter messages</li>
+<li>Custom hierarchical grouping to filter messages</li>
+<li>Configurable formatting of message output</li>
+<li>Automatic file and line number tagging of output messages</li>
+<li>File and stdout output channels with independent formatting and
+filtering settings</li>
+<li>Support for multiple logs with their own output files and their own
+settings</li>
+<li>Logging of non-string objects</li>
+</ul>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>To understand <code class="docutils literal"><span class="pre">log</span></code> it&#8217;s important to understand its architecture.
+Whenever you do a log entry that entry is handled by a logger. There is
+a default logger that is used when none is specified but you can also
+create multiple custom loggers. For example</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>will use the default logger while</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="n">my_logger</span><span class="p">,</span> <span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>will use the custom <code class="docutils literal"><span class="pre">my_logger</span></code>.</p>
+<p>Each logger has two output handlers, one for handling display (stdout)
+output and one for handling file output. Every log entry you do is
+passed to both these handlers. For each handler there is one formatter
+and zero or more filters. The formatter is used to control the format of
+the output while the filters control if a log entry is passed to the
+output or not.</p>
+</div>
+<div class="section" id="basic-log">
+<h2>Basic Log<a class="headerlink" href="#basic-log" title="Permalink to this headline">¶</a></h2>
+<p>The most basic log you can do is a simple text message using the default
+logger.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The default settings of the default logger is such that this will be
+output on stdout (no file output) just as you wrote it (raw formatter).</p>
+</div>
+<div class="section" id="log-level">
+<h2>Log Level<a class="headerlink" href="#log-level" title="Permalink to this headline">¶</a></h2>
+<p>Every log entry you make has a log level which is <code class="docutils literal"><span class="pre">info</span></code> for the log
+call procedure unless you specify anything using the <code class="docutils literal"><span class="pre">log_level</span></code>
+parameter. There are also dedicated procedure calls for each log level.
+The standard log levels and their associated procedure calls are</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">failure</span><span class="p">(</span><span class="s">&quot;Highest level of *error* message (most severe).&quot;</span><span class="p">);</span>
+<span class="n">error</span><span class="p">(</span><span class="s">&quot;Normal severity error message.&quot;</span><span class="p">);</span>
+<span class="n">warning</span><span class="p">(</span><span class="s">&quot;Error message with lowest severity.&quot;</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;Highest level of *debug* message (least details) is an info message.&quot;</span><span class="p">);</span>
+<span class="n">debug</span><span class="p">(</span><span class="s">&quot;Debug messages are on the middle level.&quot;</span><span class="p">);</span>
+<span class="n">verbose</span><span class="p">(</span><span class="s">&quot;Verbose debug messages contain the most details (lowest level).&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The six standard levels are also interleaved with a number of other
+levels. The names of these has the following format to indicate their
+relative severity/detail (x is one of the standard levels)</p>
+<ul class="simple">
+<li>x_high2 (e.g. debug_high2)</li>
+<li>x_high1</li>
+<li>x</li>
+<li>x_low1</li>
+<li>x_low2</li>
+</ul>
+<p>These extra levels can be used to create additional custom levels. For
+example, if a status level is needed in between info and debug you can
+rename the info_low2 level to <em>status</em> and then create a status alias
+for the info_low2 procedure call.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">alias</span> <span class="n">status</span> <span class="k">is</span> <span class="n">info_low2</span><span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">natural</span><span class="p">,</span> <span class="kt">string</span><span class="p">];</span>
+<span class="p">...</span>
+<span class="n">rename_level</span><span class="p">(</span><span class="n">info_low2</span><span class="p">,</span> <span class="s">&quot;status&quot;</span><span class="p">);</span>
+<span class="n">status</span><span class="p">(</span><span class="s">&quot;Here is the new status message.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stop-level">
+<h2>Stop Level<a class="headerlink" href="#stop-level" title="Permalink to this headline">¶</a></h2>
+<p>By default the simulation will stop if the log level is <code class="docutils literal"><span class="pre">failure</span></code> or
+more severe. This can be changed to any of the other levels by changing
+the stop level configuration.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">logger_init</span><span class="p">(</span><span class="n">stop_level</span> <span class="o">=&gt;</span> <span class="n">error</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="formatters">
+<h2>Formatters<a class="headerlink" href="#formatters" title="Permalink to this headline">¶</a></h2>
+<p>With the default raw formatter you won&#8217;t see the log level in the output
+message produced. To do that you have to change the formatter to
+something else. Here I&#8217;m changing the formatter for the default logger
+display handler</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">logger_init</span><span class="p">(</span><span class="n">display_format</span> <span class="o">=&gt;</span> <span class="n">level</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>which will result in the following output.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">INFO: Hello world</span>
+</pre></div>
+</div>
+<p>There is also a <code class="docutils literal"><span class="pre">verbose</span></code> formatter which adds more details to the
+output.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">1000 ps: INFO: Hello World</span>
+</pre></div>
+</div>
+<p>The verbose output will always contain the simulator time, the log
+level, and the message. More information about log is shown if
+available, see the grouping and location chapters.</p>
+<p>There is also a <code class="docutils literal"><span class="pre">verbose_csv</span></code> formatter, typically used for file
+output, that provides the same information comma-separated. The default
+separator is a comma but you can change that with the <code class="docutils literal"><span class="pre">separator</span></code>
+parameter of <code class="docutils literal"><span class="pre">logger_init</span></code>. The CSV format enables you to use the
+power of your spreadsheet tool to handle (large) log files.</p>
+<p>Finally, there&#8217;s a formatter called <code class="docutils literal"><span class="pre">off</span></code> and it&#8217;s used to prevent all
+output from a handler.</p>
+</div>
+<div class="section" id="file-name">
+<h2>File Name<a class="headerlink" href="#file-name" title="Permalink to this headline">¶</a></h2>
+<p>The path to the file targeted with the file handler is also controlled
+with <code class="docutils literal"><span class="pre">logger_init</span></code>. Typically you would have something like this.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">logger_init</span><span class="p">(</span><span class="n">display_format</span> <span class="o">=&gt;</span> <span class="n">verbose</span><span class="p">,</span> <span class="n">file_format</span> <span class="o">=&gt;</span> <span class="n">verbose_csv</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s">&quot;path/to/my/logs/my_log.csv&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The default file name is <code class="docutils literal"><span class="pre">log.csv</span></code> in the current directory and the
+default file format is <code class="docutils literal"><span class="pre">off</span></code>. By default an existing file will be
+replaced when calling <code class="docutils literal"><span class="pre">logger_init</span></code> but you can change that by setting
+the input parameter <code class="docutils literal"><span class="pre">append</span></code> true.</p>
+</div>
+<div class="section" id="grouping">
+<h2>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h2>
+<p>Log calls can be given a source ID such that it can be associated to a
+group of logs like logs coming from the same module or logs of a
+specific type.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">warning</span><span class="p">(</span><span class="s">&quot;Over-temperature (73 degrees C)!&quot;</span><span class="p">,</span> <span class="s">&quot;Temperature sensor&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>results in something like this with the <code class="docutils literal"><span class="pre">verbose</span></code> formatter.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">1000 ps: WARNING in Temperature sensor: Over-temperature (73 degrees C)!</span>
+</pre></div>
+</div>
+<p>It&#8217;s also possible to give a logger a default source ID with the
+<code class="docutils literal"><span class="pre">logger_init</span></code> call.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">logger_init</span><span class="p">(</span><span class="n">default_src</span> <span class="o">=&gt;</span> <span class="s">&quot;Test runner&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="log-location">
+<h2>Log Location<a class="headerlink" href="#log-location" title="Permalink to this headline">¶</a></h2>
+<p>You can have the file name and the line number of a log entry if the
+testbench is compiled with the location preprocessor provided with
+VUnit. It&#8217;s enabled like this in your VUnit run script</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ui</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">enable_location_preprocessing</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and will change the output to something like this.</p>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">1000 ps: WARNING in Temperature sensor (logging_example.vhd:79): Over-temperature (73 degrees C)!</span>
+</pre></div>
+</div>
+<p>If you&#8217;ve placed your log call(s) in a convenience procedure you most
+likely want the location of the calls to that procedure to be in the
+output and not the location of the log call in the definition of the
+convenience procedure. You can do that by adding the <code class="docutils literal"><span class="pre">line_num</span></code> and
+<code class="docutils literal"><span class="pre">file_name</span></code> parameters to the <strong>end</strong> of the parameter list for that
+convenience procedure</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">procedure</span> <span class="n">my_convenience_procedure</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="n">my</span> <span class="n">parameters</span><span class="o">&gt;</span>
+  <span class="n">line_num</span> <span class="o">:</span> <span class="kt">natural</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">file_name</span> <span class="o">:</span> <span class="kt">string</span> <span class="o">:=</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="k">is</span>
+<span class="k">begin</span>
+  <span class="o">&lt;</span><span class="n">some</span> <span class="n">code</span><span class="o">&gt;</span>
+  <span class="n">info</span><span class="p">(</span><span class="s">&quot;Some message&quot;</span><span class="p">,</span> <span class="n">line_num</span> <span class="o">=&gt;</span> <span class="n">line_num</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">=&gt;</span> <span class="n">file_name</span><span class="p">);</span>
+  <span class="o">&lt;</span><span class="n">some</span> <span class="n">code</span><span class="o">&gt;</span>
+<span class="k">end</span> <span class="k">procedure</span> <span class="nc">my_convenience_procedure</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>and then let the location preprocessor know about the added procedure</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ui</span> <span class="o">=</span> <span class="n">VUnit</span><span class="o">.</span><span class="n">from_argv</span><span class="p">()</span>
+<span class="n">ui</span><span class="o">.</span><span class="n">enable_location_preprocessing</span><span class="p">(</span><span class="n">additional_subprograms</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;my_convenience_procedure&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h2>
+<p>One or more filters can be attached to the display and file handlers to
+control what logs that are passed to the output. Filters are either pass
+filters that pass logs of the specified type or stop filters which pass
+anything but the specified type. The type to pass or stop is based on
+either the log level or the log source ID</p>
+<div class="section" id="log-level-filters">
+<h3>Log Level Filters<a class="headerlink" href="#log-level-filters" title="Permalink to this headline">¶</a></h3>
+<p>The two procedures below show how you can create pass and stop filters
+on one or more log levels.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">stop_level</span><span class="p">((</span><span class="n">debug</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="n">display_handler</span><span class="p">,</span> <span class="n">my_display_filter</span><span class="p">);</span>
+<span class="n">pass_level</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">file_handler</span><span class="p">,</span> <span class="n">my_file_filter</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The last procedure parameter is of type <code class="docutils literal"><span class="pre">log_filter_t</span></code> and returns the
+created filter which is used as reference if you want to remove the
+filter.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">remove_filter</span><span class="p">(</span><span class="n">my_display_filter</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can also apply the same filter to both handlers.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">stop_level</span><span class="p">((</span><span class="n">debug</span><span class="p">,</span> <span class="n">verbose</span><span class="p">),</span> <span class="p">(</span><span class="n">display_handler</span><span class="p">,</span> <span class="n">file_handler</span><span class="p">),</span> <span class="n">my_filter</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="log-source-filters">
+<h3>Log Source Filters<a class="headerlink" href="#log-source-filters" title="Permalink to this headline">¶</a></h3>
+<p>Pass and stop filters that act on the log source can also be created.
+For example</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">stop_source</span><span class="p">(</span><span class="s">&quot;UART receiver&quot;</span><span class="p">,</span> <span class="n">display_handler</span><span class="p">,</span> <span class="n">uart_rx_stop_filter</span><span class="p">);</span>
+<span class="n">pass_source</span><span class="p">(</span><span class="s">&quot;status message&quot;</span><span class="p">,</span> <span class="n">file_handler</span><span class="p">,</span> <span class="n">status_msg_pass_filter</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It&#8217;s also possible to filter hierarchies of sources. If the sources of a
+number of logs have the same prefix and the prefix starts with a point
+or a colon then you can create a filter that apply to all of them. The
+typical use case is something like this.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Some message&quot;</span><span class="p">,</span> <span class="n">my_module</span><span class="na">&#39;path_name</span> <span class="o">&amp;</span> <span class="s">&quot;monitor1&quot;</span><span class="p">);</span>
+<span class="n">info</span><span class="p">(</span><span class="s">&quot;Another message&quot;</span><span class="p">,</span> <span class="n">my_module</span><span class="na">&#39;path_name</span> <span class="o">&amp;</span> <span class="s">&quot;monitor2&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The following filter will stop both of them.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">stop_source</span><span class="p">(</span><span class="n">my_module</span><span class="na">&#39;path_name</span><span class="p">,</span> <span class="n">display_handler</span><span class="p">,</span> <span class="n">my_module_stop_filter</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combined-log-level-and-log-source-filters">
+<h3>Combined Log Level and Log Source Filters<a class="headerlink" href="#combined-log-level-and-log-source-filters" title="Permalink to this headline">¶</a></h3>
+<p>Log level(s) and log source can be combined in a single filter. For
+example, this filter will stop debug logs from the UART source.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">stop_source_level</span><span class="p">(</span><span class="s">&quot;UART&quot;</span><span class="p">,</span> <span class="n">debug</span><span class="p">,</span> <span class="n">display_handler</span><span class="p">,</span> <span class="n">stop_uart_debug_msg_filter</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="logging-non-string-objects">
+<h2>Logging Non-String Objects<a class="headerlink" href="#logging-non-string-objects" title="Permalink to this headline">¶</a></h2>
+<p>Any type of data object can be logged as long as you can express it as a
+string. For example, you can log an integer by using the associated
+<code class="docutils literal"><span class="pre">to_string</span></code> function. The VUnit <code class="docutils literal"><span class="pre">com</span></code> package also has functionality
+for generating <code class="docutils literal"><span class="pre">to_string</span></code> functions for your custom data types which
+makes them easy to log as well. For more information see the <code class="docutils literal"><span class="pre">com</span></code>
+<a class="reference internal" href="../com/user_guide.html"><span class="doc">user guide</span></a>.</p>
+</div>
+<div class="section" id="custom-loggers">
+<h2>Custom Loggers<a class="headerlink" href="#custom-loggers" title="Permalink to this headline">¶</a></h2>
+<p>Previous chapters have used the built-in default logger for the examples
+but you can also create your own loggers. You do that by declaring a
+(shared) variable of type <code class="docutils literal"><span class="pre">logger_t</span></code>.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="k">shared</span> <span class="k">variable</span> <span class="n">my_logger</span> <span class="o">:</span> <span class="n">logger_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>and then you use that variable as the first parameter in the procedure
+calls presented in the previous chapters, for example.</p>
+<div class="highlight-vhdl"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="n">my_logger</span><span class="p">,</span> <span class="s">&quot;Hello world&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+  <div class="section">
+  
+  
+  </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="../index.html">
+    <img class="logo" src="../_static/VUnit_logo_420x420.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">VUnit</h1>
+    
+  </a>
+</p>
+
+
+
+<p class="blurb">A test framework for HDL</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=VUnit&repo=vunit&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a href="https://travis-ci.org/VUnit/vunit">
+    <img
+        alt="https://secure.travis-ci.org/VUnit/vunit.svg?branch=master"
+        src="https://secure.travis-ci.org/VUnit/vunit.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<a class="icon" title="Contact us" href="mailto:vunitframework@gmail.com"><span class="fa fa-envelope fa-2x fa-fw"/></a>
+<a class="icon" title="Go to our GitHub Repo" href="https://github.com/VUnit/vunit"><span class="fa fa-github fa-2x fa-fw"/></a>
+<a class="icon" title="View our Twitter Feed" href="https://www.twitter.com/VUnitFramework"><span class="fa fa-twitter fa-2x fa-fw"/></a>
+<a class="icon" title="View our YouTube Channel" href="https://youtube.com/channel/UCCPVCaeWkz6C95aRUTbIwdg"><span class="fa fa-youtube fa-2x fa-fw"/></a>
+<a class="icon" title="Chat with us on Gitter" href="https://gitter.im/VUnit/vunit"><span class="fa fa-weixin fa-2x fa-fw"/></a>
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">What is VUnit?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installing.html">Installing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../documentation.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cli.html">Command Line Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_interface.html">Python Interface</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../vhdl_libraries.html">VHDL Libraries</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Logging Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-log">Basic Log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-level">Log Level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stop-level">Stop Level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#formatters">Formatters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-name">File Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grouping">Grouping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-location">Log Location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filters">Filters</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#log-level-filters">Log Level Filters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#log-source-filters">Log Source Filters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#combined-log-level-and-log-source-filters">Combined Log Level and Log Source Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#logging-non-string-objects">Logging Non-String Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-loggers">Custom Loggers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../check/user_guide.html">Check Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../com/user_guide.html">Communication Library</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+</ul>
+
+
+  <h3><a href="../blog.html">Recent Posts</a></h3>
+  <ul>
+    
+    
+      <li><a href="../posts/2016_08_08_making_osvvm_a_submodule/post.html">Aug 08 - Making OSVVM a Git Submodule</a></li>
+    
+      <li><a href="../posts/2016_02_21_improving_vhdl_testbench_design_with_message_passing/post.html">Feb 21 - Improving VHDL Testbench Design with Message Passing</a></li>
+    
+      <li><a href="../posts/2016_02_01_website_updates/post.html">Feb 01 - Website Updates</a></li>
+    
+      <li><a href="../posts/2016_01_29_chat_with_vunit_users_and_developers/post.html">Jan 29 - Chat with VUnit Users and Developers</a></li>
+    
+      <li><a href="../posts/2016_01_26_welcome_to_our_new_website/post.html">Jan 26 - Welcome to Our New Website</a></li>
+    
+  </ul>
+
+  <h3><a href="../blog/tag.html">Tags</a></h3>
+  <style type="text/css">
+    ul.ablog-cloud {list-style: none; overflow: auto;}
+    ul.ablog-cloud li {float: left; height: 20pt; line-height: 18pt; margin-right: 5px;}
+    ul.ablog-cloud a {text-decoration: none; vertical-align: middle;}
+    li.ablog-cloud-1{font-size: 80%;}
+    li.ablog-cloud-2{font-size: 95%;}
+    li.ablog-cloud-3{font-size: 110%;}
+    li.ablog-cloud-4{font-size: 125%;}
+    li.ablog-cloud-5{font-size: 140%;}
+  </style>
+  <ul class="ablog-cloud">
+    
+      
+      <li class="ablog-cloud ablog-cloud-1">
+        <a href="../blog/tag/osvvm.html">OSVVM</a></li>
+      
+    
+      
+      <li class="ablog-cloud ablog-cloud-5">
+        <a href="../blog/tag/vunit.html">VUnit</a></li>
+      
+    
+  </ul>
+
+  <h3><a href="../blog/archive.html">Archives</a></h3>
+  <ul>
+  
+    
+    <li><a href="../blog/2016.html">2016 (5)</a></li>
+    
+  
+    
+    <li><a href="../blog/2015.html">2015 (3)</a></li>
+    
+  
+  </ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Lars Asplund.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="../_sources/logging/user_guide.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
