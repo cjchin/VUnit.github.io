@@ -191,7 +191,7 @@ source files are automatically scanned for test cases.</p>
 <div class="section" id="example-session">
 <h2>Example Session<a class="headerlink" href="#example-session" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/vhdl/user_guide//">VHDL User Guide Example</a> can be run to produce the following output:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
+<div class="literal-block-wrapper container" id="id2">
 <div class="code-block-caption"><span class="caption-text">List all tests</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -l
 <span class="go">lib.tb_example.all</span>
@@ -201,7 +201,7 @@ source files are automatically scanned for test cases.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id3">
+<div class="literal-block-wrapper container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Run all tests</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -v lib.tb_example*
 <span class="go">Running test: lib.tb_example.all</span>
@@ -236,7 +236,7 @@ source files are automatically scanned for test cases.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id4">
+<div class="literal-block-wrapper container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Run a specific test</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -v lib.tb_example.all
 <span class="go">Running test: lib.tb_example.all</span>
@@ -299,7 +299,7 @@ separate terminal.</p>
 <p>VUnit is easily utilized with continuous integration environments such as
 <a class="reference external" href="http://jenkins-ci.org/">Jenkins</a>. Once a project <code class="docutils literal"><span class="pre">run.py</span></code> has been setup, tests can be run in a
 headless environment with standardized xUnit style output to a file.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
+<div class="literal-block-wrapper container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Execute VUnit tests on CI server with XML output</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go"> python run.py --xunit-xml test_output.xml</span>
 </pre></div>
@@ -319,7 +319,7 @@ specify which simulator to use.</p>
 <p>In addition to VUnit scanning the <code class="docutils literal"><span class="pre">PATH</span></code> the simulator executable
 path can be explicitly configured by setting a
 <code class="docutils literal"><span class="pre">VUNIT_&lt;SIMULATOR_NAME&gt;_PATH</span></code> environment variable.</p>
-<div class="literal-block-wrapper docutils container" id="id6">
+<div class="literal-block-wrapper container" id="id6">
 <div class="code-block-caption"><span class="caption-text">Explicitly set path to GHDL executables</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">VUNIT_GHDL_PATH=/opt/ghdl/bin</span>
 </pre></div>
@@ -475,7 +475,7 @@ path can be explicitly configured by setting a
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
