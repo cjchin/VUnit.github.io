@@ -2,10 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">VUnit Blog</title>
   <id>http://vunit.github.io/blog/atom.xml</id>
-  <updated>2016-08-08T00:00:00Z</updated>
+  <updated>2017-01-12T00:00:00Z</updated>
   <link href="http://vunit.github.io" />
   <link href="http://vunit.github.io/blog/atom.xml" rel="self" />
   <generator uri="http://ablog.readthedocs.org" version="0.8.4">ABlog</generator>
+  <entry xml:base="http://vunit.github.io/blog/atom.xml">
+    <title type="text">VUnit - Getting Started 1-2-3</title>
+    <id>http://vunit.github.io/posts/2017_01_12_vunit_getting_started_1_2_3/post.html</id>
+    <updated>2017-01-12T00:00:00Z</updated>
+    <published>2017-01-12T00:00:00Z</published>
+    <link href="http://vunit.github.io/posts/2017_01_12_vunit_getting_started_1_2_3/post.html" />
+    <author>
+      <name>lasplund</name>
+    </author>
+    <content type="html">&lt;p&gt;I recently a started a LinkedIn blog series about getting started with VUnit. The
+first three parts are:&lt;/p&gt;
+</content>
+  </entry>
   <entry xml:base="http://vunit.github.io/blog/atom.xml">
     <title type="text">Making OSVVM a Git Submodule</title>
     <id>http://vunit.github.io/posts/2016_08_08_making_osvvm_a_submodule/post.html</id>
