@@ -256,6 +256,11 @@ check calls so</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">PASS: Equality check passed - Got 1111_1010 (250).</span>
 </pre></div>
 </div>
+<p>If you look at the default value for the user message in the check subprogram APIs you will see that the
+<code class="docutils literal"><span class="pre">result</span></code> function isn&#8217;t used. This is a workaround for one of the supported simulators which exposes the
+internal implementation of the <code class="docutils literal"><span class="pre">result</span></code> function (a magic constant prepending the user message).
+You shouldn&#8217;t use the magic constant yourself since that implementation may change at any time. For that reason
+I&#8217;m also keeping the <code class="docutils literal"><span class="pre">result</span></code> function in the APIs presented in this user guide.</p>
 </div>
 <div class="section" id="check-location">
 <h3>Check Location<a class="headerlink" href="#check-location" title="Permalink to this headline">¶</a></h3>
