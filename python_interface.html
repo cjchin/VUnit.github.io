@@ -111,7 +111,7 @@
 <dl class="method">
 <dt id="vunit.ui.VUnit.add_compile_option">
 <code class="descname">add_compile_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.add_compile_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally add compile option</p>
+<dd><p>Add compile option to all files</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -124,6 +124,10 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects files added <em>before</em> the option is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -248,12 +252,6 @@ if None VUNIT_VHDL_STANDARD environment variable is used</li>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="s2">&quot;*.vhd&quot;</span><span class="p">,</span> <span class="s2">&quot;lib&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="method">
-<dt id="vunit.ui.VUnit.disable_ieee_warnings">
-<code class="descname">disable_ieee_warnings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.disable_ieee_warnings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally disable ieee warnings</p>
 </dd></dl>
 
 <dl class="method">
@@ -423,7 +421,7 @@ their dependencies</p>
 <dl class="method">
 <dt id="vunit.ui.VUnit.set_compile_option">
 <code class="descname">set_compile_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.set_compile_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally set compile option</p>
+<dd><p>Set compile option of all files</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -441,12 +439,16 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects files added <em>before</em> the option is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.VUnit.set_generic">
 <code class="descname">set_generic</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.set_generic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally set a value of generic</p>
+<dd><p>Set a value of generic in all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -464,12 +466,16 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects test benches added <em>before</em> the generic is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.VUnit.set_parameter">
 <code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.set_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally set value of parameter</p>
+<dd><p>Set value of parameter in all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -487,26 +493,16 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="method">
-<dt id="vunit.ui.VUnit.set_pli">
-<code class="descname">set_pli</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.set_pli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally Set pli</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; A list of PLI object file names</td>
-</tr>
-</tbody>
-</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects test benches added <em>before</em> the parameter is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.VUnit.set_sim_option">
 <code class="descname">set_sim_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.set_sim_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Globally set simulation option</p>
+<dd><p>Set simulation option in all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -523,6 +519,10 @@ their dependencies</p>
 </table>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">prj</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects test benches added <em>before</em> the option is set.</p>
 </div>
 </dd></dl>
 
@@ -548,6 +548,10 @@ their dependencies</p>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects files added <em>before</em> the option is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -610,12 +614,6 @@ their dependencies</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="vunit.ui.Library.disable_ieee_warnings">
-<code class="descname">disable_ieee_warnings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.disable_ieee_warnings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disable ieee warnings within library</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="vunit.ui.Library.entity">
 <code class="descname">entity</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.entity" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get an entity within the library</p>
@@ -628,6 +626,22 @@ their dependencies</p>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A <a class="reference internal" href="#vunit.ui.TestBench" title="vunit.ui.TestBench"><code class="xref py py-class docutils literal"><span class="pre">TestBench</span></code></a> object</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">KeyError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vunit.ui.Library.get_test_benches">
+<code class="descname">get_test_benches</code><span class="sig-paren">(</span><em>pattern='*'</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.get_test_benches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of test benches</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pattern</strong> &#8211; A wildcard pattern matching the test_bench name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of <a class="reference internal" href="#vunit.ui.TestBench" title="vunit.ui.TestBench"><code class="xref py py-class docutils literal"><span class="pre">TestBench</span></code></a> objects</td>
 </tr>
 </tbody>
 </table>
@@ -678,12 +692,16 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_compile_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects files added <em>before</em> the option is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.Library.set_generic">
 <code class="descname">set_generic</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.set_generic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a value of generic within all test benches of this library</p>
+<dd><p>Set a value of generic within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of test benches and tests this library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -701,12 +719,16 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_generic</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects test benches added <em>before</em> the generic is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.Library.set_parameter">
 <code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.set_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a value of parameter within all test benches of this library</p>
+<dd><p>Set a value of parameter within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of test benches and tests this library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -724,26 +746,16 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_parameter</span><span class="p">(</span><span class="s2">&quot;data_width&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="method">
-<dt id="vunit.ui.Library.set_pli">
-<code class="descname">set_pli</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.set_pli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set pli within library</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; A list of PLI object file names</td>
-</tr>
-</tbody>
-</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects test benches added <em>before</em> the parameter is set.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.Library.set_sim_option">
 <code class="descname">set_sim_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.set_sim_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set simulation option of all test benches within this library</p>
+<dd><p>Set simlation option within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of test benches and tests this library</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -761,6 +773,28 @@ their dependencies</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">lib</span><span class="o">.</span><span class="n">set_sim_option</span><span class="p">(</span><span class="s2">&quot;ghdl.flags&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;--no-vital-checks&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only affects test benches added <em>before</em> the option is set.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="vunit.ui.Library.test_bench">
+<code class="descname">test_bench</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Library.test_bench" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a test bench within this library</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> &#8211; The name of the test bench</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A <a class="reference internal" href="#vunit.ui.TestBench" title="vunit.ui.TestBench"><code class="xref py py-class docutils literal"><span class="pre">TestBench</span></code></a> object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body">KeyError</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -940,26 +974,27 @@ A test bench consists of one or more <a class="reference internal" href="#vunit.
 bench will apply that option all test cases belonging to that test bench.</p>
 <dl class="method">
 <dt id="vunit.ui.TestBench.add_config">
-<code class="descname">add_config</code><span class="sig-paren">(</span><em>name=''</em>, <em>generics=None</em>, <em>parameters=None</em>, <em>pre_config=None</em>, <em>post_check=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.add_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a configuration of this test bench.
-Multiple configuration may be added one after another.
-If no configurations are added the default configuration is used.</p>
+<code class="descname">add_config</code><span class="sig-paren">(</span><em>name</em>, <em>generics=None</em>, <em>parameters=None</em>, <em>pre_config=None</em>, <em>post_check=None</em>, <em>sim_options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.add_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a configuration of this test bench or to all test cases within it by copying the default configuration.</p>
+<p>Multiple configuration may be added one after another.
+If no <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> are added the default configuration is used.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>name</strong> &#8211; The name of the configuration. Will be added as a suffix on the test name</li>
-<li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set</li>
-<li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set</li>
-<li><strong>pre_config</strong> &#8211; A function to be called before test execution.
+<li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set in addition to the default configuration</li>
+<li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set in addition to the default configuration</li>
+<li><strong>pre_config</strong> &#8211; A function to be called before test execution, replaces the default if not None
 The function may accept a string which is the filesystem path to the
 directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
-<li><strong>post_check</strong> &#8211; A function to be called after test execution.
+<li><strong>post_check</strong> &#8211; A function to be called after test execution, replaces the default if not None
 The function must accept a string which is the filesystem path to the
 directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
+<li><strong>sim_options</strong> &#8211; A <cite>dict</cite> containing the sim_options to be set in addition to the default configuration</li>
 </ul>
 </td>
 </tr>
@@ -986,9 +1021,45 @@ The function must return <cite>True</cite> or the test will fail</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="vunit.ui.TestBench.disable_ieee_warnings">
-<code class="descname">disable_ieee_warnings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.disable_ieee_warnings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disable ieee warnings within test bench</p>
+<dt id="vunit.ui.TestBench.get_tests">
+<code class="descname">get_tests</code><span class="sig-paren">(</span><em>pattern='*'</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.get_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of tests</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pattern</strong> &#8211; A wildcard pattern matching the test name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of <a class="reference internal" href="#vunit.ui.Test" title="vunit.ui.Test"><code class="xref py py-class docutils literal"><span class="pre">Test</span></code></a> objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vunit.ui.TestBench.library">
+<code class="descname">library</code><a class="headerlink" href="#vunit.ui.TestBench.library" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The library that contains this test bench</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="vunit.ui.TestBench.name">
+<code class="descname">name</code><a class="headerlink" href="#vunit.ui.TestBench.name" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The entity or module name of the test bench</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -1023,7 +1094,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 <dl class="method">
 <dt id="vunit.ui.TestBench.set_generic">
 <code class="descname">set_generic</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_generic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a value of generic within this test bench</p>
+<dd><p>Set a value of generic within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test bench or test cases within it</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1046,7 +1117,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 <dl class="method">
 <dt id="vunit.ui.TestBench.set_parameter">
 <code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a value of parameter within this test bench</p>
+<dd><p>Set a value of parameter within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test bench or test cases within it</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1067,14 +1138,28 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 </dd></dl>
 
 <dl class="method">
-<dt id="vunit.ui.TestBench.set_pli">
-<code class="descname">set_pli</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_pli" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set pli for test bench</p>
+<dt id="vunit.ui.TestBench.set_post_check">
+<code class="descname">set_post_check</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_post_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set post_check function of all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test bench or test cases within it</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; A list of PLI object file names</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; The post_check function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vunit.ui.TestBench.set_pre_config">
+<code class="descname">set_pre_config</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_pre_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set pre_config function of all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test bench or test cases within it</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; The pre_config function</td>
 </tr>
 </tbody>
 </table>
@@ -1083,7 +1168,7 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 <dl class="method">
 <dt id="vunit.ui.TestBench.set_sim_option">
 <code class="descname">set_sim_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.TestBench.set_sim_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set simulation option of this test bench</p>
+<dd><p>Set simulation option within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test bench or test cases within it</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1127,26 +1212,27 @@ the <code class="docutils literal"><span class="pre">TEST_SUITE</span></code> ma
 <dd><p>User interface of a single test case</p>
 <dl class="method">
 <dt id="vunit.ui.Test.add_config">
-<code class="descname">add_config</code><span class="sig-paren">(</span><em>name=''</em>, <em>generics=None</em>, <em>parameters=None</em>, <em>pre_config=None</em>, <em>post_check=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.add_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a configuration of this test.
-Multiple configuration may be added one after another.
-If no configurations are added the default configuration is used.</p>
+<code class="descname">add_config</code><span class="sig-paren">(</span><em>name</em>, <em>generics=None</em>, <em>parameters=None</em>, <em>pre_config=None</em>, <em>post_check=None</em>, <em>sim_options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.add_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a configuration to this test copying the default configuration.</p>
+<p>Multiple configuration may be added one after another.
+If no <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> are added the default configuration is used.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>name</strong> &#8211; The name of the configuration. Will be added as a suffix on the test name</li>
-<li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set</li>
-<li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set</li>
-<li><strong>pre_config</strong> &#8211; A function to be called before test execution.
+<li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set in addition to the default configuration.</li>
+<li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set in addition to the default configuration.</li>
+<li><strong>pre_config</strong> &#8211; A function to be called before test execution, replaces the default if not None.
 The function may accept a string which is the filesystem path to the
 directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
-<li><strong>post_check</strong> &#8211; A function to be called after test execution.
+<li><strong>post_check</strong> &#8211; A function to be called after test execution, replaces the default if not None.
 The function must accept a string which is the filesystem path to the
 directory where test outputs are stored.
 The function must return <cite>True</cite> or the test will fail</li>
+<li><strong>sim_options</strong> &#8211; A <cite>dict</cite> containing the sim_options to be set in addition to the default configuration.</li>
 </ul>
 </td>
 </tr>
@@ -1164,23 +1250,30 @@ The function must return <cite>True</cite> or the test will fail</li>
 </div>
 <p>The following tests will be created:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">lib.test_bench.test.data_width=14,sign=False</span></code></li>
-<li><code class="docutils literal"><span class="pre">lib.test_bench.test.data_width=14,sign=True</span></code></li>
-<li><code class="docutils literal"><span class="pre">lib.test_bench.test.data_width=15,sign=False</span></code></li>
-<li><code class="docutils literal"><span class="pre">lib.test_bench.test.data_width=15,sign=True</span></code></li>
+<li><code class="docutils literal"><span class="pre">lib.test_bench.data_width=14,sign=False.test</span></code></li>
+<li><code class="docutils literal"><span class="pre">lib.test_bench.data_width=14,sign=True.test</span></code></li>
+<li><code class="docutils literal"><span class="pre">lib.test_bench.data_width=15,sign=False.test</span></code></li>
+<li><code class="docutils literal"><span class="pre">lib.test_bench.data_width=15,sign=True.test</span></code></li>
 </ul>
 </dd></dl>
 
-<dl class="method">
-<dt id="vunit.ui.Test.disable_ieee_warnings">
-<code class="descname">disable_ieee_warnings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.disable_ieee_warnings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disable ieee warnings for test case</p>
+<dl class="attribute">
+<dt id="vunit.ui.Test.name">
+<code class="descname">name</code><a class="headerlink" href="#vunit.ui.Test.name" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the entity or module name of the test bench</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="vunit.ui.Test.set_generic">
 <code class="descname">set_generic</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.set_generic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a value of generic within this test</p>
+<dd><p>Set a value of generic within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1203,7 +1296,7 @@ The function must return <cite>True</cite> or the test will fail</li>
 <dl class="method">
 <dt id="vunit.ui.Test.set_parameter">
 <code class="descname">set_parameter</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.set_parameter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set a value of parameter within this test</p>
+<dd><p>Set a value of parameter within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1224,9 +1317,37 @@ The function must return <cite>True</cite> or the test will fail</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="vunit.ui.Test.set_post_check">
+<code class="descname">set_post_check</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.set_post_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set post_check function of all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; The post_check function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vunit.ui.Test.set_pre_config">
+<code class="descname">set_pre_config</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.set_pre_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set pre_config function of all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> &#8211; The pre_config function</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="vunit.ui.Test.set_sim_option">
 <code class="descname">set_sim_option</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.Test.set_sim_option" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set simulation option of this test</p>
+<dd><p>Set simulation option within all <a class="reference internal" href="#configurations"><span class="std std-ref">configurations</span></a> of this test</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1293,6 +1414,16 @@ Must be a list of strings.</dd>
 differing options available, generic options may be specified through this interface.
 The following simulation options are known.</p>
 <dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">vhdl_assert_stop_level</span></code></dt>
+<dd>Will stop a VHDL simulation for asserts on the provided severity level or higher.
+Valid values are <code class="docutils literal"><span class="pre">&quot;warning&quot;</span></code>, <code class="docutils literal"><span class="pre">&quot;error&quot;</span></code>, and <code class="docutils literal"><span class="pre">&quot;failure&quot;</span></code>. This option takes
+precedence over the fail_on_warning pragma.</dd>
+<dt><code class="docutils literal"><span class="pre">disable_ieee_warnings</span></code></dt>
+<dd>Disable ieee warnings
+Boolean</dd>
+<dt><code class="docutils literal"><span class="pre">pli</span></code></dt>
+<dd>A list of PLI files
+A list of file names</dd>
 <dt><code class="docutils literal"><span class="pre">ghdl.flags</span></code></dt>
 <dd>Extra arguments passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">--elab-run</span></code> command <em>before</em> executable specific flags. Must be a list of strings.
 Must be a list of strings.</dd>
@@ -1339,6 +1470,26 @@ Must be a list of strings.</dd>
 <dd>Extra simulation flags passed to <code class="docutils literal"><span class="pre">ghdl</span> <span class="pre">--elab-run</span></code>.
 Must be a list of strings.</dd>
 </dl>
+</div>
+<div class="section" id="configurations">
+<span id="id2"></span><h3>Configurations<a class="headerlink" href="#configurations" title="Permalink to this headline">¶</a></h3>
+<p>In VUnit Python API the name <code class="docutils literal"><span class="pre">configuration</span></code> is used to denote the
+user controllable configuration of one test run such as
+generic/parameter settings, simulation options as well as the
+pre_config and post_check callback functions.</p>
+<p>Configurations can either be unique for each test case or must be
+common for the entire test bench depending on the situation.  For test
+benches without test such as <cite>tb_example</cite> in the User Guide the
+configuration is common for the entire test bench. For test benches
+containing tests such as <cite>tb_example_many</cite> the configuration is done
+for each test case. If the <code class="docutils literal"><span class="pre">run_all_in_same_sim</span></code> pragma has been used
+configuration is performed at the test bench level even if there are
+individual test within since they must run in the same simulation.</p>
+<p>In a VUnit all test benches and test cases are created with an unnamed default
+configuration which is modified by different methods such as <code class="docutils literal"><span class="pre">set_generic</span></code> etc.
+In addition to the unnamed default configuration multiple named configurations
+can be derived from it by using the <code class="docutils literal"><span class="pre">add_config</span></code> method. The default
+configuration is only run if there are no named configurations.</p>
 </div>
 <span class="target" id="module-vunit.vunit_cli"></span><div class="section" id="adding-custom-command-line-arguments">
 <h3>Adding Custom Command Line Arguments<a class="headerlink" href="#adding-custom-command-line-arguments" title="Permalink to this headline">¶</a></h3>
@@ -1451,6 +1602,7 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
 <li class="toctree-l3"><a class="reference internal" href="#module-vunit.ui">Public API</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#compilation-options">Compilation Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#simulation-options">Simulation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configurations">Configurations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adding-custom-command-line-arguments">Adding Custom Command Line Arguments</a></li>
 </ul>
 </li>
@@ -1539,7 +1691,7 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |

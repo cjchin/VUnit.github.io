@@ -50,7 +50,6 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
- | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
@@ -149,30 +148,6 @@
   </dl></td>
 </tr></table>
 
-<h2 id="D">D</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="python_interface.html#vunit.ui.Library.disable_ieee_warnings">disable_ieee_warnings() (vunit.ui.Library method)</a>
-  </dt>
-
-      <dd><dl>
-        
-  <dt><a href="python_interface.html#vunit.ui.Test.disable_ieee_warnings">(vunit.ui.Test method)</a>
-  </dt>
-
-        
-  <dt><a href="python_interface.html#vunit.ui.TestBench.disable_ieee_warnings">(vunit.ui.TestBench method)</a>
-  </dt>
-
-        
-  <dt><a href="python_interface.html#vunit.ui.VUnit.disable_ieee_warnings">(vunit.ui.VUnit method)</a>
-  </dt>
-
-      </dl></dd>
-  </dl></td>
-</tr></table>
-
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
@@ -220,14 +195,22 @@
   <dt><a href="python_interface.html#vunit.ui.VUnit.get_compile_order">get_compile_order() (vunit.ui.VUnit method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="python_interface.html#vunit.ui.VUnit.get_source_file">get_source_file() (vunit.ui.VUnit method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="python_interface.html#vunit.ui.VUnit.get_source_files">get_source_files() (vunit.ui.VUnit method)</a>
+  </dt>
+
+      
+  <dt><a href="python_interface.html#vunit.ui.Library.get_test_benches">get_test_benches() (vunit.ui.Library method)</a>
+  </dt>
+
+      
+  <dt><a href="python_interface.html#vunit.ui.TestBench.get_tests">get_tests() (vunit.ui.TestBench method)</a>
   </dt>
 
   </dl></td>
@@ -240,12 +223,18 @@
   <dt><a href="python_interface.html#vunit.ui.Library">Library (class in vunit.ui)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="python_interface.html#vunit.ui.SourceFile.library">library (vunit.ui.SourceFile attribute)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="python_interface.html#vunit.ui.TestBench.library">(vunit.ui.TestBench attribute)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="python_interface.html#vunit.ui.VUnit.library">library() (vunit.ui.VUnit method)</a>
   </dt>
@@ -279,6 +268,14 @@
       <dd><dl>
         
   <dt><a href="python_interface.html#vunit.ui.SourceFile.name">(vunit.ui.SourceFile attribute)</a>
+  </dt>
+
+        
+  <dt><a href="python_interface.html#vunit.ui.Test.name">(vunit.ui.Test attribute)</a>
+  </dt>
+
+        
+  <dt><a href="python_interface.html#vunit.ui.TestBench.name">(vunit.ui.TestBench attribute)</a>
   </dt>
 
       </dl></dd>
@@ -359,16 +356,22 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="python_interface.html#vunit.ui.Library.set_pli">set_pli() (vunit.ui.Library method)</a>
+  <dt><a href="python_interface.html#vunit.ui.Test.set_post_check">set_post_check() (vunit.ui.Test method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="python_interface.html#vunit.ui.TestBench.set_pli">(vunit.ui.TestBench method)</a>
+  <dt><a href="python_interface.html#vunit.ui.TestBench.set_post_check">(vunit.ui.TestBench method)</a>
   </dt>
 
+      </dl></dd>
+      
+  <dt><a href="python_interface.html#vunit.ui.Test.set_pre_config">set_pre_config() (vunit.ui.Test method)</a>
+  </dt>
+
+      <dd><dl>
         
-  <dt><a href="python_interface.html#vunit.ui.VUnit.set_pli">(vunit.ui.VUnit method)</a>
+  <dt><a href="python_interface.html#vunit.ui.TestBench.set_pre_config">(vunit.ui.TestBench method)</a>
   </dt>
 
       </dl></dd>
@@ -408,10 +411,14 @@
   <dt><a href="python_interface.html#vunit.ui.Test">Test (class in vunit.ui)</a>
   </dt>
 
+      
+  <dt><a href="python_interface.html#vunit.ui.TestBench.test">test() (vunit.ui.TestBench method)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="python_interface.html#vunit.ui.TestBench.test">test() (vunit.ui.TestBench method)</a>
+  <dt><a href="python_interface.html#vunit.ui.Library.test_bench">test_bench() (vunit.ui.Library method)</a>
   </dt>
 
       
@@ -584,7 +591,7 @@
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
     </div>

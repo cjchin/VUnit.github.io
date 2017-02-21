@@ -74,13 +74,13 @@ specified by the command line arguments and exit the script. The added
 source files are automatically scanned for test cases.</p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>VUnit command line tool.</p>
+<p>VUnit command line tool version 2.0.0</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">compile</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">elaborate</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">clean</span><span class="p">]</span>
               <span class="p">[</span><span class="o">-</span><span class="n">o</span> <span class="n">OUTPUT_PATH</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="n">XUNIT_XML</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">exit</span><span class="o">-</span><span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">color</span><span class="p">]</span>
               <span class="p">[</span><span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">level</span> <span class="p">{</span><span class="n">info</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">warning</span><span class="p">,</span><span class="n">debug</span><span class="p">}]</span> <span class="p">[</span><span class="o">-</span><span class="n">p</span> <span class="n">NUM_THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">u</span><span class="p">]</span>
-              <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">coverage</span> <span class="p">[</span><span class="n">COVERAGE</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span> <span class="p">{</span><span class="n">vcd</span><span class="p">,</span><span class="n">ghw</span><span class="p">}]</span>
-              <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span><span class="o">-</span><span class="n">args</span> <span class="n">GTKWAVE_ARGS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">cdslib</span> <span class="n">CDSLIB</span><span class="p">]</span>
-              <span class="p">[</span><span class="o">--</span><span class="n">hdlvar</span> <span class="n">HDLVAR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">codecs</span><span class="p">]</span>
+              <span class="p">[</span><span class="o">--</span><span class="n">version</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">coverage</span> <span class="p">[</span><span class="n">COVERAGE</span><span class="p">]]</span>
+              <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span><span class="o">-</span><span class="n">fmt</span> <span class="p">{</span><span class="n">vcd</span><span class="p">,</span><span class="n">ghw</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">gtkwave</span><span class="o">-</span><span class="n">args</span> <span class="n">GTKWAVE_ARGS</span><span class="p">]</span>
+              <span class="p">[</span><span class="o">--</span><span class="n">cdslib</span> <span class="n">CDSLIB</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">hdlvar</span> <span class="n">HDLVAR</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">use</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">codecs</span><span class="p">]</span>
               <span class="p">[</span><span class="n">tests</span> <span class="p">[</span><span class="n">tests</span> <span class="o">...</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -96,7 +96,7 @@ source files are automatically scanned for test cases.</p>
 </tbody>
 </table>
 </dd>
-<dt>optional arguments</dt>
+<dt>Options:</dt>
 <dd><table class="first last docutils option-list" frame="void" rules="none">
 <col class="option" />
 <col class="description" />
@@ -125,7 +125,7 @@ source files are automatically scanned for test cases.</p>
 <kbd><span class="option">--clean=False</span></kbd></td>
 <td>Remove output path first</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">-o=&quot;./vunit_out&quot;</span>, <span class="option">--output-path=&quot;./vunit_out&quot;</span></kbd></td>
+<kbd><span class="option">-o=./vunit_out</span>, <span class="option">--output-path=./vunit_out</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Output path for compilation and simulation artifacts</td></tr>
 <tr><td class="option-group" colspan="2">
@@ -144,7 +144,7 @@ source files are automatically scanned for test cases.</p>
 </tr>
 <tr><td>&nbsp;</td><td>Do not color output</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">--log-level=&quot;warning&quot;</span></kbd></td>
+<kbd><span class="option">--log-level=warning</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td><p class="first">Log level of VUnit internal python logging. Used for debugging</p>
 <p class="last">Possible choices: info, error, warning, debug</p>
@@ -157,396 +157,31 @@ source files are automatically scanned for test cases.</p>
 <kbd><span class="option">-u=False</span>, <span class="option">--unique-sim=False</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Do not re-use the same simulator process for running different test cases (slower)</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--version</span></kbd></td>
+<td>show program&#8217;s version number and exit</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-g=False</span>, <span class="option">--gui=False</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Open test case(s) in simulator gui with top level pre loaded</td></tr>
-</tbody>
-</table>
-</dd>
-<dt>modelsim</dt>
-<dd><table class="first last docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-l=False</span>, <span class="option">--list=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all test cases</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-f=False</span>, <span class="option">--files=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all files in compile order</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--compile=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only compile project without running tests</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-k=False</span>, <span class="option">--keep-compiling=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Continue compiling even after errors only skipping files that depend on failed files</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--elaborate=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only elaborate test benches without running</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--clean=False</span></kbd></td>
-<td><p class="first last">Remove output path first</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-o=&quot;./vunit_out&quot;</span>, <span class="option">--output-path=&quot;./vunit_out&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Output path for compilation and simulation artifacts</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-x</span>, <span class="option">--xunit-xml</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Xunit test report .xml file</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--exit-0=False</span></kbd></td>
-<td><p class="first last">Exit with code 0 even if a test failed. Still exits with code 1 on fatal errors such as compilation failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-v=False</span>, <span class="option">--verbose=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Print test output immediately and not only when failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--no-color=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not color output</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--log-level=&quot;warning&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first">Log level of VUnit internal python logging. Used for debugging</p>
-<p class="last">Possible choices: info, error, warning, debug</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-p=1</span>, <span class="option">--num-threads=1</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Number of tests to run in parallel. Test output is not continuously written in verbose mode with p &gt; 1</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-u=False</span>, <span class="option">--unique-sim=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not re-use the same simulator process for running different test cases (slower)</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-g=False</span>, <span class="option">--gui=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Open test case(s) in simulator gui with top level pre loaded</p>
-</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--coverage</span></kbd></td>
 <td>Enable code coverage. Choose any combination of &#8220;bcestf&#8221;. When the flag is given with no argument, everything is enabled. Remember to run &#8211;clean when changing this as re-compilation is not triggered. Experimental feature not supported by VUnit main developers.</td></tr>
-</tbody>
-</table>
-</dd>
-<dt>ghdl</dt>
-<dd><table class="first last docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-l=False</span>, <span class="option">--list=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all test cases</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-f=False</span>, <span class="option">--files=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all files in compile order</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--compile=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only compile project without running tests</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-k=False</span>, <span class="option">--keep-compiling=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Continue compiling even after errors only skipping files that depend on failed files</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--elaborate=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only elaborate test benches without running</p>
-</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--clean=False</span></kbd></td>
-<td><p class="first last">Remove output path first</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-o=&quot;./vunit_out&quot;</span>, <span class="option">--output-path=&quot;./vunit_out&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Output path for compilation and simulation artifacts</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-x</span>, <span class="option">--xunit-xml</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Xunit test report .xml file</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--exit-0=False</span></kbd></td>
-<td><p class="first last">Exit with code 0 even if a test failed. Still exits with code 1 on fatal errors such as compilation failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-v=False</span>, <span class="option">--verbose=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Print test output immediately and not only when failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--no-color=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not color output</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--log-level=&quot;warning&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first">Log level of VUnit internal python logging. Used for debugging</p>
-<p class="last">Possible choices: info, error, warning, debug</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-p=1</span>, <span class="option">--num-threads=1</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Number of tests to run in parallel. Test output is not continuously written in verbose mode with p &gt; 1</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-u=False</span>, <span class="option">--unique-sim=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not re-use the same simulator process for running different test cases (slower)</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-g=False</span>, <span class="option">--gui=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Open test case(s) in simulator gui with top level pre loaded</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--coverage</span></kbd></td>
-<td><p class="first last">Enable code coverage. Choose any combination of &#8220;bcestf&#8221;. When the flag is given with no argument, everything is enabled. Remember to run &#8211;clean when changing this as re-compilation is not triggered. Experimental feature not supported by VUnit main developers.</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--gtkwave</span></kbd></td>
-<td><p class="first">Save .vcd or .ghw and open in gtkwave</p>
+<kbd><span class="option">--gtkwave-fmt</span></kbd></td>
+<td><p class="first">Save .vcd or .ghw to open in gtkwave</p>
 <p class="last">Possible choices: vcd, ghw</p>
 </td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--gtkwave-args=</span></kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Arguments to pass to gtkwave</td></tr>
-</tbody>
-</table>
-</dd>
-<dt>Incisive irun</dt>
-<dd><table class="first last docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-l=False</span>, <span class="option">--list=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all test cases</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-f=False</span>, <span class="option">--files=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all files in compile order</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--compile=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only compile project without running tests</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-k=False</span>, <span class="option">--keep-compiling=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Continue compiling even after errors only skipping files that depend on failed files</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--elaborate=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only elaborate test benches without running</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--clean=False</span></kbd></td>
-<td><p class="first last">Remove output path first</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-o=&quot;./vunit_out&quot;</span>, <span class="option">--output-path=&quot;./vunit_out&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Output path for compilation and simulation artifacts</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-x</span>, <span class="option">--xunit-xml</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Xunit test report .xml file</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--exit-0=False</span></kbd></td>
-<td><p class="first last">Exit with code 0 even if a test failed. Still exits with code 1 on fatal errors such as compilation failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-v=False</span>, <span class="option">--verbose=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Print test output immediately and not only when failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--no-color=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not color output</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--log-level=&quot;warning&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first">Log level of VUnit internal python logging. Used for debugging</p>
-<p class="last">Possible choices: info, error, warning, debug</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-p=1</span>, <span class="option">--num-threads=1</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Number of tests to run in parallel. Test output is not continuously written in verbose mode with p &gt; 1</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-u=False</span>, <span class="option">--unique-sim=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not re-use the same simulator process for running different test cases (slower)</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-g=False</span>, <span class="option">--gui=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Open test case(s) in simulator gui with top level pre loaded</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--coverage</span></kbd></td>
-<td><p class="first last">Enable code coverage. Choose any combination of &#8220;bcestf&#8221;. When the flag is given with no argument, everything is enabled. Remember to run &#8211;clean when changing this as re-compilation is not triggered. Experimental feature not supported by VUnit main developers.</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--gtkwave</span></kbd></td>
-<td><p class="first">Save .vcd or .ghw and open in gtkwave</p>
-<p class="last">Possible choices: vcd, ghw</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--gtkwave-args=</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Arguments to pass to gtkwave</p>
-</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--cdslib</span></kbd></td>
 <td>The cds.lib file to use. If not given, VUnit maintains its own cds.lib file.</td></tr>
 <tr><td class="option-group">
 <kbd><span class="option">--hdlvar</span></kbd></td>
 <td>The hdl.var file to use. If not given, VUnit does not use a hdl.var file.</td></tr>
-</tbody>
-</table>
-</dd>
-<dt>com</dt>
-<dd><table class="first last docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-l=False</span>, <span class="option">--list=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all test cases</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-f=False</span>, <span class="option">--files=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only list all files in compile order</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--compile=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only compile project without running tests</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-k=False</span>, <span class="option">--keep-compiling=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Continue compiling even after errors only skipping files that depend on failed files</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--elaborate=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Only elaborate test benches without running</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--clean=False</span></kbd></td>
-<td><p class="first last">Remove output path first</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-o=&quot;./vunit_out&quot;</span>, <span class="option">--output-path=&quot;./vunit_out&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Output path for compilation and simulation artifacts</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-x</span>, <span class="option">--xunit-xml</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Xunit test report .xml file</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--exit-0=False</span></kbd></td>
-<td><p class="first last">Exit with code 0 even if a test failed. Still exits with code 1 on fatal errors such as compilation failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-v=False</span>, <span class="option">--verbose=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Print test output immediately and not only when failure</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--no-color=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not color output</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--log-level=&quot;warning&quot;</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first">Log level of VUnit internal python logging. Used for debugging</p>
-<p class="last">Possible choices: info, error, warning, debug</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-p=1</span>, <span class="option">--num-threads=1</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Number of tests to run in parallel. Test output is not continuously written in verbose mode with p &gt; 1</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-u=False</span>, <span class="option">--unique-sim=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Do not re-use the same simulator process for running different test cases (slower)</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-g=False</span>, <span class="option">--gui=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Open test case(s) in simulator gui with top level pre loaded</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--coverage</span></kbd></td>
-<td><p class="first last">Enable code coverage. Choose any combination of &#8220;bcestf&#8221;. When the flag is given with no argument, everything is enabled. Remember to run &#8211;clean when changing this as re-compilation is not triggered. Experimental feature not supported by VUnit main developers.</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--gtkwave</span></kbd></td>
-<td><p class="first">Save .vcd or .ghw and open in gtkwave</p>
-<p class="last">Possible choices: vcd, ghw</p>
-</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--gtkwave-args=</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first last">Arguments to pass to gtkwave</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--cdslib</span></kbd></td>
-<td><p class="first last">The cds.lib file to use. If not given, VUnit maintains its own cds.lib file.</p>
-</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--hdlvar</span></kbd></td>
-<td><p class="first last">The hdl.var file to use. If not given, VUnit does not use a hdl.var file.</p>
-</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">--use-debug-codecs=False</span></kbd></td>
 </tr>
@@ -559,7 +194,7 @@ source files are automatically scanned for test cases.</p>
 <div class="section" id="example-session">
 <h2>Example Session<a class="headerlink" href="#example-session" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/vhdl/user_guide//">VHDL User Guide Example</a> can be run to produce the following output:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
+<div class="literal-block-wrapper container" id="id2">
 <div class="code-block-caption"><span class="caption-text">List all tests</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -l
 <span class="go">lib.tb_example.all</span>
@@ -569,7 +204,7 @@ source files are automatically scanned for test cases.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id3">
+<div class="literal-block-wrapper container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Run all tests</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -v lib.tb_example*
 <span class="go">Running test: lib.tb_example.all</span>
@@ -604,7 +239,7 @@ source files are automatically scanned for test cases.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id4">
+<div class="literal-block-wrapper container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Run a specific test</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -v lib.tb_example.all
 <span class="go">Running test: lib.tb_example.all</span>
@@ -669,7 +304,7 @@ separate terminal.</p>
 <p>VUnit is easily utilized with continuous integration environments such as
 <a class="reference external" href="http://jenkins-ci.org/">Jenkins</a>. Once a project <code class="docutils literal"><span class="pre">run.py</span></code> has been setup, tests can be run in a
 headless environment with standardized xUnit style output to a file.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
+<div class="literal-block-wrapper container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Execute VUnit tests on CI server with XML output</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go"> python run.py --xunit-xml test_output.xml</span>
 </pre></div>
@@ -689,7 +324,7 @@ specify which simulator to use.</p>
 <p>In addition to VUnit scanning the <code class="docutils literal"><span class="pre">PATH</span></code> the simulator executable
 path can be explicitly configured by setting a
 <code class="docutils literal"><span class="pre">VUNIT_&lt;SIMULATOR_NAME&gt;_PATH</span></code> environment variable.</p>
-<div class="literal-block-wrapper docutils container" id="id6">
+<div class="literal-block-wrapper container" id="id6">
 <div class="code-block-caption"><span class="caption-text">Explicitly set path to GHDL executables</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">VUNIT_GHDL_PATH=/opt/ghdl/bin</span>
 </pre></div>
@@ -849,7 +484,7 @@ path can be explicitly configured by setting a
       &copy;2016, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
