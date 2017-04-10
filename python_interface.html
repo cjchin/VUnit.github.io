@@ -340,7 +340,14 @@ adding custom command line options.</p>
 <dt id="vunit.ui.VUnit.get_compile_order">
 <code class="descname">get_compile_order</code><span class="sig-paren">(</span><em>source_files=None</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.get_compile_order" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the compile order of all or specific source files and
-their dependencies</p>
+their dependencies.</p>
+<p>A dependency of file <strong>A</strong> in terms of compile order is any
+file <strong>B</strong> which <strong>must</strong> be successfully compiled before <strong>A</strong>
+can be successfully compiled.</p>
+<p>This is <strong>not</strong> the same as all files required to successfully elaborate <strong>A</strong>.
+For example using component instantiation in VHDL there is no
+compile order dependency but the component instance will not
+elaborate if there is no binding component.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -348,6 +355,24 @@ their dependencies</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>source_files</strong> &#8211; A list of <a class="reference internal" href="#vunit.ui.SourceFile" title="vunit.ui.SourceFile"><code class="xref py py-class docutils literal"><span class="pre">SourceFile</span></code></a> objects or <cite>None</cite> meaing all</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of <a class="reference internal" href="#vunit.ui.SourceFile" title="vunit.ui.SourceFile"><code class="xref py py-class docutils literal"><span class="pre">SourceFile</span></code></a> objects in compile order.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="vunit.ui.VUnit.get_implementation_subset">
+<code class="descname">get_implementation_subset</code><span class="sig-paren">(</span><em>source_files</em><span class="sig-paren">)</span><a class="headerlink" href="#vunit.ui.VUnit.get_implementation_subset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the subset of files which are required to successfully
+elaborate the list of input files without any missing
+dependencies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>source_files</strong> &#8211; A list of <a class="reference internal" href="#vunit.ui.SourceFile" title="vunit.ui.SourceFile"><code class="xref py py-class docutils literal"><span class="pre">SourceFile</span></code></a> objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of <a class="reference internal" href="#vunit.ui.SourceFile" title="vunit.ui.SourceFile"><code class="xref py py-class docutils literal"><span class="pre">SourceFile</span></code></a> objects which is the implementation subset.</td>
 </tr>
 </tbody>
 </table>
@@ -987,8 +1012,12 @@ If no <a class="reference internal" href="#configurations"><span class="std std-
 <li><strong>generics</strong> &#8211; A <cite>dict</cite> containing the generics to be set in addition to the default configuration</li>
 <li><strong>parameters</strong> &#8211; A <cite>dict</cite> containing the parameters to be set in addition to the default configuration</li>
 <li><strong>pre_config</strong> &#8211; A function to be called before test execution, replaces the default if not None
-The function may accept a string which is the filesystem path to the
-directory where test outputs are stored.
+The function accepts an optional first argument <cite>output_path</cite> which is the filesystem path to the
+directory where test outputs are stored. An optional second argument
+<cite>simulator_output_path</cite> is the filesystem path to the simulator working directory.
+Please note that <cite>simulator_output_path</cite> is shared by all test runs. The user must take
+care that test runs do not read or write the same files asynchronously. It is therefore
+recommended to use <cite>output_path</cite> in favor of <cite>simulator_output_path</cite>.
 The function must return <cite>True</cite> or the test will fail</li>
 <li><strong>post_check</strong> &#8211; A function to be called after test execution, replaces the default if not None
 The function must accept a string which is the filesystem path to the
@@ -1688,11 +1717,11 @@ scripts using the <a class="reference internal" href="#vunit.vunit_cli.VUnitCLI"
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2016, Lars Asplund.
+      &copy;2017, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
       <a href="_sources/python_interface.txt"
