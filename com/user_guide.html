@@ -252,7 +252,7 @@ following package.</p>
 <p>Encoders for these types are generated if you add the following to the
 Python script</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">tb_shuffler_lib</span> <span class="o">=</span> <span class="n">ui</span><span class="o">.</span><span class="n">add_library</span><span class="p">(</span><span class="s1">&#39;tb_shuffler_lib&#39;</span><span class="p">)</span>
-<span class="n">tb_shuffler_lib</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;*.vhd&#39;</span><span class="p">))</span>
+<span class="n">tb_shuffler_lib</span><span class="o">.</span><span class="n">add_source_files</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;*.vhd&#39;</span><span class="p">))</span>
 <span class="n">pkg</span> <span class="o">=</span> <span class="n">tb_shuffler_lib</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="s1">&#39;msg_types_pkg&#39;</span><span class="p">)</span>
 <span class="n">pkg</span><span class="o">.</span><span class="n">generate_codecs</span><span class="p">(</span><span class="n">codec_package_name</span><span class="o">=</span><span class="s1">&#39;msg_codecs_pkg&#39;</span><span class="p">)</span>
 </pre></div>
@@ -634,8 +634,8 @@ permanently enable the debug codecs in your Python script like this.</p>
       &copy;2017, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
       <a href="../_sources/com/user_guide.txt"

@@ -84,117 +84,171 @@ source files are automatically scanned for test cases.</p>
               <span class="p">[</span><span class="n">tests</span> <span class="p">[</span><span class="n">tests</span> <span class="o">...</span><span class="p">]]</span>
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>Positional arguments:</dt>
-<dd><table class="first last docutils option-list" frame="void" rules="none">
+<div class="section" id="Positional Arguments">
+<h3>Positional Arguments<a class="headerlink" href="#Positional Arguments" title="Permalink to this headline">¶</a></h3>
+<table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
 <tr><td class="option-group">
-<kbd>test_patterns</kbd></td>
-<td>Tests to run</td></tr>
+<kbd>tests</kbd></td>
+<td><p class="first">Tests to run</p>
+<p class="last">Default: &#8220;*&#8221;</p>
+</td></tr>
 </tbody>
 </table>
-</dd>
-<dt>Options:</dt>
-<dd><table class="first last docutils option-list" frame="void" rules="none">
+</div>
+<div class="section" id="Named Arguments">
+<h3>Named Arguments<a class="headerlink" href="#Named Arguments" title="Permalink to this headline">¶</a></h3>
+<table class="docutils option-list" frame="void" rules="none">
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-l=False</span>, <span class="option">--list=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Only list all test cases</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-f=False</span>, <span class="option">--files=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Only list all files in compile order</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--compile=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Only compile project without running tests</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-k=False</span>, <span class="option">--keep-compiling=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Continue compiling even after errors only skipping files that depend on failed files</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--elaborate=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Only elaborate test benches without running</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--clean=False</span></kbd></td>
-<td>Remove output path first</td></tr>
+<kbd>-l, &#8211;list</kbd></td>
+<td><p class="first">Only list all test cases</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>-f, &#8211;files</kbd></td>
+<td><p class="first">Only list all files in compile order</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;compile</kbd></td>
+<td><p class="first">Only compile project without running tests</p>
+<p class="last">Default: False</p>
+</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">-o=./vunit_out</span>, <span class="option">--output-path=./vunit_out</span></kbd></td>
+<kbd>-k, &#8211;keep-compiling</kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Output path for compilation and simulation artifacts</td></tr>
+<tr><td>&nbsp;</td><td><p class="first">Continue compiling even after errors only skipping files that depend on failed files</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;elaborate</kbd></td>
+<td><p class="first">Only elaborate test benches without running</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;clean</kbd></td>
+<td><p class="first">Remove output path first</p>
+<p class="last">Default: False</p>
+</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">-x</span>, <span class="option">--xunit-xml</span></kbd></td>
+<kbd>-o, &#8211;output-path</kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><p class="first">Output path for compilation and simulation artifacts</p>
+<p class="last">Default: &#8221;./vunit_out&#8221;</p>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd>-x, &#8211;xunit-xml</kbd></td>
 </tr>
 <tr><td>&nbsp;</td><td>Xunit test report .xml file</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--exit-0=False</span></kbd></td>
-<td>Exit with code 0 even if a test failed. Still exits with code 1 on fatal errors such as compilation failure</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-v=False</span>, <span class="option">--verbose=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Print test output immediately and not only when failure</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--no-color=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Do not color output</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--log-level=warning</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td><p class="first">Log level of VUnit internal python logging. Used for debugging</p>
-<p class="last">Possible choices: info, error, warning, debug</p>
+<kbd>&#8211;exit-0</kbd></td>
+<td><p class="first">Exit with code 0 even if a test failed. Still exits with code 1 on fatal errors such as compilation failure</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>-v, &#8211;verbose</kbd></td>
+<td><p class="first">Print test output immediately and not only when failure</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;no-color</kbd></td>
+<td><p class="first">Do not color output</p>
+<p class="last">Default: False</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;log-level</kbd></td>
+<td><p class="first">Possible choices: info, error, warning, debug</p>
+<p>Log level of VUnit internal python logging. Used for debugging</p>
+<p class="last">Default: &#8220;warning&#8221;</p>
 </td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">-p=1</span>, <span class="option">--num-threads=1</span></kbd></td>
+<kbd>-p, &#8211;num-threads</kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Number of tests to run in parallel. Test output is not continuously written in verbose mode with p &gt; 1</td></tr>
+<tr><td>&nbsp;</td><td><p class="first">Number of tests to run in parallel. Test output is not continuously written in verbose mode with p &gt; 1</p>
+<p class="last">Default: 1</p>
+</td></tr>
 <tr><td class="option-group" colspan="2">
-<kbd><span class="option">-u=False</span>, <span class="option">--unique-sim=False</span></kbd></td>
+<kbd>-u, &#8211;unique-sim</kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Do not re-use the same simulator process for running different test cases (slower)</td></tr>
+<tr><td>&nbsp;</td><td><p class="first">Do not re-use the same simulator process for running different test cases (slower)</p>
+<p class="last">Default: False</p>
+</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--coverage</span></kbd></td>
+<kbd>&#8211;coverage</kbd></td>
 <td>Enable code coverage. Works with ModelSim and RivieraPRO.</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--version</span></kbd></td>
+<kbd>&#8211;version</kbd></td>
 <td>show program&#8217;s version number and exit</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">-g=False</span>, <span class="option">--gui=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Open test case(s) in simulator gui with top level pre loaded</td></tr>
 <tr><td class="option-group">
-<kbd><span class="option">--gtkwave-fmt</span></kbd></td>
-<td><p class="first">Save .vcd or .ghw to open in gtkwave</p>
-<p class="last">Possible choices: vcd, ghw</p>
+<kbd>-g, &#8211;gui</kbd></td>
+<td><p class="first">Open test case(s) in simulator gui with top level pre loaded</p>
+<p class="last">Default: False</p>
 </td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--gtkwave-args=</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Arguments to pass to gtkwave</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--cdslib</span></kbd></td>
-<td>The cds.lib file to use. If not given, VUnit maintains its own cds.lib file.</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">--hdlvar</span></kbd></td>
-<td>The hdl.var file to use. If not given, VUnit does not use a hdl.var file.</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--use-debug-codecs=False</span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>Run with debug features enabled</td></tr>
 </tbody>
 </table>
-</dd>
-</dl>
+</div>
+<div class="section" id="ghdl">
+<h3>ghdl<a class="headerlink" href="#ghdl" title="Permalink to this headline">¶</a></h3>
+<p>GHDL specific flags</p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd>&#8211;gtkwave-fmt</kbd></td>
+<td><p class="first">Possible choices: vcd, ghw</p>
+<p class="last">Save .vcd or .ghw to open in gtkwave</p>
+</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;gtkwave-args</kbd></td>
+<td><p class="first">Arguments to pass to gtkwave</p>
+<p class="last">Default: &#8220;&#8221;</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="Incisive irun">
+<h3>Incisive irun<a class="headerlink" href="#Incisive irun" title="Permalink to this headline">¶</a></h3>
+<p>Incisive irun-specific flags</p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd>&#8211;cdslib</kbd></td>
+<td>The cds.lib file to use. If not given, VUnit maintains its own cds.lib file.</td></tr>
+<tr><td class="option-group">
+<kbd>&#8211;hdlvar</kbd></td>
+<td>The hdl.var file to use. If not given, VUnit does not use a hdl.var file.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="com">
+<h3>com<a class="headerlink" href="#com" title="Permalink to this headline">¶</a></h3>
+<p>Flags specific to the com message passing package</p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd>&#8211;use-debug-codecs</kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><p class="first">Run with debug features enabled</p>
+<p class="last">Default: False</p>
+</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="example-session">
 <h2>Example Session<a class="headerlink" href="#example-session" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://github.com/VUnit/vunit/tree/master/examples/vhdl/user_guide//">VHDL User Guide Example</a> can be run to produce the following output:</p>
-<div class="literal-block-wrapper container" id="id2">
+<div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">List all tests</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -l
 <span class="go">lib.tb_example.all</span>
@@ -204,7 +258,7 @@ source files are automatically scanned for test cases.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper container" id="id3">
+<div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Run all tests</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -v lib.tb_example*
 <span class="go">Running test: lib.tb_example.all</span>
@@ -239,7 +293,7 @@ source files are automatically scanned for test cases.</p>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper container" id="id4">
+<div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Run a specific test</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> python run.py -v lib.tb_example.all
 <span class="go">Running test: lib.tb_example.all</span>
@@ -304,7 +358,7 @@ separate terminal.</p>
 <p>VUnit is easily utilized with continuous integration environments such as
 <a class="reference external" href="http://jenkins-ci.org/">Jenkins</a>. Once a project <code class="docutils literal"><span class="pre">run.py</span></code> has been setup, tests can be run in a
 headless environment with standardized xUnit style output to a file.</p>
-<div class="literal-block-wrapper container" id="id5">
+<div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text">Execute VUnit tests on CI server with XML output</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go"> python run.py --xunit-xml test_output.xml</span>
 </pre></div>
@@ -324,7 +378,7 @@ specify which simulator to use.</p>
 <p>In addition to VUnit scanning the <code class="docutils literal"><span class="pre">PATH</span></code> the simulator executable
 path can be explicitly configured by setting a
 <code class="docutils literal"><span class="pre">VUNIT_&lt;SIMULATOR_NAME&gt;_PATH</span></code> environment variable.</p>
-<div class="literal-block-wrapper container" id="id6">
+<div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text">Explicitly set path to GHDL executables</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">VUNIT_GHDL_PATH=/opt/ghdl/bin</span>
 </pre></div>
@@ -393,7 +447,14 @@ path can be explicitly configured by setting a
 <li class="toctree-l1 current"><a class="reference internal" href="documentation.html">Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="user_guide.html">User Guide</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Command Line Interface</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Positional Arguments">Positional Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Named Arguments">Named Arguments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghdl">ghdl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Incisive irun">Incisive irun</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#com">com</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#example-session">Example Session</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#opening-a-test-case-in-simulator-gui">Opening a Test Case in Simulator GUI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#continuous-integration-environment">Continuous Integration Environment</a></li>
@@ -485,8 +546,8 @@ path can be explicitly configured by setting a
       &copy;2017, Lars Asplund.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.8</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
       <a href="_sources/cli.txt"
